@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Televendas - Julho/2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#111;color:#eee;padding:0}
+header{background:#1a1a2e;border-bottom:2px solid #f59e0b;padding:16px 24px;display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+header h1{font-size:22px;font-weight:700;color:#f59e0b}
+header .ref{font-size:13px;color:#888;margin-left:auto}
+.tabs{display:flex;gap:0;background:#0d0d1a;border-bottom:1px solid #333;padding:0 24px}
+.tab{padding:10px 20px;font-size:13px;font-weight:600;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;font-family:inherit}
+.tab:hover{color:#eee}
+.tab.active{color:#f59e0b;border-bottom-color:#f59e0b;background:rgba(245,158,11,0.05)}
+.container{max-width:1200px;margin:0 auto;padding:20px 24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:20px}
+.card{background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:14px 16px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.card .val{font-size:24px;font-weight:800}
+.chart-box{background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:16px;margin-bottom:20px}
+.chart-box h2{font-size:14px;font-weight:700;margin-bottom:12px;color:#fcd34d;text-transform:uppercase;letter-spacing:.5px}
+.chart-box h2 .sub{font-size:12px;color:#aaa;font-weight:400;text-transform:none;letter-spacing:0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{padding:6px 8px;text-align:left;font-weight:600;color:#999;font-size:11px;text-transform:uppercase;letter-spacing:.5px;background:#111;border-bottom:1px solid #333}
+td{padding:5px 8px;text-align:left;border-bottom:1px solid #1a1a2e;color:#ccc}
+tr:nth-child(even){background:rgba(255,255,255,0.02)}
+tr:hover{background:rgba(255,255,255,0.05)}
+.text-right{text-align:right}
+.tw{max-height:360px;overflow-y:auto;overflow-x:auto;border:1px solid #333;border-radius:6px}
+.tw th{position:sticky;top:0;z-index:2;background:#111}
+.bar-bg{height:5px;border-radius:3px;background:#333;overflow:hidden;margin-top:3px;width:100px}
+.bar-fill{height:100%;border-radius:3px}
+.cell-cli{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:#fcd34d}
+footer{text-align:center;padding:12px;font-size:11px;color:#555;border-top:1px solid #1a1a2e;margin-top:10px}
+@media(max-width:600px){.cards{grid-template-columns:1fr}.container{padding:12px}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>&#9742; Televendas &middot; Julho/2026</h1>
+<div class="ref">Base 8026 &bull; 6 vendedores</div>
+</header>
+
+<div class="tabs">
+<button class="tab active" onclick="switchView(null)">Geral</button>
+<button class="tab" onclick="switchView('10828')">Polpanorte</button>
+</div>
+
+<div class="container" id="app">
+<div style="text-align:center;padding:60px 20px;color:#666">Carregando...</div>
+</div>
+
+<footer>Dashboard Televendas &bull; Base 8026_2026</footer>
+
+<script>
+var DADOS = [];
+var activeFilter = null;
+
+function serialToDate(s){
+  if(!s||s<60)return'';
+  return new Date((s-1)*86400000-2209161600000).toLocaleDateString('pt-BR');
+}
+
+function fmt(v){
+  if(v==null||isNaN(v))return'-';
+  return'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+function pct(v,t){
+  if(!t||!t)return 0;
+  return v/t*100;
+}
+
+var METAS = {
+  '1596':{nome:'Ariane',regiao:'POA',fat:145000,pos:95},
+  '1464':{nome:'Camila',regiao:'SUL',fat:127328,pos:116},
+  '1211':{nome:'Cristielen',regiao:'VALE DOS SINOS',fat:117386,pos:116},
+  '1429':{nome:'Natália',regiao:'KEY ACCOUNT',fat:350000,pos:10},
+  '9886':{nome:'Tatiana',regiao:'SERRA',fat:145000,pos:100},
+  '1624':{nome:'Tatiana',regiao:'LITORAL',fat:95000,pos:90}
+};
+
+var METAS_POLPA = {
+  '1596':{nome:'Ariane',regiao:'POA',fat:36500,pos:62},
+  '1464':{nome:'Camila',regiao:'SUL',fat:40000,pos:98},
+  '1211':{nome:'Cristielen',regiao:'VALE DOS SINOS',fat:75000,pos:103},
+  '1429':{nome:'Natália',regiao:'KEY ACCOUNT',fat:175000,pos:0},
+  '9886':{nome:'Tatiana',regiao:'SERRA',fat:87500,pos:143},
+  '1624':{nome:'Tatiana',regiao:'LITORAL',fat:0,pos:0}
+};
+
+function switchView(codfornec){
+  activeFilter = codfornec;
+  var tabs = document.querySelectorAll('.tab');
+  for(var ti=0;ti<tabs.length;ti++){
+    tabs[ti].className = 'tab' + ((tabs[ti].getAttribute('onclick').indexOf("'"+ (codfornec||'') +"'") >= 0) ? ' active' : '');
+  }
+  render();
+}
+
+function render(){
+  if(!DADOS||!DADOS.length){
+    document.getElementById('app').innerHTML='<div style="padding:40px;text-align:center;color:#666">Sem dados.</div>';
+    return;
+  }
+
+  var filtered = activeFilter ? DADOS.filter(function(r){return String(r.codfornec)===String(activeFilter);}) : DADOS;
+  var metas = activeFilter ? METAS_POLPA : METAS;
+  var viewName = activeFilter ? 'Polpanorte' : 'Geral';
+
+  var pos=filtered.filter(function(r){return r.fat>=1;});
+  var dev=filtered.filter(function(r){return r.fat<0;});
+
+  var fatBru=pos.reduce(function(s,r){return s+r.fat;},0);
+  var totPos=pos.length;
+
+  var cliPos={};
+  pos.forEach(function(r){cliPos[r.codcli]=(cliPos[r.codcli]||0)+r.fat;});
+  var qtdCliPos=Object.keys(cliPos).length;
+  var tick=totPos>0?fatBru/totPos:0;
+
+  // Cards
+  var c='<div class="cards">';
+  c+='<div class="card"><div class="lbl">Faturamento Bruto</div><div class="val" style="color:#34d399">'+fmt(fatBru)+'</div></div>';
+  c+='<div class="card"><div class="lbl">Clientes Positivados</div><div class="val" style="color:#34d399">'+qtdCliPos+'</div></div>';
+  c+='<div class="card"><div class="lbl">Ticket M&#233;dio</div><div class="val" style="color:#a78bfa">'+fmt(tick)+'</div></div>';
+  c+='</div>';
+
+  // Vendedores
+  var vends={};
+  pos.forEach(function(r){
+    if(!vends[r.codusur])vends[r.codusur]={codusur:r.codusur,rca:r.rca,regiao:(metas[r.codusur]||{}).regiao||'',pedidos:0,fat:0,clientes:{}};
+    vends[r.codusur].pedidos++;
+    vends[r.codusur].fat+=r.fat;
+    vends[r.codusur].clientes[r.codcli]=(vends[r.codusur].clientes[r.codcli]||0)+r.fat;
+  });
+
+  var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return b.fat-a.fat;});
+
+  // Matriz
+  var m='<div class="chart-box"><h2>Matriz de Positiva&#231;&#227;o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div class="tw"><table><thead><tr><th>Vendedor</th><th>Regi&#227;o</th><th class="text-right">Faturamento</th><th class="text-right">Meta FAT</th><th>% FAT</th><th class="text-right">Pos.</th><th class="text-right">Meta Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
+  var totFat=0,totMetaFat=0,totPos=0,totMetaPos=0;
+  vArr.forEach(function(v,i){
+    var qc=Object.keys(v.clientes).length;
+    var tickV=qc>0?v.fat/qc:0;
+    var mt=metas[v.codusur]||{};
+    var pf=mt.fat>0?pct(v.fat,mt.fat):0;
+    var pp=mt.pos>0?pct(qc,mt.pos):0;
+    var fC=pf>=100?'#34d399':pf>=70?'#fbbf24':'#f87171';
+    var pC=pp>=100?'#34d399':pp>=70?'#fbbf24':'#f87171';
+    totFat+=v.fat;totMetaFat+=mt.fat||0;totPos+=qc;totMetaPos+=mt.pos||0;
+    m+='<tr'+(i%2===0?' style="background:rgba(255,255,255,0.02)"':'')+'>'+
+      '<td style="font-weight:600;color:#fcd34d">'+v.rca+'</td>'+
+      '<td style="color:#888">'+v.regiao+'</td>'+
+      '<td class="text-right" style="color:#fbbf24;font-weight:700">'+fmt(v.fat)+'</td>'+
+      '<td class="text-right" style="color:#888">'+fmt(mt.fat||0)+'</td>'+
+      '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pf,100).toFixed(0)+'%;background:'+fC+'"></div></div><span style="font-size:10px;color:'+fC+';font-weight:600">'+pf.toFixed(1)+'%</span></td>'+
+      '<td class="text-right" style="color:#34d399;font-weight:600">'+qc+'</td>'+
+      '<td class="text-right" style="color:#888">'+(mt.pos||'&mdash;')+'</td>'+
+      '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pp,100).toFixed(0)+'%;background:'+pC+'"></div></div><span style="font-size:10px;color:'+pC+';font-weight:600">'+pp.toFixed(1)+'%</span></td>'+
+      '<td class="text-right" style="color:#a78bfa">'+fmt(tickV)+'</td></tr>';
+  });
+  var tPf=totMetaFat>0?pct(totFat,totMetaFat):0;
+  var tPp=totMetaPos>0?pct(totPos,totMetaPos):0;
+  var tFc=tPf>=100?'#34d399':tPf>=70?'#fbbf24':'#f87171';
+  var tPc=tPp>=100?'#34d399':tPp>=70?'#fbbf24':'#f87171';
+  var tickTotal=totPos>0?totFat/totPos:0;
+  m+='<tr style="background:#151830;border-top:2px solid #f59e0b">'+
+    '<td style="font-weight:800;color:#fcd34d;font-size:13px">TOTAL</td>'+
+    '<td style="color:#888"></td>'+
+    '<td class="text-right" style="color:#fbbf24;font-weight:800;font-size:13px">'+fmt(totFat)+'</td>'+
+    '<td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(totMetaFat)+'</td>'+
+    '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPf,100).toFixed(0)+'%;background:'+tFc+'"></div></div><span style="font-size:10px;color:'+tFc+';font-weight:700">'+tPf.toFixed(1)+'%</span></td>'+
+    '<td class="text-right" style="color:#34d399;font-weight:800;font-size:13px">'+totPos+'</td>'+
+    '<td class="text-right" style="color:#34d399;font-weight:600">'+totMetaPos+'</td>'+
+    '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:10px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span></td>'+
+    '<td class="text-right" style="color:#a78bfa;font-weight:700">'+fmt(tickTotal)+'</td></tr>';
+  m+='</tbody></table></div></div>';
+
+  // Detalhamento
+  var d='<h2 style="font-size:14px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Detalhamento por Vendedor</h2>';
+  vArr.forEach(function(v){
+    var clis=Object.keys(v.clientes).map(function(cod){
+      var nome='';
+      for(var ri=0;ri<pos.length;ri++){
+        if(String(pos[ri].codcli)===cod&&String(pos[ri].codusur)===v.codusur){nome=pos[ri].cliente;break;}
+      }
+      return{cod:cod,nome:nome,fat:v.clientes[cod]};
+    }).sort(function(a,b){return b.fat-a.fat;});
+
+    d+='<div class="chart-box">';
+    d+='<div style="font-weight:700;color:#fcd34d;font-size:14px;margin-bottom:2px">'+v.rca+'</div>';
+    d+='<div style="font-size:12px;color:#888;margin-bottom:8px">'+v.pedidos+' pos. &middot; '+Object.keys(v.clientes).length+' clientes &middot; '+fmt(v.fat)+'</div>';
+    d+='<div class="tw"><table><thead><tr><th style="text-align:center">#</th><th>C&#243;digo</th><th>Cliente</th><th class="text-right">Faturamento</th></tr></thead><tbody>';
+    clis.forEach(function(c,i){
+      d+='<tr><td style="text-align:center;color:#888">'+(i+1)+'</td><td style="color:#60a5fa">'+c.cod+'</td><td class="cell-cli">'+c.nome+'</td><td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(c.fat)+'</td></tr>';
+    });
+    d+='</tbody></table></div></div>';
+  });
+
+  document.getElementById('app').innerHTML=c+m+d;
+}
+</script>
+<script src="dados_julho.js"></script>
+<script>render();</script>
+</body>
+</html>
