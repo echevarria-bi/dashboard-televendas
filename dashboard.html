@@ -47,7 +47,6 @@ footer{text-align:center;padding:12px;font-size:11px;color:#555;border-top:1px s
 <div class="tabs">
 <button class="tab active" onclick="switchView('geral')">Geral</button>
 <button class="tab" onclick="switchView('polpanorte')">Polpanorte</button>
-<button class="tab" onclick="switchView('regiao')">Regi&#227;o</button>
 <button class="tab" onclick="switchView('regiaomes')">Regi&#227;o/M&#234;s</button>
 </div>
 
@@ -100,8 +99,7 @@ function switchView(view){
   for(var ti=0;ti<tabs.length;ti++){
     tabs[ti].className = 'tab' + ((tabs[ti].getAttribute('onclick').indexOf("'"+view+"'") >= 0) ? ' active' : '');
   }
-  if (activeView === 'regiao') renderRegiao();
-  else if (activeView === 'regiaomes') renderRegiaoMes();
+  if (activeView === 'regiaomes') renderRegiaoMes();
   else render();
 }
 
@@ -207,75 +205,6 @@ function render(){
   });
 
   document.getElementById('app').innerHTML=c+m+d;
-}
-
-function renderRegiao(){
-  if(!DADOS||!DADOS.length){
-    document.getElementById('app').innerHTML='<div style="padding:40px;text-align:center;color:#666">Sem dados.</div>';
-    return;
-  }
-
-  var pos=DADOS.filter(function(r){return r.fat>=1;});
-  var metas=METAS;
-
-  var vends={};
-  pos.forEach(function(r){
-    if(!vends[r.codusur])vends[r.codusur]={codusur:r.codusur,rca:r.rca,regiao:(metas[r.codusur]||{}).regiao||'',pedidos:0,fat:0,clientes:{}};
-    vends[r.codusur].pedidos++;
-    vends[r.codusur].fat+=r.fat;
-    vends[r.codusur].clientes[r.codcli]=(vends[r.codusur].clientes[r.codcli]||0)+r.fat;
-  });
-
-  var regioes = [
-    {codusur:'1596',label:'POA',vendedor:'Ariane'},
-    {codusur:'1464',label:'SUL',vendedor:'Camila'},
-    {codusur:'1211',label:'VALE DOS SINOS',vendedor:'Cristielen'},
-    {codusur:'1429',label:'KEY ACCOUNT',vendedor:'Natália'},
-    {codusur:'9886',label:'SERRA',vendedor:'Tatiana'},
-    {codusur:'1624',label:'LITORAL',vendedor:'Tatiana'}
-  ];
-
-  var html='<h2 style="font-size:15px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.7px;margin-bottom:16px">Visão por Região &mdash; Julho/2026</h2>';
-
-  regioes.forEach(function(reg){
-    var v=vends[reg.codusur];
-    if(!v)return;
-    var qc=Object.keys(v.clientes).length;
-    var tick=qc>0?v.fat/qc:0;
-    var mt=metas[reg.codusur]||{};
-    var pf=mt.fat>0?pct(v.fat,mt.fat):0;
-    var pp=mt.pos>0?pct(qc,mt.pos):0;
-
-    html+='<div class="chart-box">';
-    html+='<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">';
-    html+='<div><span style="font-weight:700;color:#fcd34d;font-size:15px">'+reg.label+'</span>';
-    html+='<span style="color:#888;font-size:12px;margin-left:8px">'+reg.vendedor+'</span></div>';
-    html+='<div style="font-size:24px;font-weight:800;color:#fbbf24">'+fmt(v.fat)+'</div>';
-    html+='</div>';
-
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:10px">';
-    html+='<div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:6px"><div style="font-size:11px;color:#888;text-transform:uppercase">Positivações</div><div style="font-size:18px;font-weight:700;color:#34d399">'+v.pedidos+'</div></div>';
-    html+='<div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:6px"><div style="font-size:11px;color:#888;text-transform:uppercase">Clientes</div><div style="font-size:18px;font-weight:700;color:#60a5fa">'+qc+'</div></div>';
-    html+='<div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:6px"><div style="font-size:11px;color:#888;text-transform:uppercase">Ticket Médio</div><div style="font-size:18px;font-weight:700;color:#a78bfa">'+fmt(tick)+'</div></div>';
-    html+='</div>';
-
-    // Clients table
-    var clis=Object.keys(v.clientes).map(function(cod){
-      var nome='';
-      for(var ri=0;ri<pos.length;ri++){
-        if(String(pos[ri].codcli)===cod&&String(pos[ri].codusur)===v.codusur){nome=pos[ri].cliente;break;}
-      }
-      return{cod:cod,nome:nome,fat:v.clientes[cod]};
-    }).sort(function(a,b){return b.fat-a.fat;});
-
-    html+='<div class="tw" style="max-height:200px"><table><thead><tr><th style="text-align:center">#</th><th>Código</th><th>Cliente</th><th class="text-right">Faturamento</th></tr></thead><tbody>';
-    clis.forEach(function(c,i){
-      html+='<tr><td style="text-align:center;color:#888">'+(i+1)+'</td><td style="color:#60a5fa">'+c.cod+'</td><td class="cell-cli">'+c.nome+'</td><td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(c.fat)+'</td></tr>';
-    });
-    html+='</tbody></table></div></div>';
-  });
-
-  document.getElementById('app').innerHTML=html;
 }
 
 function fmtMes(m){
