@@ -118,43 +118,19 @@ function render(){
   var dev=filtered.filter(function(r){return r.fat<0;});
 
   var fatBru=pos.reduce(function(s,r){return s+r.fat;},0);
-  var fatLiq=filtered.reduce(function(s,r){return s+r.fat;},0);
-  var totPed=pos.length;
-  var totDev=dev.reduce(function(s,r){return s+r.fat;},0);
+  var totPos=pos.length;
 
   var cliPos={};
   pos.forEach(function(r){cliPos[r.codcli]=(cliPos[r.codcli]||0)+r.fat;});
   var qtdCliPos=Object.keys(cliPos).length;
-
-  var allCli={};
-  filtered.forEach(function(r){allCli[r.codcli]=(allCli[r.codcli]||0)+r.fat;});
-  var qtdAllCli=Object.keys(allCli).length;
-
-  var tick=totPed>0?fatBru/totPed:0;
-
-  var totMetaFat=0,totMetaPos=0;
-  Object.keys(metas).forEach(function(k){
-    totMetaFat+=metas[k].fat||0;
-    totMetaPos+=metas[k].pos||0;
-  });
-  var pctMetaFat=totMetaFat>0?(fatBru/totMetaFat*100):0;
-  var pctMetaPos=totMetaPos>0?(qtdCliPos/totMetaPos*100):0;
+  var tick=totPos>0?fatBru/totPos:0;
 
   var c='<div class="cards">';
-  c+='<div class="card"><div class="lbl">Faturamento Bruto</div><div class="val" style="color:#34d399">'+fmt(fatBru)+'</div>'+
-    '<div style="font-size:11px;margin-top:2px;color:'+(pctMetaFat>=100?'#34d399':'#fbbf24')+'">'+pctMetaFat.toFixed(1)+'% da meta</div></div>';
-  c+='<div class="card"><div class="lbl">Faturamento L\u00edquido</div><div class="val" style="color:#fbbf24">'+fmt(fatLiq)+'</div></div>';
-  c+='<div class="card"><div class="lbl">Positiva\u00e7\u00f5es</div><div class="val" style="color:#60a5fa">'+totPed+'</div></div>';
-  c+='<div class="card"><div class="lbl">Clientes Positivados</div><div class="val" style="color:#34d399">'+qtdCliPos+'</div>'+
-    '<div style="font-size:11px;margin-top:2px;color:'+(pctMetaPos>=100?'#34d399':'#fbbf24')+'">'+pctMetaPos.toFixed(1)+'% da meta</div></div>';
+  c+='<div class="card"><div class="lbl">Faturamento Bruto</div><div class="val" style="color:#34d399">'+fmt(fatBru)+'</div></div>';
+  c+='<div class="card"><div class="lbl">Clientes Positivados</div><div class="val" style="color:#34d399">'+qtdCliPos+'</div></div>';
   c+='<div class="card"><div class="lbl">Ticket M\u00e9dio</div><div class="val" style="color:#a78bfa">'+fmt(tick)+'</div></div>';
-  c+='<div class="card"><div class="lbl" style="color:#f87171">Devolu\u00e7\u00f5es</div><div class="val" style="color:#f87171">'+fmt(totDev)+'</div></div>';
-  c+='<div class="card"><div class="lbl">Total Clientes</div><div class="val" style="color:#60a5fa">'+qtdAllCli+'</div></div>';
-  c+='<div class="card" style="background:'+(pctMetaFat>=100?'#065f46':'#1a1a2e')+';border-color:'+(pctMetaFat>=100?'#34d399':'#333')+'">'+
-    '<div class="lbl">Atingimento Meta</div><div class="val" style="color:'+(pctMetaFat>=100?'#34d399':'#fbbf24')+'">'+pctMetaFat.toFixed(1)+'%</div></div>';
   c+='</div>';
 
-  // Vendedores
   var vends={};
   pos.forEach(function(r){
     if(!vends[r.codusur])vends[r.codusur]={codusur:r.codusur,rca:r.rca,regiao:(metas[r.codusur]||{}).regiao||'',pedidos:0,fat:0,clientes:{}};
@@ -165,7 +141,6 @@ function render(){
 
   var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return b.fat-a.fat;});
 
-  // Matriz
   var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div class="tw"><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Faturamento</th><th class="text-right">Meta FAT</th><th>% FAT</th><th class="text-right">Pos.</th><th class="text-right">Meta Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
   var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
@@ -205,7 +180,6 @@ function render(){
     '<td class="text-right" style="color:#a78bfa;font-weight:700">'+fmt(tickTotal)+'</td></tr>';
   m+='</tbody></table></div></div>';
 
-  // Detalhamento
   var d='<h2 style="font-size:14px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Detalhamento por Vendedor</h2>';
   vArr.forEach(function(v){
     var clis=Object.keys(v.clientes).map(function(cod){
