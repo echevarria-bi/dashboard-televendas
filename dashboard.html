@@ -209,12 +209,13 @@ function fmtMes(m){
 
 function renderRegiaoMes(){
   if(!DADOS_MES||!REGIAO_MES){
-    document.getElementById('app').innerHTML='<div style="padding:40px;text-align:center;color:#666">Dados mensais n\u00e3o carregados.</div>';
+    document.getElementById('app').innerHTML='<div style="padding:40px;text-align:center;color:#666">Dados mensais não carregados.</div>';
     return;
   }
 
-  var meses=['Janeiro','Fevereiro','Mar\u00e7o','Abril','Maio','Junho','Julho'];
-  var order=['Regi\u00e3o Metropolitana','Regi\u00e3o Sul','Serra','Litoral','Vale dos Sinos'];
+  var months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul'];
+  var fullMonths=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho'];
+  var order=['Região Metropolitana','Região Sul','Serra','Litoral','Vale dos Sinos'];
   var cores=['#f59e0b','#34d399','#60a5fa','#a78bfa','#f87171'];
 
   function calcReg(reg){
@@ -240,129 +241,111 @@ function renderRegiaoMes(){
   order.forEach(function(reg){gFat+=regData[reg].totalFat;gPos+=regData[reg].totalPos;gCli+=regData[reg].totalCli;});
   var gTick=gPos>0?gFat/gPos:0;
 
-  // Resumo mensal geral (soma de todas as regi\u00f5es por m\u00eas)
   var mFat=[0,0,0,0,0,0,0];
   var mPos=[0,0,0,0,0,0,0];
   order.forEach(function(reg){
-    var rd=regData[reg];
-    for(var i=0;i<7;i++){mFat[i]+=rd.months[i].fat;mPos[i]+=rd.months[i].pos;}
+    for(var i=0;i<7;i++){mFat[i]+=regData[reg].months[i].fat;mPos[i]+=regData[reg].months[i].pos;}
   });
-  var maxGFat=Math.max.apply(null,mFat);if(maxGFat===0)maxGFat=1;
-  var maxGPos=Math.max.apply(null,mPos);if(maxGPos===0)maxGPos=1;
+
+  var maxFV=Math.max.apply(null,mFat);if(maxFV===0)maxFV=1;
+  var maxPV=Math.max.apply(null,mPos);if(maxPV===0)maxPV=1;
+
+  function svgLine(vals,color){
+    var max=Math.max.apply(null,vals);if(max===0)max=1;
+    var min=Math.min.apply(null,vals);
+    var range=max-min||1;
+    var W=700,H=220,PL=55,PR=20,PT=25,PB=35;
+    var cw=W-PL-PR,ch=H-PT-PB;
+    var pts=[];
+    for(var i=0;i<7;i++){
+      var x=PL+i/(6)*cw,y=PT+ch-((vals[i]-min)/range)*ch;
+      pts.push(x+','+y);
+    }
+    var s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto"><rect width="'+W+'" height="'+H+'" fill="none"/>';
+    for(var g=0;g<=4;g++){
+      var gy=PT+(g/4)*ch;
+      var gv=Math.round(max-(g/4)*range);
+      s+='<line x1="'+PL+'" y1="'+gy+'" x2="'+(W-PR)+'" y2="'+gy+'" stroke="#1e1b4b" stroke-width="1"/>'+
+        '<text x="'+(PL-5)+'" y="'+(gy+4)+'" fill="#6b7280" font-size="11" text-anchor="end">'+(color==='#f59e0b'?fmt(gv):gv)+'</text>';
+    }
+    s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+    s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.15"/>';
+    for(var i=0;i<7;i++){
+      var x=PL+i/(6)*cw,y=PT+ch-((vals[i]-min)/range)*ch;
+      s+='<circle cx="'+x+'" cy="'+y+'" r="4.5" fill="'+color+'" stroke="#111" stroke-width="2"/>'+
+        '<text x="'+x+'" y="'+(H-8)+'" fill="#9ca3af" font-size="11" text-anchor="middle">'+months[i]+'</text>'+
+        '<text x="'+x+'" y="'+(y-10)+'" fill="#f3f4f6" font-size="11" text-anchor="middle" font-weight="600">'+(color==='#f59e0b'?fmt(vals[i]):vals[i])+'</text>';
+    }
+    s+='</svg>';
+    return s;
+  }
 
   var html='<div class="cards">';
-  html+='<div class="card"><div class="lbl">Faturamento Total (Jan-Jul)</div><div class="val" style="color:#fbbf24">'+fmt(gFat)+'</div></div>';
-  html+='<div class="card"><div class="lbl">Positiva\u00e7\u00f5es</div><div class="val" style="color:#34d399">'+gPos.toLocaleString('pt-BR')+'</div></div>';
-  html+='<div class="card"><div class="lbl">Clientes \u00danicos</div><div class="val" style="color:#60a5fa">'+gCli+'</div></div>';
-  html+='<div class="card"><div class="lbl">Ticket M\u00e9dio Geral</div><div class="val" style="color:#a78bfa">'+fmt(gTick)+'</div></div>';
+  html+='<div class="card"><div class="lbl">Faturamento Jan-Jul</div><div class="val" style="color:#fbbf24">'+fmt(gFat)+'</div></div>';
+  html+='<div class="card"><div class="lbl">Positivações</div><div class="val" style="color:#34d399">'+gPos.toLocaleString('pt-BR')+'</div></div>';
+  html+='<div class="card"><div class="lbl">Clientes Únicos</div><div class="val" style="color:#60a5fa">'+gCli+'</div></div>';
+  html+='<div class="card"><div class="lbl">Ticket Médio</div><div class="val" style="color:#a78bfa">'+fmt(gTick)+'</div></div>';
   html+='</div>';
 
-  // Gr\u00e1fico geral: FAT mensal (barras horizontais)
-  html+='<div class="chart-box" style="margin-bottom:16px">';
-  html+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">';
-  html+='<span style="font-weight:700;color:#fcd34d;font-size:14px">Evolu\u00e7\u00e3o Mensal — Faturamento</span>';
-  html+='<span style="font-size:11px;color:#888;margin-left:auto">'+fmt(Math.max.apply(null,mFat))+' (pico) vs '+fmt(Math.min.apply(null,mFat))+' (menor)</span>';
-  html+='</div>';
+  html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
+    '<span style="font-weight:700;color:#fcd34d;font-size:14px">Evolução Faturamento</span>'+
+    '<span style="font-size:11px;color:#6b7280;margin-left:auto">Média: '+fmt(gFat/7)+'</span></div>'+svgLine(mFat,'#f59e0b')+'</div>';
+
+  html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
+    '<span style="font-weight:700;color:#fcd34d;font-size:14px">Evolução Positivações</span>'+
+    '<span style="font-size:11px;color:#6b7280;margin-left:auto">Média: '+Math.round(gPos/7)+'/mês</span></div>'+svgLine(mPos,'#34d399')+'</div>';
+
+  // Variação mensal (tabela compacta)
+  html+='<div class="chart-box" style="margin-bottom:14px">';
+  html+='<div style="font-weight:700;color:#fcd34d;font-size:14px;margin-bottom:8px">Variação Mês a Mês</div>';
+  html+='<div style="overflow-x:auto"><table><thead><tr><th>Mês</th><th class="text-right">Faturamento</th><th class="text-right">Var. FAT</th><th class="text-right">Pos.</th><th class="text-right">Var. Pos.</th><th class="text-right">Clientes</th><th class="text-right">Ticket</th></tr></thead><tbody>';
+  var mCli=[0,0,0,0,0,0,0];
+  order.forEach(function(reg){for(var i=0;i<7;i++){mCli[i]+=regData[reg].months[i].cli;}});
   for(var i=0;i<7;i++){
-    var pct=mFat[i]/maxGFat*100;
-    html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">'+
-      '<span style="width:28px;font-size:10px;color:#888;text-align:right">'+meses[i].substring(0,3)+'</span>'+
-      '<div style="flex:1;height:20px;background:#111;border-radius:4px;overflow:hidden">'+
-      '<div style="height:100%;width:'+pct.toFixed(0)+'%;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:4px"></div></div>'+
-      '<span style="width:75px;font-size:11px;color:#eee;text-align:right;font-variant-numeric:tabular-nums">'+fmt(mFat[i])+'</span>'+
-      (i>0?'<span style="width:16px;font-size:10px;'+(mFat[i]>=mFat[i-1]?'color:#34d399">\u25b2':'color:#f87171">\u25bc')+'</span>':'<span style="width:16px"></span>')+
-      '</div>';
+    var pVar=i>0?((mFat[i]-mFat[i-1])/mFat[i-1]*100):0;
+    var posVar=i>0?((mPos[i]-mPos[i-1])/mPos[i-1]*100):0;
+    var tickM=mPos[i]>0?mFat[i]/mPos[i]:0;
+    html+='<tr>'+
+      '<td style="font-weight:600;color:#fcd34d">'+fullMonths[i]+'</td>'+
+      '<td class="text-right" style="color:#fbbf24">'+fmt(mFat[i])+'</td>'+
+      '<td class="text-right" style="color:'+(pVar>=0?'#34d399':'#f87171')+'">'+(i>0?(pVar>=0?'+':'')+pVar.toFixed(1)+'%':'-')+'</td>'+
+      '<td class="text-right">'+mPos[i]+'</td>'+
+      '<td class="text-right" style="color:'+(posVar>=0?'#34d399':'#f87171')+'">'+(i>0?(posVar>=0?'+':'')+posVar.toFixed(1)+'%':'-')+'</td>'+
+      '<td class="text-right" style="color:#60a5fa">'+mCli[i]+'</td>'+
+      '<td class="text-right" style="color:#a78bfa">'+fmt(tickM)+'</td></tr>';
   }
-  html+='</div>';
+  html+='</tbody></table></div></div>';
 
-  html+='<div class="chart-box" style="margin-bottom:16px">';
-  html+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">';
-  html+='<span style="font-weight:700;color:#fcd34d;font-size:14px">Evolu\u00e7\u00e3o Mensal — Positiva\u00e7\u00f5es</span>';
-  html+='<span style="font-size:11px;color:#888;margin-left:auto">Pico: '+Math.max.apply(null,mPos)+' / Menor: '+Math.min.apply(null,mPos)+'</span>';
-  html+='</div>';
-  for(var i=0;i<7;i++){
-    var pct=mPos[i]/maxGPos*100;
-    html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">'+
-      '<span style="width:28px;font-size:10px;color:#888;text-align:right">'+meses[i].substring(0,3)+'</span>'+
-      '<div style="flex:1;height:14px;background:#111;border-radius:4px;overflow:hidden">'+
-      '<div style="height:100%;width:'+pct.toFixed(0)+'%;background:linear-gradient(90deg,#059669,#34d399);border-radius:4px"></div></div>'+
-      '<span style="width:30px;font-size:11px;color:#eee;text-align:right">'+mPos[i]+'</span>'+
-      (i>0?'<span style="width:16px;font-size:10px;'+(mPos[i]>=mPos[i-1]?'color:#34d399">\u25b2':'color:#f87171">\u25bc')+'</span>':'<span style="width:16px"></span>')+
-      '</div>';
-  }
-  html+='</div>';
-
-  // Cards por regi\u00e3o
+  // Regiões em cards compactos
+  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:10px">';
   order.forEach(function(reg,ri){
     var rd=regData[reg];
-    var pctT=gFat>0?rd.totalFat/gFat*100:0;
-    var bestFat=-1,bestPos=-1,worstFat=Infinity,worstPos=Infinity;
-    var bfIdx=-1,bpIdx=-1,wfIdx=-1,wpIdx=-1;
+    var pT=gFat>0?rd.totalFat/gFat*100:0;
+    var bf=-1,bi=0,wp=99999,wi=0;
     for(var i=0;i<7;i++){
-      if(rd.months[i].fat>bestFat){bestFat=rd.months[i].fat;bfIdx=i;}
-      if(rd.months[i].fat<worstFat){worstFat=rd.months[i].fat;wfIdx=i;}
-      if(rd.months[i].pos>bestPos){bestPos=rd.months[i].pos;bpIdx=i;}
-      if(rd.months[i].pos<worstPos){worstPos=rd.months[i].pos;wpIdx=i;}
+      if(rd.months[i].fat>bf){bf=rd.months[i].fat;bi=i;}
+      if(rd.months[i].fat<wp){wp=rd.months[i].fat;wi=i;}
     }
-
-    var regMaxF=Math.max.apply(null,rd.months.map(function(m){return m.fat;}));if(regMaxF===0)regMaxF=1;
-    var regMaxP=Math.max.apply(null,rd.months.map(function(m){return m.pos;}));if(regMaxP===0)regMaxP=1;
-
-    html+='<div class="chart-box" style="margin-bottom:14px;border-left:3px solid '+rd.cor+'">';
-
-    // Cabe\u00e7alho
-    html+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">'+
-      '<span style="width:10px;height:10px;border-radius:50%;background:'+rd.cor+';display:inline-block"></span>'+
-      '<span style="font-weight:700;color:#fcd34d;font-size:15px">'+reg+'</span>'+
-      '<span class="card" style="padding:4px 10px;font-size:12px;background:#111;border:1px solid #333;border-radius:6px">'+
-        '<span style="color:#fbbf24">'+fmt(rd.totalFat)+'</span> &middot; '+
-        '<span style="color:#34d399">'+rd.totalPos+' pos</span> &middot; '+
-        '<span style="color:#60a5fa">'+rd.totalCli+' cli</span>'+
-      '</span>'+
-      '<span style="font-size:11px;color:#555;margin-left:auto">'+pctT.toFixed(1)+'% do total</span>'+
-    '</div>';
-
-    // FAT bars
-    html+='<div style="font-size:11px;color:#fbbf24;font-weight:600;margin-bottom:4px">Faturamento</div>';
+    var tend=rd.months[6].fat-rd.months[5].fat;
+    html+='<div class="chart-box" style="margin-bottom:0;border-left:3px solid '+rd.cor+';padding:10px 12px">'+
+      '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">'+
+      '<span style="width:8px;height:8px;border-radius:50%;background:'+rd.cor+';display:inline-block"></span>'+
+      '<span style="font-weight:600;color:#fcd34d;font-size:13px">'+reg+'</span>'+
+      '<span style="font-size:10px;color:#6b7280;margin-left:auto">'+pT.toFixed(1)+'%</span></div>'+
+      '<div style="font-size:12px"><span style="color:#fbbf24;font-weight:600">'+fmt(rd.totalFat)+'</span> <span style="color:#6b7280">|</span> <span style="color:#34d399">'+rd.totalPos+' pos</span> <span style="color:#6b7280">|</span> <span style="color:#60a5fa">'+rd.totalCli+' cli</span></div>'+
+      '<div style="font-size:10px;color:#6b7280;margin-top:2px">Pico: '+fullMonths[bi]+' ('+fmt(bf)+')'+
+      ' <span style="color:'+(tend>=0?'#34d399':'#f87171')+'">'+(tend>=0?'▲':'▼')+' último mês</span></div>'+
+      // Sparkline horizontal (mini barras)
+      '<div style="display:flex;gap:2px;margin-top:4px;height:6px;align-items:flex-end">';
+    var rMax=Math.max.apply(null,rd.months.map(function(m){return m.fat;}));if(rMax===0)rMax=1;
     for(var i=0;i<7;i++){
-      var m=rd.months[i];
-      var pc=m.fat/regMaxF*100;
-      html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">'+
-        '<span style="width:24px;font-size:9px;color:#666;text-align:right">'+meses[i].substring(0,3)+'</span>'+
-        '<div style="flex:1;height:14px;background:#111;border-radius:3px;overflow:hidden">'+
-        '<div style="height:100%;width:'+pc.toFixed(0)+'%;background:'+rd.cor+';border-radius:3px;opacity:0.8"></div></div>'+
-        '<span style="width:72px;font-size:10px;color:#ccc;text-align:right;font-variant-numeric:tabular-nums">'+(m.fat>0?fmt(m.fat):'-')+'</span>'+
-        (i>0?'<span style="width:14px;font-size:9px;'+(m.fat>=rd.months[i-1].fat?'color:#34d399;">\u25b2':'color:#f87171;">\u25bc')+'</span>':'<span style="width:14px"></span>')+
-        (i===bfIdx?'<span style="font-size:8px;color:#fbbf24;background:#333;padding:0 4px;border-radius:3px">PICO</span>':'')+
-      '</div>';
+      var hp=rd.months[i].fat/rMax*100;
+      html+='<div style="flex:1;background:#1a1a2e;border-radius:2px;overflow:hidden">'+
+        '<div style="height:'+hp.toFixed(0)+'%;width:100%;background:'+rd.cor+';opacity:0.7;border-radius:2px"></div></div>';
     }
-
-    // POS bars
-    html+='<div style="font-size:11px;color:#34d399;font-weight:600;margin:8px 0 4px">Positiva\u00e7\u00f5es</div>';
-    for(var i=0;i<7;i++){
-      var m=rd.months[i];
-      var pc=m.pos/regMaxP*100;
-      html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">'+
-        '<span style="width:24px;font-size:9px;color:#666;text-align:right">'+meses[i].substring(0,3)+'</span>'+
-        '<div style="flex:1;height:10px;background:#111;border-radius:3px;overflow:hidden">'+
-        '<div style="height:100%;width:'+pc.toFixed(0)+'%;background:'+rd.cor+';border-radius:3px;opacity:0.6"></div></div>'+
-        '<span style="width:20px;font-size:10px;color:#ccc;text-align:right">'+(m.pos>0?m.pos:'-')+'</span>'+
-        '<span style="width:50px;font-size:9px;color:#888">'+m.cli+' cli</span>'+
-        (i>0?'<span style="width:14px;font-size:9px;'+(m.pos>=rd.months[i-1].pos?'color:#34d399;">\u25b2':'color:#f87171;">\u25bc')+'</span>':'<span style="width:14px"></span>')+
-        (i===bpIdx?'<span style="font-size:8px;color:#34d399;background:#333;padding:0 4px;border-radius:3px">PICO</span>':'')+
-      '</div>';
-    }
-
-    // Resumo da regi\u00e3o
-    html+='<div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;font-size:10px;color:#555;border-top:1px solid #222;padding-top:6px">'+
-      '<span>Melhor FAT: <b style="color:#fbbf24">'+meses[bfIdx]+' ('+fmt(bestFat)+')</b></span>'+
-      '<span>Pior FAT: <b style="color:#f87171">'+meses[wfIdx]+' ('+fmt(worstFat)+')</b></span>'+
-      '<span>M\u00e9dia FAT: <b style="color:#888">'+fmt(rd.totalFat/7)+'</b></span>'+
-      '<span>Ticket: <b style="color:#a78bfa">'+fmt(rd.totalPos>0?rd.totalFat/rd.totalPos:0)+'</b></span>'+
-    '</div>';
-
-    html+='</div>';
+    html+='</div></div>';
   });
+  html+='</div>';
 
   document.getElementById('app').innerHTML=html;
 }
