@@ -213,61 +213,157 @@ function renderRegiaoMes(){
     return;
   }
 
-  var meses=['','Janeiro','Fevereiro','Mar\u00e7o','Abril','Maio','Junho','Julho'];
+  var meses=['Janeiro','Fevereiro','Mar\u00e7o','Abril','Maio','Junho','Julho'];
   var order=['Regi\u00e3o Metropolitana','Regi\u00e3o Sul','Serra','Litoral','Vale dos Sinos'];
+  var cores=['#f59e0b','#34d399','#60a5fa','#a78bfa','#f87171'];
 
-  var html='<h2 style="font-size:15px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.7px;margin-bottom:16px">Faturamento por Regi\u00e3o e M\u00eas</h2>'+
-    '<div class="chart-box"><div class="tw" style="max-height:none"><table><thead><tr><th>Regi\u00e3o</th>';
-  for(var mm=1;mm<=7;mm++) html+='<th class="text-right">'+meses[mm]+'</th>';
-  html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
-
-  order.forEach(function(reg){
+  function calcReg(reg){
     var rd=REGIAO_MES[reg];
-    if(!rd)return;
-    var tf=0,tp=0;
-    var cells=[];
-
+    if(!rd)return null;
+    var out={months:[],totalFat:0,totalPos:0,totalCli:0};
     for(var m=1;m<=7;m++){
-      var f=0,p=0;
+      var fat=0,pos=0,cli=0;
       (rd[m]||[]).forEach(function(c){
         var d=DADOS_MES[m][c];
-        if(d){f+=d.fat;p+=d.pos;}
+        if(d){fat+=d.fat;pos+=d.pos;cli+=d.cli;}
       });
-      tf+=f;tp+=p;
-      cells.push({fat:f,pos:p});
+      out.months.push({fat:fat,pos:pos,cli:cli});
+      out.totalFat+=fat;out.totalPos+=pos;out.totalCli+=cli;
     }
+    return out;
+  }
 
-    html+='<tr><td style="font-weight:700;color:#fcd34d">'+reg+'</td>';
-    cells.forEach(function(c){html+='<td class="text-right"><div style="color:#fbbf24;font-weight:600">'+fmt(c.fat)+'</div>'+(c.pos>0?'<div style="font-size:11px;color:#34d399">'+c.pos+' pos</div>':'')+'</td>';});
-    html+='<td class="text-right" style="color:#f59e0b;font-weight:700">'+fmt(tf)+'<div style="font-size:11px;color:#34d399">'+tp+' pos</div></td></tr>';
-  });
+  var regData={};
+  order.forEach(function(reg,ri){regData[reg]=calcReg(reg);regData[reg].cor=cores[ri];});
 
-  html+='</tbody></table></div></div>'+
-    '<h2 style="font-size:15px;font-weight:700;color:#34d399;text-transform:uppercase;letter-spacing:.7px;margin:24px 0 16px">Positiva\u00e7\u00f5es por Regi\u00e3o e M\u00eas</h2>'+
-    '<div class="chart-box"><div class="tw" style="max-height:none"><table><thead><tr><th>Regi\u00e3o</th>';
-  for(var mm=1;mm<=7;mm++) html+='<th class="text-right">'+meses[mm]+'</th>';
-  html+='<th class="text-right" style="color:#34d399">Total</th></tr></thead><tbody>';
+  var gFat=0,gPos=0,gCli=0;
+  order.forEach(function(reg){gFat+=regData[reg].totalFat;gPos+=regData[reg].totalPos;gCli+=regData[reg].totalCli;});
+  var gTick=gPos>0?gFat/gPos:0;
 
+  // Resumo mensal geral (soma de todas as regi\u00f5es por m\u00eas)
+  var mFat=[0,0,0,0,0,0,0];
+  var mPos=[0,0,0,0,0,0,0];
   order.forEach(function(reg){
-    var rd=REGIAO_MES[reg];
-    if(!rd)return;
-    var cells=[];
+    var rd=regData[reg];
+    for(var i=0;i<7;i++){mFat[i]+=rd.months[i].fat;mPos[i]+=rd.months[i].pos;}
+  });
+  var maxGFat=Math.max.apply(null,mFat);if(maxGFat===0)maxGFat=1;
+  var maxGPos=Math.max.apply(null,mPos);if(maxGPos===0)maxGPos=1;
 
-    for(var m=1;m<=7;m++){
-      var p=0,cl=0;
-      (rd[m]||[]).forEach(function(c){
-        var d=DADOS_MES[m][c];
-        if(d){p+=d.pos;cl+=d.cli;}
-      });
-      cells.push({pos:p,cli:cl});
+  var html='<div class="cards">';
+  html+='<div class="card"><div class="lbl">Faturamento Total (Jan-Jul)</div><div class="val" style="color:#fbbf24">'+fmt(gFat)+'</div></div>';
+  html+='<div class="card"><div class="lbl">Positiva\u00e7\u00f5es</div><div class="val" style="color:#34d399">'+gPos.toLocaleString('pt-BR')+'</div></div>';
+  html+='<div class="card"><div class="lbl">Clientes \u00danicos</div><div class="val" style="color:#60a5fa">'+gCli+'</div></div>';
+  html+='<div class="card"><div class="lbl">Ticket M\u00e9dio Geral</div><div class="val" style="color:#a78bfa">'+fmt(gTick)+'</div></div>';
+  html+='</div>';
+
+  // Gr\u00e1fico geral: FAT mensal (barras horizontais)
+  html+='<div class="chart-box" style="margin-bottom:16px">';
+  html+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">';
+  html+='<span style="font-weight:700;color:#fcd34d;font-size:14px">Evolu\u00e7\u00e3o Mensal — Faturamento</span>';
+  html+='<span style="font-size:11px;color:#888;margin-left:auto">'+fmt(Math.max.apply(null,mFat))+' (pico) vs '+fmt(Math.min.apply(null,mFat))+' (menor)</span>';
+  html+='</div>';
+  for(var i=0;i<7;i++){
+    var pct=mFat[i]/maxGFat*100;
+    html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">'+
+      '<span style="width:28px;font-size:10px;color:#888;text-align:right">'+meses[i].substring(0,3)+'</span>'+
+      '<div style="flex:1;height:20px;background:#111;border-radius:4px;overflow:hidden">'+
+      '<div style="height:100%;width:'+pct.toFixed(0)+'%;background:linear-gradient(90deg,#f59e0b,#fbbf24);border-radius:4px"></div></div>'+
+      '<span style="width:75px;font-size:11px;color:#eee;text-align:right;font-variant-numeric:tabular-nums">'+fmt(mFat[i])+'</span>'+
+      (i>0?'<span style="width:16px;font-size:10px;'+(mFat[i]>=mFat[i-1]?'color:#34d399">\u25b2':'color:#f87171">\u25bc')+'</span>':'<span style="width:16px"></span>')+
+      '</div>';
+  }
+  html+='</div>';
+
+  html+='<div class="chart-box" style="margin-bottom:16px">';
+  html+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">';
+  html+='<span style="font-weight:700;color:#fcd34d;font-size:14px">Evolu\u00e7\u00e3o Mensal — Positiva\u00e7\u00f5es</span>';
+  html+='<span style="font-size:11px;color:#888;margin-left:auto">Pico: '+Math.max.apply(null,mPos)+' / Menor: '+Math.min.apply(null,mPos)+'</span>';
+  html+='</div>';
+  for(var i=0;i<7;i++){
+    var pct=mPos[i]/maxGPos*100;
+    html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">'+
+      '<span style="width:28px;font-size:10px;color:#888;text-align:right">'+meses[i].substring(0,3)+'</span>'+
+      '<div style="flex:1;height:14px;background:#111;border-radius:4px;overflow:hidden">'+
+      '<div style="height:100%;width:'+pct.toFixed(0)+'%;background:linear-gradient(90deg,#059669,#34d399);border-radius:4px"></div></div>'+
+      '<span style="width:30px;font-size:11px;color:#eee;text-align:right">'+mPos[i]+'</span>'+
+      (i>0?'<span style="width:16px;font-size:10px;'+(mPos[i]>=mPos[i-1]?'color:#34d399">\u25b2':'color:#f87171">\u25bc')+'</span>':'<span style="width:16px"></span>')+
+      '</div>';
+  }
+  html+='</div>';
+
+  // Cards por regi\u00e3o
+  order.forEach(function(reg,ri){
+    var rd=regData[reg];
+    var pctT=gFat>0?rd.totalFat/gFat*100:0;
+    var bestFat=-1,bestPos=-1,worstFat=Infinity,worstPos=Infinity;
+    var bfIdx=-1,bpIdx=-1,wfIdx=-1,wpIdx=-1;
+    for(var i=0;i<7;i++){
+      if(rd.months[i].fat>bestFat){bestFat=rd.months[i].fat;bfIdx=i;}
+      if(rd.months[i].fat<worstFat){worstFat=rd.months[i].fat;wfIdx=i;}
+      if(rd.months[i].pos>bestPos){bestPos=rd.months[i].pos;bpIdx=i;}
+      if(rd.months[i].pos<worstPos){worstPos=rd.months[i].pos;wpIdx=i;}
     }
 
-    html+='<tr><td style="font-weight:700;color:#fcd34d">'+reg+'</td>';
-    cells.forEach(function(c){html+='<td class="text-right"><div style="font-weight:600">'+c.pos+'</div><div style="font-size:11px;color:#888">'+c.cli+' clientes</div></td>';});
-    html+='<td class="text-right" style="font-weight:700;color:#34d399">'+cells.reduce(function(s,c){return s+c.pos;},0)+'</td></tr>';
+    var regMaxF=Math.max.apply(null,rd.months.map(function(m){return m.fat;}));if(regMaxF===0)regMaxF=1;
+    var regMaxP=Math.max.apply(null,rd.months.map(function(m){return m.pos;}));if(regMaxP===0)regMaxP=1;
+
+    html+='<div class="chart-box" style="margin-bottom:14px;border-left:3px solid '+rd.cor+'">';
+
+    // Cabe\u00e7alho
+    html+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">'+
+      '<span style="width:10px;height:10px;border-radius:50%;background:'+rd.cor+';display:inline-block"></span>'+
+      '<span style="font-weight:700;color:#fcd34d;font-size:15px">'+reg+'</span>'+
+      '<span class="card" style="padding:4px 10px;font-size:12px;background:#111;border:1px solid #333;border-radius:6px">'+
+        '<span style="color:#fbbf24">'+fmt(rd.totalFat)+'</span> &middot; '+
+        '<span style="color:#34d399">'+rd.totalPos+' pos</span> &middot; '+
+        '<span style="color:#60a5fa">'+rd.totalCli+' cli</span>'+
+      '</span>'+
+      '<span style="font-size:11px;color:#555;margin-left:auto">'+pctT.toFixed(1)+'% do total</span>'+
+    '</div>';
+
+    // FAT bars
+    html+='<div style="font-size:11px;color:#fbbf24;font-weight:600;margin-bottom:4px">Faturamento</div>';
+    for(var i=0;i<7;i++){
+      var m=rd.months[i];
+      var pc=m.fat/regMaxF*100;
+      html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">'+
+        '<span style="width:24px;font-size:9px;color:#666;text-align:right">'+meses[i].substring(0,3)+'</span>'+
+        '<div style="flex:1;height:14px;background:#111;border-radius:3px;overflow:hidden">'+
+        '<div style="height:100%;width:'+pc.toFixed(0)+'%;background:'+rd.cor+';border-radius:3px;opacity:0.8"></div></div>'+
+        '<span style="width:72px;font-size:10px;color:#ccc;text-align:right;font-variant-numeric:tabular-nums">'+(m.fat>0?fmt(m.fat):'-')+'</span>'+
+        (i>0?'<span style="width:14px;font-size:9px;'+(m.fat>=rd.months[i-1].fat?'color:#34d399;">\u25b2':'color:#f87171;">\u25bc')+'</span>':'<span style="width:14px"></span>')+
+        (i===bfIdx?'<span style="font-size:8px;color:#fbbf24;background:#333;padding:0 4px;border-radius:3px">PICO</span>':'')+
+      '</div>';
+    }
+
+    // POS bars
+    html+='<div style="font-size:11px;color:#34d399;font-weight:600;margin:8px 0 4px">Positiva\u00e7\u00f5es</div>';
+    for(var i=0;i<7;i++){
+      var m=rd.months[i];
+      var pc=m.pos/regMaxP*100;
+      html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">'+
+        '<span style="width:24px;font-size:9px;color:#666;text-align:right">'+meses[i].substring(0,3)+'</span>'+
+        '<div style="flex:1;height:10px;background:#111;border-radius:3px;overflow:hidden">'+
+        '<div style="height:100%;width:'+pc.toFixed(0)+'%;background:'+rd.cor+';border-radius:3px;opacity:0.6"></div></div>'+
+        '<span style="width:20px;font-size:10px;color:#ccc;text-align:right">'+(m.pos>0?m.pos:'-')+'</span>'+
+        '<span style="width:50px;font-size:9px;color:#888">'+m.cli+' cli</span>'+
+        (i>0?'<span style="width:14px;font-size:9px;'+(m.pos>=rd.months[i-1].pos?'color:#34d399;">\u25b2':'color:#f87171;">\u25bc')+'</span>':'<span style="width:14px"></span>')+
+        (i===bpIdx?'<span style="font-size:8px;color:#34d399;background:#333;padding:0 4px;border-radius:3px">PICO</span>':'')+
+      '</div>';
+    }
+
+    // Resumo da regi\u00e3o
+    html+='<div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;font-size:10px;color:#555;border-top:1px solid #222;padding-top:6px">'+
+      '<span>Melhor FAT: <b style="color:#fbbf24">'+meses[bfIdx]+' ('+fmt(bestFat)+')</b></span>'+
+      '<span>Pior FAT: <b style="color:#f87171">'+meses[wfIdx]+' ('+fmt(worstFat)+')</b></span>'+
+      '<span>M\u00e9dia FAT: <b style="color:#888">'+fmt(rd.totalFat/7)+'</b></span>'+
+      '<span>Ticket: <b style="color:#a78bfa">'+fmt(rd.totalPos>0?rd.totalFat/rd.totalPos:0)+'</b></span>'+
+    '</div>';
+
+    html+='</div>';
   });
 
-  html+='</tbody></table></div></div>';
   document.getElementById('app').innerHTML=html;
 }
 </script>
