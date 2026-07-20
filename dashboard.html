@@ -118,18 +118,40 @@ function render(){
   var dev=filtered.filter(function(r){return r.fat<0;});
 
   var fatBru=pos.reduce(function(s,r){return s+r.fat;},0);
-  var totPos=pos.length;
+  var fatLiq=filtered.reduce(function(s,r){return s+r.fat;},0);
+  var totPed=pos.length;
+  var totDev=dev.reduce(function(s,r){return s+r.fat;},0);
 
   var cliPos={};
   pos.forEach(function(r){cliPos[r.codcli]=(cliPos[r.codcli]||0)+r.fat;});
   var qtdCliPos=Object.keys(cliPos).length;
-  var tick=totPos>0?fatBru/totPos:0;
 
-  // Cards
+  var allCli={};
+  filtered.forEach(function(r){allCli[r.codcli]=(allCli[r.codcli]||0)+r.fat;});
+  var qtdAllCli=Object.keys(allCli).length;
+
+  var tick=totPed>0?fatBru/totPed:0;
+
+  var totMetaFat=0,totMetaPos=0;
+  Object.keys(metas).forEach(function(k){
+    totMetaFat+=metas[k].fat||0;
+    totMetaPos+=metas[k].pos||0;
+  });
+  var pctMetaFat=totMetaFat>0?(fatBru/totMetaFat*100):0;
+  var pctMetaPos=totMetaPos>0?(qtdCliPos/totMetaPos*100):0;
+
   var c='<div class="cards">';
-  c+='<div class="card"><div class="lbl">Faturamento Bruto</div><div class="val" style="color:#34d399">'+fmt(fatBru)+'</div></div>';
-  c+='<div class="card"><div class="lbl">Clientes Positivados</div><div class="val" style="color:#34d399">'+qtdCliPos+'</div></div>';
-  c+='<div class="card"><div class="lbl">Ticket M&#233;dio</div><div class="val" style="color:#a78bfa">'+fmt(tick)+'</div></div>';
+  c+='<div class="card"><div class="lbl">Faturamento Bruto</div><div class="val" style="color:#34d399">'+fmt(fatBru)+'</div>'+
+    '<div style="font-size:11px;margin-top:2px;color:'+(pctMetaFat>=100?'#34d399':'#fbbf24')+'">'+pctMetaFat.toFixed(1)+'% da meta</div></div>';
+  c+='<div class="card"><div class="lbl">Faturamento L\u00edquido</div><div class="val" style="color:#fbbf24">'+fmt(fatLiq)+'</div></div>';
+  c+='<div class="card"><div class="lbl">Positiva\u00e7\u00f5es</div><div class="val" style="color:#60a5fa">'+totPed+'</div></div>';
+  c+='<div class="card"><div class="lbl">Clientes Positivados</div><div class="val" style="color:#34d399">'+qtdCliPos+'</div>'+
+    '<div style="font-size:11px;margin-top:2px;color:'+(pctMetaPos>=100?'#34d399':'#fbbf24')+'">'+pctMetaPos.toFixed(1)+'% da meta</div></div>';
+  c+='<div class="card"><div class="lbl">Ticket M\u00e9dio</div><div class="val" style="color:#a78bfa">'+fmt(tick)+'</div></div>';
+  c+='<div class="card"><div class="lbl" style="color:#f87171">Devolu\u00e7\u00f5es</div><div class="val" style="color:#f87171">'+fmt(totDev)+'</div></div>';
+  c+='<div class="card"><div class="lbl">Total Clientes</div><div class="val" style="color:#60a5fa">'+qtdAllCli+'</div></div>';
+  c+='<div class="card" style="background:'+(pctMetaFat>=100?'#065f46':'#1a1a2e')+';border-color:'+(pctMetaFat>=100?'#34d399':'#333')+'">'+
+    '<div class="lbl">Atingimento Meta</div><div class="val" style="color:'+(pctMetaFat>=100?'#34d399':'#fbbf24')+'">'+pctMetaFat.toFixed(1)+'%</div></div>';
   c+='</div>';
 
   // Vendedores
@@ -144,8 +166,8 @@ function render(){
   var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return b.fat-a.fat;});
 
   // Matriz
-  var m='<div class="chart-box"><h2>Matriz de Positiva&#231;&#227;o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div class="tw"><table><thead><tr><th>Vendedor</th><th>Regi&#227;o</th><th class="text-right">Faturamento</th><th class="text-right">Meta FAT</th><th>% FAT</th><th class="text-right">Pos.</th><th class="text-right">Meta Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
-  var totFat=0,totMetaFat=0,totPos=0,totMetaPos=0;
+  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div class="tw"><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Faturamento</th><th class="text-right">Meta FAT</th><th>% FAT</th><th class="text-right">Pos.</th><th class="text-right">Meta Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
+  var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
     var qc=Object.keys(v.clientes).length;
     var tickV=qc>0?v.fat/qc:0;
@@ -154,7 +176,7 @@ function render(){
     var pp=mt.pos>0?pct(qc,mt.pos):0;
     var fC=pf>=100?'#34d399':pf>=70?'#fbbf24':'#f87171';
     var pC=pp>=100?'#34d399':pp>=70?'#fbbf24':'#f87171';
-    totFat+=v.fat;totMetaFat+=mt.fat||0;totPos+=qc;totMetaPos+=mt.pos||0;
+    totFat+=v.fat;tMetaFat+=mt.fat||0;totPos+=qc;tMetaPos+=mt.pos||0;
     m+='<tr'+(i%2===0?' style="background:rgba(255,255,255,0.02)"':'')+'>'+
       '<td style="font-weight:600;color:#fcd34d">'+v.rca+'</td>'+
       '<td style="color:#888">'+v.regiao+'</td>'+
@@ -166,8 +188,8 @@ function render(){
       '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pp,100).toFixed(0)+'%;background:'+pC+'"></div></div><span style="font-size:10px;color:'+pC+';font-weight:600">'+pp.toFixed(1)+'%</span></td>'+
       '<td class="text-right" style="color:#a78bfa">'+fmt(tickV)+'</td></tr>';
   });
-  var tPf=totMetaFat>0?pct(totFat,totMetaFat):0;
-  var tPp=totMetaPos>0?pct(totPos,totMetaPos):0;
+  var tPf=tMetaFat>0?pct(totFat,tMetaFat):0;
+  var tPp=tMetaPos>0?pct(totPos,tMetaPos):0;
   var tFc=tPf>=100?'#34d399':tPf>=70?'#fbbf24':'#f87171';
   var tPc=tPp>=100?'#34d399':tPp>=70?'#fbbf24':'#f87171';
   var tickTotal=totPos>0?totFat/totPos:0;
@@ -175,10 +197,10 @@ function render(){
     '<td style="font-weight:800;color:#fcd34d;font-size:13px">TOTAL</td>'+
     '<td style="color:#888"></td>'+
     '<td class="text-right" style="color:#fbbf24;font-weight:800;font-size:13px">'+fmt(totFat)+'</td>'+
-    '<td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(totMetaFat)+'</td>'+
+    '<td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(tMetaFat)+'</td>'+
     '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPf,100).toFixed(0)+'%;background:'+tFc+'"></div></div><span style="font-size:10px;color:'+tFc+';font-weight:700">'+tPf.toFixed(1)+'%</span></td>'+
     '<td class="text-right" style="color:#34d399;font-weight:800;font-size:13px">'+totPos+'</td>'+
-    '<td class="text-right" style="color:#34d399;font-weight:600">'+totMetaPos+'</td>'+
+    '<td class="text-right" style="color:#34d399;font-weight:600">'+tMetaPos+'</td>'+
     '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:10px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span></td>'+
     '<td class="text-right" style="color:#a78bfa;font-weight:700">'+fmt(tickTotal)+'</td></tr>';
   m+='</tbody></table></div></div>';
@@ -197,7 +219,7 @@ function render(){
     d+='<div class="chart-box">';
     d+='<div style="font-weight:700;color:#fcd34d;font-size:14px;margin-bottom:2px">'+v.rca+'</div>';
     d+='<div style="font-size:12px;color:#888;margin-bottom:8px">'+v.pedidos+' pos. &middot; '+Object.keys(v.clientes).length+' clientes &middot; '+fmt(v.fat)+'</div>';
-    d+='<div class="tw"><table><thead><tr><th style="text-align:center">#</th><th>C&#243;digo</th><th>Cliente</th><th class="text-right">Faturamento</th></tr></thead><tbody>';
+    d+='<div class="tw"><table><thead><tr><th style="text-align:center">#</th><th>C\u00f3digo</th><th>Cliente</th><th class="text-right">Faturamento</th></tr></thead><tbody>';
     clis.forEach(function(c,i){
       d+='<tr><td style="text-align:center;color:#888">'+(i+1)+'</td><td style="color:#60a5fa">'+c.cod+'</td><td class="cell-cli">'+c.nome+'</td><td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(c.fat)+'</td></tr>';
     });
@@ -208,10 +230,8 @@ function render(){
 }
 
 function fmtMes(m){
-  return ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho'][m];
+  return ['','Janeiro','Fevereiro','Mar\u00e7o','Abril','Maio','Junho','Julho'][m];
 }
-
-var VEND_NOMES = {'1596':'Ariane','1464':'Camila','1211':'Cristielen','1429':'Natália','9886':'Tati','1624':'Tati Litoral','1527':'Lauren','1571':'Anna','1573':'Eduarda'};
 
 function renderRegiaoMes(){
   if(!DADOS_MES||!REGIAO_MES){
@@ -219,22 +239,17 @@ function renderRegiaoMes(){
     return;
   }
 
-  var nomes={'1596':'Ariane','1464':'Camila','1211':'Cristielen','1429':'Nat\u00e1lia','9886':'Tati','1624':'Tati Litoral','1527':'Lauren','1571':'Anna','1573':'Eduarda'};
   var meses=['','Janeiro','Fevereiro','Mar\u00e7o','Abril','Maio','Junho','Julho'];
   var order=['Regi\u00e3o Metropolitana','Regi\u00e3o Sul','Serra','Litoral','Vale dos Sinos'];
 
   var html='<h2 style="font-size:15px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.7px;margin-bottom:16px">Faturamento por Regi\u00e3o e M\u00eas</h2>'+
-    '<div class="chart-box"><div class="tw" style="max-height:none"><table><thead><tr><th>Regi\u00e3o</th><th>Vendedor(es)</th>';
+    '<div class="chart-box"><div class="tw" style="max-height:none"><table><thead><tr><th>Regi\u00e3o</th>';
   for(var mm=1;mm<=7;mm++) html+='<th class="text-right">'+meses[mm]+'</th>';
   html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
 
   order.forEach(function(reg){
     var rd=REGIAO_MES[reg];
     if(!rd)return;
-    var vs={};
-    for(var m=1;m<=7;m++){(rd[m]||[]).forEach(function(c){vs[c]=1;});}
-    var vk=Object.keys(vs);
-    var rv=vk.map(function(c){return nomes[c]||c;}).join(', ');
     var tf=0,tp=0;
     var cells=[];
 
@@ -245,29 +260,23 @@ function renderRegiaoMes(){
         if(d){f+=d.fat;p+=d.pos;}
       });
       tf+=f;tp+=p;
-      var disp='<div style="color:#fbbf24;font-weight:600">'+globalThis.fmt(f)+'</div>';
-      if(p>0)disp+='<div style="font-size:11px;color:#34d399">'+p+' pos</div>';
-      cells.push(disp);
+      cells.push({fat:f,pos:p});
     }
 
-    html+='<tr><td style="font-weight:700;color:#fcd34d">'+reg+'</td><td style="color:#888;font-size:12px">'+rv+'</td>';
-    cells.forEach(function(c){html+='<td class="text-right">'+c+'</td>';});
-    html+='<td class="text-right" style="color:#f59e0b;font-weight:700">'+globalThis.fmt(tf)+'<div style="font-size:11px;color:#34d399">'+tp+' pos</div></td></tr>';
+    html+='<tr><td style="font-weight:700;color:#fcd34d">'+reg+'</td>';
+    cells.forEach(function(c){html+='<td class="text-right"><div style="color:#fbbf24;font-weight:600">'+fmt(c.fat)+'</div>'+(c.pos>0?'<div style="font-size:11px;color:#34d399">'+c.pos+' pos</div>':'')+'</td>';});
+    html+='<td class="text-right" style="color:#f59e0b;font-weight:700">'+fmt(tf)+'<div style="font-size:11px;color:#34d399">'+tp+' pos</div></td></tr>';
   });
 
   html+='</tbody></table></div></div>'+
     '<h2 style="font-size:15px;font-weight:700;color:#34d399;text-transform:uppercase;letter-spacing:.7px;margin:24px 0 16px">Positiva\u00e7\u00f5es por Regi\u00e3o e M\u00eas</h2>'+
-    '<div class="chart-box"><div class="tw" style="max-height:none"><table><thead><tr><th>Regi\u00e3o</th><th>Vendedor(es)</th>';
+    '<div class="chart-box"><div class="tw" style="max-height:none"><table><thead><tr><th>Regi\u00e3o</th>';
   for(var mm=1;mm<=7;mm++) html+='<th class="text-right">'+meses[mm]+'</th>';
   html+='<th class="text-right" style="color:#34d399">Total</th></tr></thead><tbody>';
 
   order.forEach(function(reg){
     var rd=REGIAO_MES[reg];
     if(!rd)return;
-    var vs={};
-    for(var m=1;m<=7;m++){(rd[m]||[]).forEach(function(c){vs[c]=1;});}
-    var vk=Object.keys(vs);
-    var rv=vk.map(function(c){return nomes[c]||c;}).join(', ');
     var cells=[];
 
     for(var m=1;m<=7;m++){
@@ -276,15 +285,12 @@ function renderRegiaoMes(){
         var d=DADOS_MES[m][c];
         if(d){p+=d.pos;cl+=d.cli;}
       });
-      cells.push(p);
-      cells.push(cl);
+      cells.push({pos:p,cli:cl});
     }
 
-    html+='<tr><td style="font-weight:700;color:#fcd34d">'+reg+'</td><td style="color:#888;font-size:12px">'+rv+'</td>';
-    for(var m=0;m<7;m++){
-      html+='<td class="text-right"><div>'+cells[m*2]+'</div><div style="font-size:11px;color:#888">'+cells[m*2+1]+' clientes</div></td>';
-    }
-    html+='<td class="text-right" style="font-weight:700;color:#34d399">'+cells.reduce(function(s,v,i){return i%2===0?s+v:s;},0)+'</td></tr>';
+    html+='<tr><td style="font-weight:700;color:#fcd34d">'+reg+'</td>';
+    cells.forEach(function(c){html+='<td class="text-right"><div style="font-weight:600">'+c.pos+'</div><div style="font-size:11px;color:#888">'+c.cli+' clientes</div></td>';});
+    html+='<td class="text-right" style="font-weight:700;color:#34d399">'+cells.reduce(function(s,c){return s+c.pos;},0)+'</td></tr>';
   });
 
   html+='</tbody></table></div></div>';
