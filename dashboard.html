@@ -48,6 +48,7 @@ footer{text-align:center;padding:12px;font-size:11px;color:#555;border-top:1px s
 <button class="tab active" onclick="switchView('geral')">Geral</button>
 <button class="tab" onclick="switchView('polpanorte')">Polpanorte</button>
 <button class="tab" onclick="switchView('regiao')">Regi&#227;o</button>
+<button class="tab" onclick="switchView('regiaomes')">Regi&#227;o/M&#234;s</button>
 </div>
 
 <div class="container" id="app">
@@ -100,6 +101,7 @@ function switchView(view){
     tabs[ti].className = 'tab' + ((tabs[ti].getAttribute('onclick').indexOf("'"+view+"'") >= 0) ? ' active' : '');
   }
   if (activeView === 'regiao') renderRegiao();
+  else if (activeView === 'regiaomes') renderRegiaoMes();
   else render();
 }
 
@@ -275,8 +277,107 @@ function renderRegiao(){
 
   document.getElementById('app').innerHTML=html;
 }
+
+function fmtMes(m){
+  return ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho'][m];
+}
+
+function renderRegiaoMes(){
+  if(!DADOS_MES||!REGIAO_MES){
+    document.getElementById('app').innerHTML='<div style="padding:40px;text-align:center;color:#666">Dados mensais n\u00e3o carregados.</div>';
+    return;
+  }
+
+  var html='<h2 style="font-size:15px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.7px;margin-bottom:16px">Faturamento por Regi\u00e3o e M\u00eas</h2>';
+
+  html+='<div class="chart-box"><div class="tw" style="max-height:none"><table><thead><tr><th>Regi\u00e3o</th><th>Vendedor(es)</th>';
+  for(var mm=1;mm<=7;mm++) html+='<th class="text-right">'+fmtMes(mm)+'</th>';
+  html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
+
+  var order = ['Regi\u00e3o Metropolitana','Regi\u00e3o Sul','Serra','Litoral','Vale dos Sinos'];
+  var grandTotFat=0, grandTotPos=0;
+
+  order.forEach(function(reg){
+    var regData = REGIAO_MES[reg];
+    var vendedoresSet = {};
+    var rowVends = '';
+    for(var mm=1;mm<=7;mm++){
+      (regData[mm]||[]).forEach(function(c){vendedoresSet[c]=1;});
+    }
+    var vendedorNames = {'1596':'Ariane','1464':'Camila','1211':'Cristielen','1429':'Nat\u00e1lia','9886':'Tati','1624':'Tati Litoral','1527':'Lauren','1571':'Anna','1573':'Eduarda'};
+    var vendKeys = Object.keys(vendedoresSet);
+    rowVends = vendKeys.map(function(c){return vendedorNames[c]||c;}).join(', ');
+
+    var cols = [];
+    var rowTotFat=0, rowTotPos=0;
+    for(var mm=1;mm<=7;mm++){
+      var cods = regData[mm]||[];
+      var fat=0, pos=0;
+      cods.forEach(function(c){
+        var d = DADOS_MES[String(mm)][c];
+        if(d){fat+=d.fat; pos+=d.pos;}
+      });
+      rowTotFat+=fat; rowTotPos+=pos;
+      var display = '<div style="color:#fbbf24;font-weight:600">'+fmt(fat)+'</div>';
+      if(pos>0) display += '<div style="font-size:11px;color:#34d399">'+pos+' pos</div>';
+      cols.push({fat:fat, pos:pos, html:display});
+    }
+
+    html+='<tr style="border-top:1px solid #333">'+
+      '<td style="font-weight:700;color:#fcd34d">'+reg+'</td>'+
+      '<td style="color:#888;font-size:12px">'+rowVends+'</td>';
+    cols.forEach(function(c){html+='<td class="text-right">'+c.html+'</td>';});
+    html+='<td class="text-right" style="color:#f59e0b;font-weight:700">'+fmt(rowTotFat)+'<div style="font-size:11px;color:#34d399">'+rowTotPos+' pos</div></td>';
+    html+='</tr>';
+    grandTotFat+=rowTotFat; grandTotPos+=rowTotPos;
+  });
+
+  html+='</tbody></table></div></div>';
+
+  // ABAIXO: Tabela de Positiva\u00e7\u00e3o
+  html+='<h2 style="font-size:15px;font-weight:700;color:#34d399;text-transform:uppercase;letter-spacing:.7px;margin:24px 0 16px">Positiva\u00e7\u00f5es por Regi\u00e3o e M\u00eas</h2>';
+
+  html+='<div class="chart-box"><div class="tw" style="max-height:none"><table><thead><tr><th>Regi\u00e3o</th><th>Vendedor(es)</th>';
+  for(var mm=1;mm<=7;mm++) html+='<th class="text-right">'+fmtMes(mm)+'</th>';
+  html+='<th class="text-right" style="color:#34d399">Total</th></tr></thead><tbody>';
+
+  order.forEach(function(reg){
+    var regData = REGIAO_MES[reg];
+    var vendedoresSet = {};
+    for(var mm=1;mm<=7;mm++){
+      (regData[mm]||[]).forEach(function(c){vendedoresSet[c]=1;});
+    }
+    var vendKeys = Object.keys(vendedoresSet);
+    var rowVends = vendKeys.map(function(c){return vendedorNames[c]||c;}).join(', ');
+
+    var cols = [];
+    var rowTot=0;
+    for(var mm=1;mm<=7;mm++){
+      var cods = regData[mm]||[];
+      var pos=0, cli=0;
+      cods.forEach(function(c){
+        var d = DADOS_MES[String(mm)][c];
+        if(d){pos+=d.pos; cli+=d.cli;}
+      });
+      rowTot+=pos;
+      cols.push({pos:pos, cli:cli});
+    }
+
+    html+='<tr style="border-top:1px solid #333">'+
+      '<td style="font-weight:700;color:#fcd34d">'+reg+'</td>'+
+      '<td style="color:#888;font-size:12px">'+rowVends+'</td>';
+    cols.forEach(function(c){html+='<td class="text-right"><div style="font-weight:600">'+c.pos+'</div><div style="font-size:11px;color:#888">'+c.cli+' clientes</div></td>';});
+    html+='<td class="text-right" style="font-weight:700;color:#34d399">'+rowTot+'</td>';
+    html+='</tr>';
+  });
+
+  html+='</tbody></table></div></div>';
+
+  document.getElementById('app').innerHTML=html;
+}
 </script>
 <script src="dados_julho.js"></script>
+<script src="dados_mensal.js"></script>
 <script>render();</script>
 </body>
 </html>
