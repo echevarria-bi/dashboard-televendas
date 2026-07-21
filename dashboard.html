@@ -146,9 +146,9 @@ function render(){
     vends[r.codusur].clientes[r.codcli]=(vends[r.codusur].clientes[r.codcli]||0)+r.fat;
   });
 
-  var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return b.fat-a.fat;});
+  var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return a.rca.localeCompare(b.rca);});
 
-  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div class="tw"><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Faturamento</th><th class="text-right">Meta FAT</th><th>% FAT</th><th class="text-right">Pos.</th><th class="text-right">Meta Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
+  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Faturamento</th><th class="text-right">Meta FAT</th><th>% FAT</th><th class="text-right">Pos.</th><th class="text-right">Meta Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
   var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
     var qc=Object.keys(v.clientes).length;
@@ -185,7 +185,7 @@ function render(){
     '<td class="text-right" style="color:#34d399;font-weight:600">'+tMetaPos+'</td>'+
     '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:13px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span></td>'+
     '<td class="text-right" style="color:#a78bfa;font-weight:700">'+fmt(tickTotal)+'</td></tr>';
-  m+='</tbody></table></div></div>';
+  m+='</tbody></table></div>';
 
   var d='<h2 style="font-size:18px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Detalhamento por Vendedor</h2>';
   vArr.forEach(function(v){
