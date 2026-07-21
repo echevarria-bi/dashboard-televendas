@@ -143,7 +143,9 @@ function render(){
     if(!vends[r.codusur])vends[r.codusur]={codusur:r.codusur,rca:r.rca,regiao:(metas[r.codusur]||{}).regiao||'',pedidos:0,fat:0,clientes:{}};
     vends[r.codusur].pedidos++;
     vends[r.codusur].fat+=r.fat;
-    vends[r.codusur].clientes[r.codcli]=(vends[r.codusur].clientes[r.codcli]||0)+r.fat;
+    vends[r.codusur].clientes[r.codcli]=vends[r.codusur].clientes[r.codcli]||{fat:0,pos:0};
+    vends[r.codusur].clientes[r.codcli].fat+=r.fat;
+    vends[r.codusur].clientes[r.codcli].pos++;
   });
 
   var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return a.rca.localeCompare(b.rca);});
@@ -221,15 +223,16 @@ function render(){
       for(var ri=0;ri<pos.length;ri++){
         if(String(pos[ri].codcli)===cod&&String(pos[ri].codusur)===v.codusur){nome=pos[ri].cliente;break;}
       }
-      return{cod:cod,nome:nome,fat:v.clientes[cod]};
+      return{cod:cod,nome:nome,fat:v.clientes[cod].fat,pos:v.clientes[cod].pos};
     }).sort(function(a,b){return b.fat-a.fat;});
 
     d+='<div class="chart-box">';
     d+='<div style="font-weight:700;color:#fcd34d;font-size:18px;margin-bottom:2px">'+v.rca+'</div>';
     d+='<div style="font-size:15px;color:#888;margin-bottom:8px">'+v.pedidos+' pos. &middot; '+Object.keys(v.clientes).length+' clientes &middot; '+fmt(v.fat)+'</div>';
-    d+='<div class="tw"><table><thead><tr><th style="text-align:center">#</th><th>C\u00f3digo</th><th>Cliente</th><th class="text-right">Faturamento</th></tr></thead><tbody>';
+    d+='<div style="margin-bottom:8px"><input type="text" placeholder="Filtrar por CODCLI..." onkeyup="var f=this.value.toUpperCase(),t=this.parentNode.nextElementSibling;if(t&&t.tagName!==\'TABLE\')t=t.querySelector(\'table\');if(t){var r=t.querySelectorAll(\'tbody tr\');for(var i=0;i<r.length;i++)r[i].style.display=f&&(r[i].cells[2]?r[i].cells[2].textContent.toUpperCase():\'\').indexOf(f)===-1?\'none\':\'\';}" style="padding:6px 10px;border:1px solid #333;border-radius:4px;background:#111;color:#eee;font-size:14px;width:220px"></div>';
+    d+='<div class="tw"><table><thead><tr><th style="text-align:center">#</th><th class="text-right">Pos.</th><th>CODCLI</th><th>Cliente</th><th class="text-right">Faturamento</th></tr></thead><tbody>';
     clis.forEach(function(c,i){
-      d+='<tr><td style="text-align:center;color:#888">'+(i+1)+'</td><td style="color:#60a5fa">'+c.cod+'</td><td class="cell-cli">'+c.nome+'</td><td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(c.fat)+'</td></tr>';
+      d+='<tr><td style="text-align:center;color:#888">'+(i+1)+'</td><td class="text-right" style="color:#34d399">'+c.pos+'</td><td style="color:#60a5fa">'+c.cod+'</td><td class="cell-cli">'+c.nome+'</td><td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(c.fat)+'</td></tr>';
     });
     d+='</tbody></table></div></div>';
   });
