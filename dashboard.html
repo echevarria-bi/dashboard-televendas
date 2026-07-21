@@ -234,7 +234,7 @@ function render(){
     d+='</tbody></table></div></div>';
   });
 
-  document.getElementById('app').innerHTML=c+m+dep+d;
+  document.getElementById('app').innerHTML=c+m+(viewName==='Geral'?dep:'')+d;
 }
 
 function fmtMes(m){
