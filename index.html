@@ -24,12 +24,17 @@ header .ref span{color:#6b7280;font-size:15px}
 .card.c-purple::before{background:linear-gradient(90deg,#a78bfa,#818cf8)}
 .card.c-amber::before{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
 .card.c-red::before{background:linear-gradient(90deg,#f87171,#fb923c)}
-.card .icon{font-size:28px;margin-bottom:6px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
 .card .lbl{font-size:12px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.2px;font-weight:600;margin-bottom:6px}
-.card .val{font-size:30px;font-weight:800;line-height:1.1}
+.card .val{font-size:28px;font-weight:800;line-height:1.1}
 .card .sub{font-size:22px;font-weight:700;margin-top:4px}
-.card .pct-bar{height:6px;border-radius:3px;background:rgba(255,255,255,0.08);margin-top:10px;overflow:hidden}
-.card .pct-fill{height:100%;border-radius:3px;transition:width .4s ease}
+.gauge-wrap{display:flex;gap:14px;margin-bottom:28px}
+.gauge-card{flex:1;min-width:280px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px 24px 16px;text-align:center;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.gauge-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.gauge-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
+.gauge-card .gauge-title{font-size:13px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:4px}
+.gauge-card .gauge-svg{display:block;margin:0 auto}
+.gauge-card .gauge-actual{font-size:28px;font-weight:800;margin-top:-4px}
+.gauge-card .gauge-meta{font-size:13px;color:#888;margin-top:4px}
 .chart-box{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px;margin-bottom:24px}
 .chart-box h2{font-size:20px;font-weight:700;margin-bottom:14px;color:#fcd34d;text-transform:uppercase;letter-spacing:.5px}
 .chart-box h2 .sub{font-size:16px;color:#aaa;font-weight:400;text-transform:none;letter-spacing:0}
@@ -110,6 +115,45 @@ var DADOS_2025 = {
 };
 var META_2026 = {fat: 6642590.92, pos: 3118};
 
+function gaugeSVG(pct, color){
+  var cx=100,cy=95,r=72;
+  var clampPct=Math.min(Math.max(pct,0),150);
+  var angle=180-clampPct*1.8;
+  var rad=angle*Math.PI/180;
+  var ex=cx+r*Math.cos(rad),ey=cy-r*Math.sin(rad);
+  var largeArc=clampPct>50?1:0;
+
+  var arcPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 0 1 '+ex+' '+ey;
+  var bgPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 1 1 '+(cx+r)+' '+cy;
+
+  var needleLen=58;
+  var nx=cx+needleLen*Math.cos(rad);
+  var ny=cy-needleLen*Math.sin(rad);
+
+  var zones='';
+  [[180,120,'#ef4444'],[120,60,'#fbbf24'],[60,0,'#34d399']].forEach(function(z){
+    var a1=z[0]*Math.PI/180,a2=z[1]*Math.PI/180;
+    var ir=60,or=72;
+    var x1=cx+or*Math.cos(a1),y1=cy-or*Math.sin(a1);
+    var x2=cx+or*Math.cos(a2),y2=cy-or*Math.sin(a2);
+    var x3=cx+ir*Math.cos(a2),y3=cy-ir*Math.sin(a2);
+    var x4=cx+ir*Math.cos(a1),y4=cy-ir*Math.sin(a1);
+    var la=z[0]-z[1]>180?1:0;
+    zones+='<path d="M'+x1+' '+y1+' A'+or+' '+or+' 0 '+la+' 1 '+x2+' '+y2+' L'+x3+' '+y3+' A'+ir+' '+ir+' 0 '+la+' 0 '+x4+' '+y4+' Z" fill="'+z[2]+'" opacity="0.25"/>';
+  });
+
+  var svg='<svg viewBox="0 0 200 125" class="gauge-svg" style="width:180px;height:112px">'+zones+
+    '<path d="'+bgPath+'" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="14" stroke-linecap="round"/>'+
+    '<path d="'+arcPath+'" fill="none" stroke="'+color+'" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>'+
+    '<defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+
+    '<circle cx="'+cx+'" cy="'+cy+'" r="6" fill="'+color+'"/>'+
+    '<circle cx="'+cx+'" cy="'+cy+'" r="3" fill="#111"/>'+
+    '<line x1="'+cx+'" y1="'+cy+'" x2="'+nx+'" y2="'+ny+'" stroke="'+color+'" stroke-width="2.5" stroke-linecap="round"/>'+
+    '<text x="'+cx+'" y="'+cy+24+'" text-anchor="middle" fill="'+color+'" font-size="20" font-weight="800">'+pct.toFixed(1)+'%</text>'+
+    '</svg>';
+  return svg;
+}
+
 function switchView(view){
   activeView = view;
   var tabs = document.querySelectorAll('.tab');
@@ -148,12 +192,15 @@ function render(){
   var pfC=pfPct>=100?'#34d399':pfPct>=70?'#fbbf24':'#f87171';
   var ppC=ppPct>=100?'#34d399':ppPct>=70?'#fbbf24':'#f87171';
 
-  var c='<div class="cards">';
-  c+='<div class="card c-green"><div class="lbl">Faturamento Bruto</div><div class="val" style="color:#34d399">'+fmt(fatBru)+'</div></div>';
-  c+='<div class="card c-amber"><div class="lbl">Meta FAT</div><div class="val" style="color:#fbbf24">'+fmt(metaFatTotal)+'</div><div class="pct-bar"><div class="pct-fill" style="width:'+Math.min(pfPct,100).toFixed(0)+'%;background:'+pfC+'"></div></div><div class="sub" style="color:'+pfC+';font-size:14px;margin-top:6px">'+pfPct.toFixed(1)+'%</div></div>';
-  c+='<div class="card c-purple"><div class="lbl">Positiva\u00e7\u00e3o</div><div class="val" style="color:#a78bfa">'+qtdCliPos+'</div></div>';
-  c+='<div class="card c-amber"><div class="lbl">Meta Pos.</div><div class="val" style="color:#fbbf24">'+metaPosTotal+'</div><div class="pct-bar"><div class="pct-fill" style="width:'+Math.min(ppPct,100).toFixed(0)+'%;background:'+ppC+'"></div></div><div class="sub" style="color:'+ppC+';font-size:14px;margin-top:6px">'+ppPct.toFixed(1)+'%</div></div>';
-  c+='</div>';
+  var c='<div class="gauge-wrap">'+
+    '<div class="gauge-card"><div class="gauge-title">Faturamento vs Meta</div>'+
+    gaugeSVG(pfPct,pfC)+
+    '<div class="gauge-actual" style="color:'+pfC+'">'+fmt(fatBru)+'</div>'+
+    '<div class="gauge-meta">Meta: '+fmt(metaFatTotal)+'</div></div>'+
+    '<div class="gauge-card"><div class="gauge-title">Positiva\u00e7\u00e3o vs Meta</div>'+
+    gaugeSVG(ppPct,ppC)+
+    '<div class="gauge-actual" style="color:'+ppC+'">'+qtdCliPos+'</div>'+
+    '<div class="gauge-meta">Meta: '+metaPosTotal+'</div></div></div>';
 
   var vends={};
   // Faturamento + clientes fat = todos registros (inclui devoluções)
