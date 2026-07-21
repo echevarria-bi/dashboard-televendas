@@ -159,15 +159,17 @@ function render(){
     var fC=pf>=100?'#34d399':pf>=70?'#fbbf24':'#f87171';
     var pC=pp>=100?'#34d399':pp>=70?'#fbbf24':'#f87171';
     totFat+=v.fat;tMetaFat+=mt.fat||0;totPos+=qc;tMetaPos+=mt.pos||0;
+    var faltaFat=(mt.fat||0)>v.fat?mt.fat-v.fat:((mt.fat||0)>0?0:null);
+    var faltaPos=(mt.pos||0)>qc?mt.pos-qc:((mt.pos||0)>0?0:null);
     m+='<tr'+(i%2===0?' style="background:rgba(255,255,255,0.02)"':'')+'>'+
       '<td style="font-weight:600;color:#fcd34d">'+v.rca+'</td>'+
       '<td style="color:#888">'+v.regiao+'</td>'+
       '<td class="text-right" style="color:#fbbf24;font-weight:700">'+fmt(v.fat)+'</td>'+
       '<td class="text-right" style="color:#888">'+fmt(mt.fat||0)+'</td>'+
-      '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pf,100).toFixed(0)+'%;background:'+fC+'"></div></div><span style="font-size:13px;color:'+fC+';font-weight:600">'+pf.toFixed(1)+'%</span></td>'+
+      '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pf,100).toFixed(0)+'%;background:'+fC+'"></div></div><span style="font-size:13px;color:'+fC+';font-weight:600">'+pf.toFixed(1)+'%</span>'+(faltaFat===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':faltaFat>0?'<div style="font-size:11px;color:#f87171;margin-top:2px">Falta '+fmt(faltaFat)+'</div>':'<div style="font-size:11px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
       '<td class="text-right" style="color:#34d399;font-weight:600">'+qc+'</td>'+
       '<td class="text-right" style="color:#888">'+(mt.pos||'&mdash;')+'</td>'+
-      '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pp,100).toFixed(0)+'%;background:'+pC+'"></div></div><span style="font-size:13px;color:'+pC+';font-weight:600">'+pp.toFixed(1)+'%</span></td>'+
+      '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pp,100).toFixed(0)+'%;background:'+pC+'"></div></div><span style="font-size:13px;color:'+pC+';font-weight:600">'+pp.toFixed(1)+'%</span>'+(faltaPos===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':faltaPos>0?'<div style="font-size:11px;color:#f87171;margin-top:2px">Falta '+faltaPos+'</div>':'<div style="font-size:11px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
       '<td class="text-right" style="color:#a78bfa">'+fmt(tickV)+'</td></tr>';
   });
   var tPf=tMetaFat>0?pct(totFat,tMetaFat):0;
@@ -175,15 +177,17 @@ function render(){
   var tFc=tPf>=100?'#34d399':tPf>=70?'#fbbf24':'#f87171';
   var tPc=tPp>=100?'#34d399':tPp>=70?'#fbbf24':'#f87171';
   var tickTotal=totPos>0?totFat/totPos:0;
+  var tFaltaFat=tMetaFat>totFat?tMetaFat-totFat:(tMetaFat>0?0:null);
+  var tFaltaPos=tMetaPos>totPos?tMetaPos-totPos:(tMetaPos>0?0:null);
   m+='<tr style="background:#151830;border-top:2px solid #f59e0b">'+
     '<td style="font-weight:800;color:#fcd34d;font-size:16px">TOTAL</td>'+
     '<td style="color:#888"></td>'+
     '<td class="text-right" style="color:#fbbf24;font-weight:800;font-size:16px">'+fmt(totFat)+'</td>'+
     '<td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(tMetaFat)+'</td>'+
-    '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPf,100).toFixed(0)+'%;background:'+tFc+'"></div></div><span style="font-size:13px;color:'+tFc+';font-weight:700">'+tPf.toFixed(1)+'%</span></td>'+
+    '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPf,100).toFixed(0)+'%;background:'+tFc+'"></div></div><span style="font-size:13px;color:'+tFc+';font-weight:700">'+tPf.toFixed(1)+'%</span>'+(tFaltaFat===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':tFaltaFat>0?'<div style="font-size:11px;color:#f87171;margin-top:2px">Falta '+fmt(tFaltaFat)+'</div>':'<div style="font-size:11px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
     '<td class="text-right" style="color:#34d399;font-weight:800;font-size:16px">'+totPos+'</td>'+
     '<td class="text-right" style="color:#34d399;font-weight:600">'+tMetaPos+'</td>'+
-    '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:13px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span></td>'+
+    '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:13px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span>'+(tFaltaPos===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':tFaltaPos>0?'<div style="font-size:11px;color:#f87171;margin-top:2px">Falta '+tFaltaPos+'</div>':'<div style="font-size:11px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
     '<td class="text-right" style="color:#a78bfa;font-weight:700">'+fmt(tickTotal)+'</td></tr>';
   m+='</tbody></table></div>';
 
