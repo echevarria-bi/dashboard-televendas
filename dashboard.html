@@ -122,9 +122,8 @@ function render(){
   var viewName = activeView === 'polpanorte' ? 'Polpanorte' : 'Geral';
 
   var pos=filtered.filter(function(r){return r.fat>=1;});
-  var dev=filtered.filter(function(r){return r.fat<0;});
 
-  var fatBru=pos.reduce(function(s,r){return s+r.fat;},0);
+  var fatBru=filtered.reduce(function(s,r){return s+r.fat;},0);
   var totPos=pos.length;
 
   var cliPos={};
@@ -139,10 +138,14 @@ function render(){
   c+='</div>';
 
   var vends={};
-  pos.forEach(function(r){
+  // Faturamento = todos registros (inclui devoluções)
+  filtered.forEach(function(r){
     if(!vends[r.codusur])vends[r.codusur]={codusur:r.codusur,rca:r.rca,regiao:(metas[r.codusur]||{}).regiao||'',pedidos:0,fat:0,clientes:{}};
-    vends[r.codusur].pedidos++;
     vends[r.codusur].fat+=r.fat;
+  });
+  // Positivação = só registros positivos
+  pos.forEach(function(r){
+    vends[r.codusur].pedidos++;
     vends[r.codusur].clientes[r.codcli]=vends[r.codusur].clientes[r.codcli]||{fat:0,pos:0};
     vends[r.codusur].clientes[r.codcli].fat+=r.fat;
     vends[r.codusur].clientes[r.codcli].pos++;
