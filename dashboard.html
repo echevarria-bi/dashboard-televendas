@@ -46,8 +46,8 @@ footer{text-align:center;padding:16px;font-size:15px;color:#555;border-top:1px s
 </header>
 
 <div class="tabs">
-<button class="tab active" onclick="switchView('geral')">Painel Televendas</button>
-<button class="tab" onclick="switchView('polpanorte')">Polpanorte</button>
+<button class="tab active" onclick="switchView('geral')">Painel Televendas Julho</button>
+<button class="tab" onclick="switchView('polpanorte')">Polpanorte Julho</button>
 <button class="tab" onclick="switchView('regiaomes')">An&#225;lise Por Regi&#227;o</button>
 </div>
 
@@ -166,8 +166,8 @@ function render(){
     m+='<tr'+(i%2===0?' style="background:rgba(255,255,255,0.02)"':'')+'>'+
       '<td style="font-weight:600;color:#fcd34d">'+v.rca+'</td>'+
       '<td style="color:#888">'+v.regiao+'</td>'+
-      '<td class="text-right" style="color:#fbbf24;font-weight:700">'+fmt(v.fat)+'</td>'+
-      '<td class="text-right" style="color:#888">'+fmt(mt.fat||0)+'</td>'+
+      '<td class="text-right" style="color:#fbbf24;font-weight:700;white-space:nowrap">'+fmt(v.fat)+'</td>'+
+      '<td class="text-right" style="color:#888;white-space:nowrap">'+fmt(mt.fat||0)+'</td>'+
       '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pf,100).toFixed(0)+'%;background:'+fC+'"></div></div><span style="font-size:13px;color:'+fC+';font-weight:600">'+pf.toFixed(1)+'%</span>'+(faltaFat===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':faltaFat>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+fmt(faltaFat)+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
       '<td class="text-right" style="color:#34d399;font-weight:600">'+qc+'</td>'+
       '<td class="text-right" style="color:#888">'+(mt.pos||'&mdash;')+'</td>'+
@@ -184,8 +184,8 @@ function render(){
   m+='<tr style="background:#151830;border-top:2px solid #f59e0b">'+
     '<td style="font-weight:800;color:#fcd34d;font-size:16px">TOTAL</td>'+
     '<td style="color:#888"></td>'+
-    '<td class="text-right" style="color:#fbbf24;font-weight:800;font-size:16px">'+fmt(totFat)+'</td>'+
-    '<td class="text-right" style="color:#fbbf24;font-weight:600">'+fmt(tMetaFat)+'</td>'+
+    '<td class="text-right" style="color:#fbbf24;font-weight:800;font-size:16px;white-space:nowrap">'+fmt(totFat)+'</td>'+
+    '<td class="text-right" style="color:#fbbf24;font-weight:600;white-space:nowrap">'+fmt(tMetaFat)+'</td>'+
     '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPf,100).toFixed(0)+'%;background:'+tFc+'"></div></div><span style="font-size:13px;color:'+tFc+';font-weight:700">'+tPf.toFixed(1)+'%</span>'+(tFaltaFat===null?'<div style="font-size:13px;color:#888;margin-top:2px">Sem meta</div>':tFaltaFat>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+fmt(tFaltaFat)+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
     '<td class="text-right" style="color:#34d399;font-weight:800;font-size:16px">'+totPos+'</td>'+
     '<td class="text-right" style="color:#34d399;font-weight:600">'+tMetaPos+'</td>'+
@@ -298,7 +298,7 @@ function renderRegiaoMes(){
     var max=Math.max.apply(null,all);if(max===0)max=1;
     var min=0;
     var range=max-min||1;
-    var W=800,H=280,PL=55,PR=25,PT=30,PB=40;
+    var W=840,H=280,PL=60,PR=40,PT=30,PB=40;
     var cw=W-PL-PR,ch=H-PT-PB;
     function yPos(v){return PT+ch-((v-min)/range)*ch;}
     function xPos(i){return PL+i/(6)*cw;}
