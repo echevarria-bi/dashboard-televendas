@@ -138,14 +138,16 @@ function render(){
   c+='</div>';
 
   var vends={};
+  // Faturamento + clientes fat = todos registros (inclui devoluções)
   filtered.forEach(function(r){
     if(!vends[r.codusur])vends[r.codusur]={codusur:r.codusur,rca:r.rca,regiao:(metas[r.codusur]||{}).regiao||'',pedidos:0,fat:0,clientes:{}};
     vends[r.codusur].fat+=r.fat;
+    if(!vends[r.codusur].clientes[r.codcli])vends[r.codusur].clientes[r.codcli]={fat:0,pos:0};
+    vends[r.codusur].clientes[r.codcli].fat+=r.fat;
   });
+  // Positivação = só registros positivos
   pos.forEach(function(r){
     vends[r.codusur].pedidos++;
-    vends[r.codusur].clientes[r.codcli]=vends[r.codusur].clientes[r.codcli]||{fat:0,pos:0};
-    vends[r.codusur].clientes[r.codcli].fat+=r.fat;
     vends[r.codusur].clientes[r.codcli].pos++;
   });
 
@@ -196,10 +198,13 @@ function render(){
 
   // Departamento section
   var dept={};
-  pos.forEach(function(r){
+  filtered.forEach(function(r){
     var d=r.depto||'SEM DEPARTAMENTO';
     if(!dept[d])dept[d]={fat:0,pos:0,cli:{}};
     dept[d].fat+=r.fat;
+  });
+  pos.forEach(function(r){
+    var d=r.depto||'SEM DEPARTAMENTO';
     dept[d].pos++;
     dept[d].cli[r.codcli]=1;
   });
