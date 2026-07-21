@@ -267,7 +267,7 @@ function renderRegiaoMes(){
     var max=Math.max.apply(null,all);if(max===0)max=1;
     var min=0;
     var range=max-min||1;
-    var W=800,H=300,PL=40,PR=12,PT=30,PB=40;
+    var W=800,H=280,PL=40,PR=12,PT=30,PB=40;
     var cw=W-PL-PR,ch=H-PT-PB;
     function yPos(v){return PT+ch-((v-min)/range)*ch;}
     function xPos(i){return PL+i/(6)*cw;}
@@ -302,7 +302,7 @@ function renderRegiaoMes(){
       if(!hit)break;
     }
 
-    var s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:320px"><rect width="'+W+'" height="'+H+'" fill="none"/>';
+    var s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto"><rect width="'+W+'" height="'+H+'" fill="none"/>';
     // Grid
     for(var g=0;g<=4;g++){
       var gy=PT+(g/4)*ch;
