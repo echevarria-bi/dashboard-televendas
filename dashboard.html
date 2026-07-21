@@ -15,8 +15,8 @@ header .ref span{color:#6b7280;font-size:15px}
 .tab{padding:14px 28px;font-size:18px;font-weight:600;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;font-family:inherit}
 .tab:hover{color:#eee}
 .tab.active{color:#f59e0b;border-bottom-color:#f59e0b;background:rgba(245,158,11,0.05)}
-.container{max-width:1600px;margin:0 auto;padding:24px 28px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px}
+.container{max-width:none;margin:0;padding:24px 32px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:24px}
 .card{background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:20px 24px}
 .card .lbl{font-size:15px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
 .card .val{font-size:34px;font-weight:800}
@@ -391,7 +391,7 @@ function renderRegiaoMes(){
   html+='</tbody></table></div></div>';
 
   // Regiões em cards compactos
-  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:10px">';
+  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-bottom:10px">';
   order.forEach(function(reg,ri){
     var rd=regData[reg];
     var pT=gFat>0?rd.totalFat/gFat*100:0;
