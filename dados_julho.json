@@ -1195,6 +1195,19 @@
       "fat": 11812.5
     },
     {
+      "data": 46224,
+      "dataStr": "21/07/2026",
+      "codcli": 44959,
+      "cliente": "MERCADO FARIAS LTDA",
+      "ramo": "MERCADO",
+      "depto": "FRANGOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11026",
+      "fat": 4935
+    },
+    {
       "data": 46210,
       "dataStr": "07/07/2026",
       "codcli": 41265,
@@ -13660,6 +13673,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "8586",
       "fat": 419.4
+    },
+    {
+      "data": 46224,
+      "dataStr": "21/07/2026",
+      "codcli": 44959,
+      "cliente": "MERCADO FARIAS LTDA",
+      "ramo": "MERCADO",
+      "depto": "VEGETAIS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "8586",
+      "fat": 2673
     },
     {
       "data": 46204,
