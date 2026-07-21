@@ -279,7 +279,7 @@ function renderRegiaoMes(){
       if(v==null)return;
       var x=xPos(i), y=yPos(v), t=fVal(v);
       L.push({x:x, ay:y, t:t, w:t.length*6.5, h:14,
-        adjY: ser===0? y-14 : y+16, ser:ser, m:i});
+        adjY: ser===0? y-20 : y+22, ser:ser, m:i});
     }
     for(var i=0;i<7;i++)addL(i,vals[i],0);
     if(vals25)for(var i=0;i<7;i++)addL(i,vals25[i],1);
@@ -290,9 +290,9 @@ function renderRegiaoMes(){
       for(var i=0;i<L.length;i++)for(var j=i+1;j<L.length;j++){
         var a=L[i],b=L[j];
         if(Math.abs(a.x-b.x)>=(a.w+b.w)/2+6)continue;
-        if(Math.abs(a.adjY-b.adjY)>=14)continue;
-        if(a.adjY<=b.adjY){a.adjY-=2;b.adjY+=2;}
-        else{b.adjY-=2;a.adjY+=2;}
+        if(Math.abs(a.adjY-b.adjY)>=20)continue;
+        if(a.adjY<=b.adjY){a.adjY-=3;b.adjY+=3;}
+        else{b.adjY-=3;a.adjY+=3;}
         hit=true;
       }
       for(var i=0;i<L.length;i++){
@@ -324,7 +324,7 @@ function renderRegiaoMes(){
     // Leader lines for labels pushed >20px
     for(var i=0;i<L.length;i++){
       var d=Math.abs(L[i].adjY-L[i].ay);
-      if(d>20){
+      if(d>16){
         var ly=L[i].adjY+(L[i].adjY>L[i].ay?-4:4);
         s+='<line x1="'+L[i].x+'" y1="'+L[i].ay+'" x2="'+L[i].x+'" y2="'+ly+'" stroke="#6b7280" stroke-width="0.8" stroke-dasharray="2,2"/>';
       }
