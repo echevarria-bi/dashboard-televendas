@@ -275,7 +275,7 @@ function renderRegiaoMes(){
       var gy=PT+(g/4)*ch;
       var gv=Math.round(max-(g/4)*range);
       s+='<line x1="'+PL+'" y1="'+gy+'" x2="'+(W-PR)+'" y2="'+gy+'" stroke="#1e1b4b" stroke-width="1"/>'+
-        '<text x="'+(PL-5)+'" y="'+(gy+4)+'" fill="#6b7280" font-size="11" text-anchor="end">'+(color==='#f59e0b'?fmt(gv):gv)+'</text>';
+        (!vals25?'<text x="'+(PL-5)+'" y="'+(gy+4)+'" fill="#6b7280" font-size="11" text-anchor="end">'+(color==='#f59e0b'?fmt(gv):gv)+'</text>':'');
     }
     if(vals25){
       var p25=pts(vals25);
