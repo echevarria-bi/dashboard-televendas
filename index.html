@@ -209,17 +209,19 @@ function render(){
     dept[d].cli[r.codcli]=1;
   });
   var dArr=Object.keys(dept).map(function(k){return{k:k,fat:dept[k].fat,pos:dept[k].pos,cli:Object.keys(dept[k].cli).length};}).sort(function(a,b){return b.fat-a.fat;});
-  var dep='<div class="chart-box"><h2>Faturamento por Departamento <span class="sub">'+viewName+' &mdash; Julho/2026</span></h2><table><thead><tr><th>Departamento</th><th class="text-right">Faturamento</th></tr></thead><tbody>';
-  var dTotFat=0;
+  var dTotFat=dArr.reduce(function(s,d){return s+d.fat;},0);
+  var dep='<div class="chart-box"><h2>Faturamento por Departamento <span class="sub">'+viewName+' &mdash; Julho/2026</span></h2><table><thead><tr><th>Departamento</th><th class="text-right">Faturamento</th><th class="text-right">%</th></tr></thead><tbody>';
   dArr.forEach(function(d,i){
-    dTotFat+=d.fat;
+    var dp=dTotFat>0?d.fat/dTotFat*100:0;
     dep+='<tr'+(i%2===0?' style="background:rgba(255,255,255,0.02)"':'')+'>'+
       '<td style="font-weight:600;color:#fcd34d">'+d.k+'</td>'+
-      '<td class="text-right" style="color:#fbbf24;font-weight:700">'+fmt(d.fat)+'</td></tr>';
+      '<td class="text-right" style="color:#fbbf24;font-weight:700">'+fmt(d.fat)+'</td>'+
+      '<td class="text-right" style="color:#888;font-size:13px">'+dp.toFixed(1)+'%</td></tr>';
   });
   dep+='<tr style="background:#151830;border-top:2px solid #f59e0b">'+
     '<td style="font-weight:800;color:#fcd34d;font-size:16px">TOTAL</td>'+
-    '<td class="text-right" style="color:#fbbf24;font-weight:800;font-size:16px">'+fmt(dTotFat)+'</td></tr>';
+    '<td class="text-right" style="color:#fbbf24;font-weight:800;font-size:16px">'+fmt(dTotFat)+'</td>'+
+    '<td class="text-right" style="color:#fbbf24;font-weight:600;font-size:14px">100%</td></tr>';
   dep+='</tbody></table></div>';
 
   var d='<h2 style="font-size:18px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Detalhamento por Vendedor</h2>';
