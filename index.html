@@ -376,6 +376,7 @@ function renderRegiaoMes(){
 
   var html='<div class="cards">';
   html+='<div class="card"><div class="lbl">Faturamento Jan-Jul</div><div class="val" style="color:#fbbf24">'+fmt(gFat)+'</div></div>';
+  html+='<div class="card"><div class="lbl">Total Clientes</div><div class="val" style="color:#34d399">'+(DADOS_MES.activeCli||'-')+'</div></div>';
   html+='<div class="card"><div class="lbl">Total Pedidos</div><div class="val" style="color:#60a5fa">'+gPed.toLocaleString('pt-BR')+'</div></div>';
   html+='</div>';
 
