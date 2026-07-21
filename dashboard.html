@@ -68,7 +68,7 @@ function serialToDate(s){
 
 function fmt(v){
   if(v==null||isNaN(v))return'-';
-  return'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  return'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
 }
 
 function pct(v,t){
