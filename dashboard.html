@@ -32,7 +32,7 @@ header .ref span{color:#6b7280;font-size:15px}
 .gauge-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .gauge-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
 .gauge-card .gauge-title{font-size:13px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:4px}
-.gauge-card .gauge-svg{display:block;margin:0 auto}
+.gauge-card .gauge-svg{display:block;margin:0 auto;width:100%;max-width:360px;height:auto}
 .gauge-card .gauge-actual{font-size:28px;font-weight:800;margin-top:-4px}
 .gauge-card .gauge-meta{font-size:13px;color:#888;margin-top:4px}
 .chart-box{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px;margin-bottom:24px}
@@ -142,7 +142,7 @@ function gaugeSVG(pct, color){
     zones+='<path d="M'+x1+' '+y1+' A'+or+' '+or+' 0 '+la+' 1 '+x2+' '+y2+' L'+x3+' '+y3+' A'+ir+' '+ir+' 0 '+la+' 0 '+x4+' '+y4+' Z" fill="'+z[2]+'" opacity="0.25"/>';
   });
 
-  var svg='<svg viewBox="0 0 200 125" class="gauge-svg" style="width:180px;height:112px">'+zones+
+  var svg='<svg viewBox="0 0 200 125" class="gauge-svg">'+zones+
     '<path d="'+bgPath+'" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="14" stroke-linecap="round"/>'+
     '<path d="'+arcPath+'" fill="none" stroke="'+color+'" stroke-width="14" stroke-linecap="round" filter="url(#glow)"/>'+
     '<defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+
