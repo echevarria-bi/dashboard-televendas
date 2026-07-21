@@ -131,9 +131,18 @@ function render(){
   var qtdCliPos=Object.keys(cliPos).length;
   var tick=totPos>0?fatBru/totPos:0;
 
+  var metaFatTotal=0,metaPosTotal=0;
+  Object.keys(metas).forEach(function(k){metaFatTotal+=metas[k].fat||0;metaPosTotal+=metas[k].pos||0;});
+  var pfPct=metaFatTotal>0?fatBru/metaFatTotal*100:0;
+  var ppPct=metaPosTotal>0?qtdCliPos/metaPosTotal*100:0;
+  var pfC=pfPct>=100?'#34d399':pfPct>=70?'#fbbf24':'#f87171';
+  var ppC=ppPct>=100?'#34d399':ppPct>=70?'#fbbf24':'#f87171';
+
   var c='<div class="cards">';
   c+='<div class="card"><div class="lbl">Faturamento Bruto</div><div class="val" style="color:#34d399">'+fmt(fatBru)+'</div></div>';
+  c+='<div class="card"><div class="lbl">Meta FAT</div><div class="val" style="color:#888">'+fmt(metaFatTotal)+'</div><div class="lbl" style="color:'+pfC+';margin-top:2px">'+pfPct.toFixed(1)+'%</div></div>';
   c+='<div class="card"><div class="lbl">Positiva\u00e7\u00e3o</div><div class="val" style="color:#34d399">'+qtdCliPos+'</div></div>';
+  c+='<div class="card"><div class="lbl">Meta Pos.</div><div class="val" style="color:#888">'+metaPosTotal+'</div><div class="lbl" style="color:'+ppC+';margin-top:2px">'+ppPct.toFixed(1)+'%</div></div>';
   c+='<div class="card"><div class="lbl">Ticket M\u00e9dio</div><div class="val" style="color:#a78bfa">'+fmt(tick)+'</div></div>';
   c+='</div>';
 
