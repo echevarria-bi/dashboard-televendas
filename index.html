@@ -337,6 +337,18 @@ function renderRegiaoMes(){
   var order=['Região Metropolitana','Região Sul','Serra','Litoral','Vale dos Sinos','Key Account'];
   var cores=['#f59e0b','#34d399','#60a5fa','#a78bfa','#f87171','#06b6d4'];
 
+  // Projeção Julho: dias úteis (1-21 = 15, total = 25)
+  var hoje=new Date();
+  var jul1=new Date(2026,6,1);
+  var elapsed=0,total=0;
+  for(var d=1;d<=31;d++){
+    var dt=new Date(2026,6,d);
+    if(dt.getDay()===0||dt.getDay()===6)continue;
+    total++;
+    if(d<=21)elapsed++;
+  }
+  var projMult=elapsed>0?total/elapsed:1;
+
   function calcReg(reg){
     var rd=REGIAO_MES[reg];
     if(!rd)return null;
@@ -377,18 +389,26 @@ function renderRegiaoMes(){
   var maxFV=Math.max.apply(null,mFat);if(maxFV===0)maxFV=1;
   var maxPV=Math.max.apply(null,mPos);if(maxPV===0)maxPV=1;
 
-  function svgLine(vals,color,vals25){
+  // Salvar valores reais de Julho
+  var fatJulReal=mFat[6], posJulReal=mPos[6];
+  // Projetar Julho
+  mFat[6]=Math.round(mFat[6]*projMult);
+  mPos[6]=Math.round(mPos[6]*projMult);
+
+  // Valores por região para projeção
+  order.forEach(function(reg){regData[reg].fatJulProj=Math.round(regData[reg].months[6].fat*projMult);regData[reg].posJulProj=Math.round(regData[reg].months[6].pos*projMult);});
+
+  function svgLine(vals,color,vals25,isProj){
     var all=vals.slice();if(vals25)all=all.concat(vals25);
     var max=Math.max.apply(null,all);if(max===0)max=1;
     var min=0;
     var range=max-min||1;
-    var W=840,H=280,PL=60,PR=40,PT=30,PB=40;
+    var W=900,H=300,PL=60,PR=40,PT=30,PB=40;
     var cw=W-PL-PR,ch=H-PT-PB;
     function yPos(v){return PT+ch-((v-min)/range)*ch;}
     function xPos(i){return PL+i/(6)*cw;}
     function fVal(v){return color==='#f59e0b'?fmt(v):String(v);}
 
-    // Collect all label descriptors with initial positions
     var L=[];
     function addL(i,v,ser){
       if(v==null)return;
@@ -399,20 +419,22 @@ function renderRegiaoMes(){
     for(var i=0;i<7;i++)addL(i,vals[i],0);
     if(vals25)for(var i=0;i<7;i++)addL(i,vals25[i],1);
 
-    // Resolve collisions: iterative push-apart
-    for(var it=0;it<30;it++){
+    // Resolve collisions: push harder, more iterations
+    for(var it=0;it<50;it++){
       var hit=false;
       for(var i=0;i<L.length;i++)for(var j=i+1;j<L.length;j++){
         var a=L[i],b=L[j];
-        if(Math.abs(a.x-b.x)>=(a.w+b.w)/2+6)continue;
-        if(Math.abs(a.adjY-b.adjY)>=20)continue;
-        if(a.adjY<=b.adjY){a.adjY-=3;b.adjY+=3;}
-        else{b.adjY-=3;a.adjY+=3;}
+        if(Math.abs(a.x-b.x)>=(a.w+b.w)/2+8)continue;
+        if(Math.abs(a.adjY-b.adjY)>=22)continue;
+        var push=4;
+        if(Math.abs(a.x-b.x)<20)push=6;
+        if(a.adjY<=b.adjY){a.adjY-=push;b.adjY+=push;}
+        else{b.adjY-=push;a.adjY+=push;}
         hit=true;
       }
       for(var i=0;i<L.length;i++){
-        if(L[i].adjY<18)L[i].adjY=18;
-        if(L[i].adjY>H-10)L[i].adjY=H-10;
+        if(L[i].adjY<14)L[i].adjY=14;
+        if(L[i].adjY>H-6)L[i].adjY=H-6;
       }
       if(!hit)break;
     }
@@ -431,11 +453,21 @@ function renderRegiaoMes(){
       s+='<polyline points="'+p25.join(' ')+'" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" stroke-linejoin="round" stroke-linecap="round"/>';
       for(var i=0;i<7;i++)s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals25[i])+'" r="3" fill="#6b7280" stroke="#111" stroke-width="1.5"/>';
     }
-    // 2026 line + dots
-    var p=[];for(var i=0;i<7;i++)p.push(xPos(i)+','+yPos(vals[i]));
-    s+='<polyline points="'+p.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
-    s+='<polyline points="'+p.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.15"/>';
-    for(var i=0;i<7;i++)s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals[i])+'" r="4.5" fill="'+color+'" stroke="#111" stroke-width="2"/>';
+    // 2026 line: Jan-Jun solid, Jun-Jul dashed (projection)
+    var pSolid=[],pProj=[];
+    for(var i=0;i<6;i++)pSolid.push(xPos(i)+','+yPos(vals[i]));
+    pSolid.push(xPos(6)+','+yPos(vals[6]));
+    pProj.push(xPos(5)+','+yPos(vals[5]));
+    pProj.push(xPos(6)+','+yPos(vals[6]));
+    s+='<polyline points="'+pSolid.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+    s+='<polyline points="'+pProj.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-dasharray="6,4" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>';
+    s+='<polyline points="'+pSolid.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.15"/>';
+    for(var i=0;i<7;i++){
+      var dotR=i===6?5.5:4.5;
+      s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals[i])+'" r="'+dotR+'" fill="'+(i===6?'rgba(0,0,0,0.3)':color)+'" stroke="'+color+'" stroke-width="2"/>';
+    }
+    // Projection zone indicator
+    s+='<rect x="'+(xPos(5)+4)+'" y="'+(PT-2)+'" width="'+(xPos(6)-xPos(5)-8)+'" height="'+(ch+4)+'" fill="rgba(245,158,11,0.04)" rx="4"/>';
     // Leader lines for labels pushed >20px
     for(var i=0;i<L.length;i++){
       var d=Math.abs(L[i].adjY-L[i].ay);
@@ -450,7 +482,11 @@ function renderRegiaoMes(){
       s+='<text x="'+l.x+'" y="'+l.adjY+'" fill="'+(l.ser===1?'#9ca3af':'#f3f4f6')+'" font-size="'+(l.ser===1?'12':'13')+'" text-anchor="middle" font-weight="'+(l.ser===1?'400':'600')+'">'+l.t+'</text>';
     }
     // Month labels
-    for(var i=0;i<7;i++)s+='<text x="'+xPos(i)+'" y="'+(H-8)+'" fill="#9ca3af" font-size="13" text-anchor="middle">'+months[i]+'</text>';
+    for(var i=0;i<7;i++){
+      var ml=i===6?'Jul*':months[i];
+      var mc=i===6?'#f59e0b':'#9ca3af';
+      s+='<text x="'+xPos(i)+'" y="'+(H-8)+'" fill="'+mc+'" font-size="13" text-anchor="middle" font-weight="'+(i===6?'700':'400')+'">'+ml+'</text>';
+    }
     // Legend
     if(vals25){
       s+='<circle cx="'+(W-120)+'" cy="16" r="3" fill="'+color+'" stroke="none"/><text x="'+(W-112)+'" y="20" fill="#eee" font-size="12">2026</text>'+
@@ -461,7 +497,8 @@ function renderRegiaoMes(){
   }
 
   var html='<div class="cards">';
-  html+='<div class="card"><div class="lbl">Faturamento Jan-Jul</div><div class="val" style="color:#fbbf24">'+fmt(gFat)+'</div></div>';
+  var fatJanJun=gFat-mFat[6];
+  html+='<div class="card"><div class="lbl">Faturamento Jan-Jul (com projeção Jul)</div><div class="val" style="color:#fbbf24">'+fmt(gFat)+'</div><div style="font-size:12px;color:#888;margin-top:4px">Real: '+fmt(fatJanJun+fatJulReal)+' &middot; Até 21/07: R$ '+fmt(fatJulReal)+'</div></div>';
   html+='<div class="card"><div class="lbl">Total Clientes</div><div class="val" style="color:#34d399">'+(DADOS_MES.activeCli||'-')+'</div></div>';
   html+='<div class="card"><div class="lbl">Total Pedidos</div><div class="val" style="color:#60a5fa">'+gPed.toLocaleString('pt-BR')+'</div></div>';
   html+='</div>';
@@ -469,10 +506,10 @@ function renderRegiaoMes(){
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
 
-    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></div><div style="max-width:1200px;margin:0 auto">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat)+'</div></div>';
+    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></div><div style="font-size:12px;color:#f59e0b;margin-bottom:6px">* Jul = projeção até 31/07 baseada em dias úteis ('+elapsed+'/'+total+') &middot; Real até 21/07: R$ '+fmt(fatJulReal)+'</div><div style="max-width:1200px;margin:0 auto">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat)+'</div></div>';
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
-    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Positivações <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></div><div style="max-width:1200px;margin:0 auto">'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div></div>';
+    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Positivações <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></div><div style="font-size:12px;color:#34d399;margin-bottom:6px">* Jul = projeção até 31/07 baseada em dias úteis ('+elapsed+'/'+total+') &middot; Real até 21/07: '+posJulReal+'</div><div style="max-width:1200px;margin:0 auto">'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div></div>';
 
   // Variação mensal (tabela compacta)
   html+='<div class="chart-box" style="margin-bottom:14px">';
@@ -480,9 +517,11 @@ function renderRegiaoMes(){
    html+='<div style="overflow-x:auto"><table><thead><tr><th>M\u00eas</th><th class="text-right">Faturamento</th><th class="text-right">Var. FAT</th></tr></thead><tbody>';
   for(var i=0;i<7;i++){
     var pVar=i>0?((mFat[i]-mFat[i-1])/mFat[i-1]*100):0;
-    html+='<tr>'+
-      '<td style="font-weight:600;color:#fcd34d">'+fullMonths[i]+'</td>'+
-      '<td class="text-right" style="color:#fbbf24">'+fmt(mFat[i])+'</td>'+
+    var mesLabel=i===6?fullMonths[i]+'*':fullMonths[i];
+    var fatDisplay=i===6?fmt(fatJulReal)+' → '+fmt(mFat[i]):fmt(mFat[i]);
+    html+='<tr'+(i===6?' style="background:rgba(245,158,11,0.05)"':'')+'>'+
+      '<td style="font-weight:600;color:#fcd34d">'+mesLabel+'</td>'+
+      '<td class="text-right" style="color:#fbbf24;white-space:nowrap">'+fatDisplay+'</td>'+
       '<td class="text-right" style="color:'+(pVar>=0?'#34d399':'#f87171')+'">'+(i>0?(pVar>=0?'+':'')+pVar.toFixed(1)+'%':'-')+'</td></tr>';
   }
   html+='</tbody></table></div></div>';
@@ -503,7 +542,8 @@ function renderRegiaoMes(){
       '<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">'+
       '<span style="width:10px;height:10px;border-radius:50%;background:'+rd.cor+';display:inline-block"></span>'+
       '<span style="font-weight:600;color:#fcd34d;font-size:16px">'+reg+'</span></div>'+
-      '<div style="font-size:15px"><span style="color:#fbbf24;font-weight:700">'+fmt(rd.totalFat)+'</span></div>'+
+      '<div style="font-size:15px"><span style="color:#fbbf24;font-weight:700">'+fmt(rd.totalFat)+'</span>'+
+      (rd.fatJulProj!=rd.months[6].fat?' <span style="font-size:12px;color:#f59e0b">→ proj: '+fmt(rd.fatJulProj)+'</span>':'')+'</div>'+
       '<div style="font-size:13px;color:#6b7280;margin-top:2px">Pico: '+fullMonths[bi]+' ('+fmt(bf)+')'+
       ' &middot; Jun/25: <span style="color:'+(jun25?(jun26>=jun25?'#34d399':'#f87171'):'#6b7280')+'">'+cmp+'</span></div></div>';
   });
