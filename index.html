@@ -10,6 +10,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 header{background:#1a1a2e;border-bottom:2px solid #f59e0b;padding:16px 24px;display:flex;align-items:center;flex-wrap:wrap;gap:10px}
 header h1{font-size:22px;font-weight:700;color:#f59e0b}
 header .ref{font-size:13px;color:#888;margin-left:auto}
+header .ref span{color:#6b7280;font-size:11px}
 .tabs{display:flex;gap:0;background:#0d0d1a;border-bottom:1px solid #333;padding:0 24px}
 .tab{padding:10px 20px;font-size:13px;font-weight:600;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;font-family:inherit}
 .tab:hover{color:#eee}
@@ -92,6 +93,12 @@ var METAS_POLPA = {
   '9886':{nome:'Tatiana',regiao:'SERRA',fat:87500,pos:143},
   '1624':{nome:'Tatiana',regiao:'LITORAL',fat:0,pos:0}
 };
+
+var DADOS_2025 = {
+  fat: [1328301.64, 918484.44, 823230.42, 689873.21, 711582.82, 632591.74, 831557.85],
+  pos: [481, 456, 394, 372, 320, 327, 391]
+};
+var META_2026 = {fat: 6642590.92, pos: 3118};
 
 function switchView(view){
   activeView = view;
@@ -255,17 +262,14 @@ function renderRegiaoMes(){
   var maxFV=Math.max.apply(null,mFat);if(maxFV===0)maxFV=1;
   var maxPV=Math.max.apply(null,mPos);if(maxPV===0)maxPV=1;
 
-  function svgLine(vals,color){
-    var max=Math.max.apply(null,vals);if(max===0)max=1;
-    var min=Math.min.apply(null,vals);
+  function svgLine(vals,color,vals25){
+    var all=vals.slice();if(vals25)all=all.concat(vals25);
+    var max=Math.max.apply(null,all);if(max===0)max=1;
+    var min=Math.min.apply(null,all);
     var range=max-min||1;
     var W=700,H=220,PL=55,PR=20,PT=25,PB=35;
     var cw=W-PL-PR,ch=H-PT-PB;
-    var pts=[];
-    for(var i=0;i<7;i++){
-      var x=PL+i/(6)*cw,y=PT+ch-((vals[i]-min)/range)*ch;
-      pts.push(x+','+y);
-    }
+    function pts(arr){var p=[];for(var i=0;i<7;i++){p.push((PL+i/(6)*cw)+','+(PT+ch-((arr[i]-min)/range)*ch));}return p;}
     var s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto"><rect width="'+W+'" height="'+H+'" fill="none"/>';
     for(var g=0;g<=4;g++){
       var gy=PT+(g/4)*ch;
@@ -273,13 +277,27 @@ function renderRegiaoMes(){
       s+='<line x1="'+PL+'" y1="'+gy+'" x2="'+(W-PR)+'" y2="'+gy+'" stroke="#1e1b4b" stroke-width="1"/>'+
         '<text x="'+(PL-5)+'" y="'+(gy+4)+'" fill="#6b7280" font-size="11" text-anchor="end">'+(color==='#f59e0b'?fmt(gv):gv)+'</text>';
     }
-    s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
-    s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.15"/>';
+    if(vals25){
+      var p25=pts(vals25);
+      s+='<polyline points="'+p25.join(' ')+'" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" stroke-linejoin="round" stroke-linecap="round"/>';
+      for(var i=0;i<7;i++){
+        var x=PL+i/(6)*cw,y=PT+ch-((vals25[i]-min)/range)*ch;
+        s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="#6b7280" stroke="#111" stroke-width="1.5"/>'+
+          '<text x="'+x+'" y="'+(y-8)+'" fill="#9ca3af" font-size="10" text-anchor="middle">'+(color==='#f59e0b'?fmt(vals25[i]):vals25[i])+'</text>';
+      }
+    }
+    var p=pts(vals);
+    s+='<polyline points="'+p.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+    s+='<polyline points="'+p.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.15"/>';
     for(var i=0;i<7;i++){
       var x=PL+i/(6)*cw,y=PT+ch-((vals[i]-min)/range)*ch;
       s+='<circle cx="'+x+'" cy="'+y+'" r="4.5" fill="'+color+'" stroke="#111" stroke-width="2"/>'+
         '<text x="'+x+'" y="'+(H-8)+'" fill="#9ca3af" font-size="11" text-anchor="middle">'+months[i]+'</text>'+
-        '<text x="'+x+'" y="'+(y-10)+'" fill="#f3f4f6" font-size="11" text-anchor="middle" font-weight="600">'+(color==='#f59e0b'?fmt(vals[i]):vals[i])+'</text>';
+        '<text x="'+x+'" y="'+(y-(vals25?22:10))+'" fill="#f3f4f6" font-size="11" text-anchor="middle" font-weight="600">'+(color==='#f59e0b'?fmt(vals[i]):vals[i])+'</text>';
+    }
+    if(vals25){
+      s+='<circle cx="'+(W-120)+'" cy="16" r="3" fill="'+color+'" stroke="none"/><text x="'+(W-112)+'" y="20" fill="#eee" font-size="10">2026</text>'+
+        '<line x1="'+(W-80)+'" y1="16" x2="'+(W-62)+'" y2="16" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="3,2"/><text x="'+(W-55)+'" y="20" fill="#9ca3af" font-size="10">2025</text>';
     }
     s+='</svg>';
     return s;
@@ -292,13 +310,25 @@ function renderRegiaoMes(){
   html+='<div class="card"><div class="lbl">Ticket M\u00e9dio</div><div class="val" style="color:#a78bfa">'+fmt(gTick)+'</div></div>';
   html+='</div>';
 
+  var ytdFat=0,ytdPos=0;for(var i=0;i<7;i++){ytdFat+=mFat[i];ytdPos+=mPos[i];}
+  var pFat=META_2026.fat>0?pct(ytdFat,META_2026.fat):0;
+  var pPos=META_2026.pos>0?pct(ytdPos,META_2026.pos):0;
+  html+='<div class="cards">'+
+    '<div class="card"><div class="lbl">Meta FAT 2026</div><div class="val" style="color:#fbbf24;font-size:18px">'+fmt(META_2026.fat)+'</div>'+
+    '<div style="font-size:12px;color:#888;margin-top:2px">YTD: '+fmt(ytdFat)+' <span style="color:'+(pFat>=70?'#34d399':'#f87171')+';font-weight:600">('+pFat.toFixed(1)+'%)</span></div>'+
+    '<div class="bar-bg" style="width:100%;margin-top:4px"><div class="bar-fill" style="width:'+Math.min(pFat,100).toFixed(0)+'%;background:'+(pFat>=100?'#34d399':pFat>=70?'#fbbf24':'#f87171')+'"></div></div></div>'+
+    '<div class="card"><div class="lbl">Meta Pos. 2026</div><div class="val" style="color:#34d399;font-size:18px">'+META_2026.pos.toLocaleString('pt-BR')+'</div>'+
+    '<div style="font-size:12px;color:#888;margin-top:2px">YTD: '+ytdPos+' <span style="color:'+(pPos>=70?'#34d399':'#f87171')+';font-weight:600">('+pPos.toFixed(1)+'%)</span></div>'+
+    '<div class="bar-bg" style="width:100%;margin-top:4px"><div class="bar-fill" style="width:'+Math.min(pPos,100).toFixed(0)+'%;background:'+(pPos>=100?'#34d399':pPos>=70?'#fbbf24':'#f87171')+'"></div></div></div>'+
+    '</div>';
+
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
     '<span style="font-weight:700;color:#fcd34d;font-size:14px">Evolução Faturamento</span>'+
-    '<span style="font-size:11px;color:#6b7280;margin-left:auto">Média: '+fmt(gFat/7)+'</span></div>'+svgLine(mFat,'#f59e0b')+'</div>';
+    '<span style="font-size:11px;color:#6b7280;margin-left:auto">Média: '+fmt(gFat/7)+'</span></div>'+svgLine(mFat,'#f59e0b',DADOS_2025.fat)+'</div>';
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
     '<span style="font-weight:700;color:#fcd34d;font-size:14px">Evolução Positivações</span>'+
-    '<span style="font-size:11px;color:#6b7280;margin-left:auto">Média: '+Math.round(gCli/7)+'/mês</span></div>'+svgLine(mPos,'#34d399')+'</div>';
+    '<span style="font-size:11px;color:#6b7280;margin-left:auto">Média: '+Math.round(gCli/7)+'/mês</span></div>'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div>';
 
   // Variação mensal (tabela compacta)
   html+='<div class="chart-box" style="margin-bottom:14px">';
