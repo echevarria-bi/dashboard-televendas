@@ -267,7 +267,7 @@ function renderRegiaoMes(){
     var max=Math.max.apply(null,all);if(max===0)max=1;
     var min=Math.min.apply(null,all);
     var range=max-min||1;
-    var W=700,H=220,PL=55,PR=20,PT=25,PB=35;
+    var W=800,H=280,PL=60,PR=24,PT=30,PB=40;
     var cw=W-PL-PR,ch=H-PT-PB;
     function yPos(v){return PT+ch-((v-min)/range)*ch;}
     function xPos(i){return PL+i/(6)*cw;}
@@ -366,11 +366,11 @@ function renderRegiaoMes(){
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
     '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento</span>'+
-    '<span style="font-size:14px;color:#6b7280;margin-left:auto">Média: '+fmt(gFat/7)+'</span></div>'+svgLine(mFat,'#f59e0b',DADOS_2025.fat)+'</div>';
+    '<span style="font-size:14px;color:#6b7280;margin-left:auto">Média: '+fmt(gFat/7)+'</span></div><div style="max-width:1100px">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat)+'</div></div>';
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
     '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Positivações</span>'+
-    '<span style="font-size:14px;color:#6b7280;margin-left:auto">Média: '+Math.round(gCli/7)+'/mês</span></div>'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div>';
+    '<span style="font-size:14px;color:#6b7280;margin-left:auto">Média: '+Math.round(gCli/7)+'/mês</span></div><div style="max-width:1100px">'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div></div>';
 
   // Variação mensal (tabela compacta)
   html+='<div class="chart-box" style="margin-bottom:14px">';
@@ -405,7 +405,7 @@ function renderRegiaoMes(){
       '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">'+
       '<span style="width:10px;height:10px;border-radius:50%;background:'+rd.cor+';display:inline-block"></span>'+
       '<span style="font-weight:600;color:#fcd34d;font-size:16px">'+reg+'</span>'+
-      '<span style="font-size:12px;color:#6b7280;margin-left:auto">'+pT.toFixed(1)+'%</span></div>'+
+      '<span style="font-size:14px;color:#6b7280;margin-left:auto">'+pT.toFixed(1)+'%</span></div>'+
       '<div style="font-size:14px"><span style="color:#fbbf24;font-weight:600">'+fmt(rd.totalFat)+'</span> <span style="color:#6b7280">|</span> <span style="color:#34d399">'+rd.totalPos+' pos</span> <span style="color:#6b7280">|</span> <span style="color:#60a5fa">'+rd.totalCli+' cli</span></div>'+
       '<div style="font-size:13px;color:#6b7280;margin-top:2px">Pico: '+fullMonths[bi]+' ('+fmt(bf)+')'+
       ' <span style="color:'+(tend>=0?'#34d399':'#f87171')+'">'+(tend>=0?'▲':'▼')+' último mês</span></div>'+
