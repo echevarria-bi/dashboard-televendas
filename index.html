@@ -276,6 +276,9 @@ function renderRegiaoMes(){
 
   var regData={};
   order.forEach(function(reg,ri){regData[reg]=calcReg(reg);regData[reg].cor=cores[ri];});
+  var oldJun={}; // June 2025 FAT per region (from Análise Televendas.xlsx - OFICIAL)
+  oldJun['Grande Poa']=250183.91; oldJun['Vale Sinos']=122890.02;
+  oldJun['Serra']=100150.32; oldJun['Litoral']=44283.31;
 
   var gFat=0,gPed=0;
   order.forEach(function(reg){gFat+=regData[reg].totalFat;gPed+=regData[reg].totalPos;});
@@ -414,14 +417,16 @@ function renderRegiaoMes(){
     for(var i=0;i<7;i++){
       if(rd.months[i].fat>bf){bf=rd.months[i].fat;bi=i;}
     }
-    var ult=rd.months[6].fat,ant=rd.months[5].fat;
+    var jun26=rd.months[5].fat;
+    var jun25=oldJun[reg];
+    var cmp=jun25?((jun26>=jun25?'▲':'▼')+' R$ '+fmt(Math.abs(jun26-jun25))):'N/A';
     html+='<div class="chart-box" style="margin-bottom:0;border-left:3px solid '+rd.cor+';padding:12px 16px">'+
       '<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">'+
       '<span style="width:10px;height:10px;border-radius:50%;background:'+rd.cor+';display:inline-block"></span>'+
       '<span style="font-weight:600;color:#fcd34d;font-size:16px">'+reg+'</span></div>'+
       '<div style="font-size:15px"><span style="color:#fbbf24;font-weight:700">'+fmt(rd.totalFat)+'</span></div>'+
       '<div style="font-size:13px;color:#6b7280;margin-top:2px">Pico: '+fullMonths[bi]+' ('+fmt(bf)+')'+
-      ' &middot; Jun/Jul: <span style="color:'+(ult>=ant?'#34d399':'#f87171')+'">'+(ult>=ant?'▲':'▼')+'</span></div></div>';
+      ' &middot; Jun/25: <span style="color:'+(jun25?(jun26>=jun25?'#34d399':'#f87171'):'#6b7280')+'">'+cmp+'</span></div></div>';
   });
   html+='</div>';
 
