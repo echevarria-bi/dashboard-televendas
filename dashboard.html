@@ -269,32 +269,74 @@ function renderRegiaoMes(){
     var range=max-min||1;
     var W=700,H=220,PL=55,PR=20,PT=25,PB=35;
     var cw=W-PL-PR,ch=H-PT-PB;
-    function pts(arr){var p=[];for(var i=0;i<7;i++){p.push((PL+i/(6)*cw)+','+(PT+ch-((arr[i]-min)/range)*ch));}return p;}
+    function yPos(v){return PT+ch-((v-min)/range)*ch;}
+    function xPos(i){return PL+i/(6)*cw;}
+    function fVal(v){return color==='#f59e0b'?fmt(v):String(v);}
+
+    // Collect all label descriptors with initial positions
+    var L=[];
+    function addL(i,v,ser){
+      if(v==null)return;
+      var x=xPos(i), y=yPos(v), t=fVal(v);
+      L.push({x:x, ay:y, t:t, w:t.length*6.5, h:14,
+        adjY: ser===0? y-14 : y+16, ser:ser, m:i});
+    }
+    for(var i=0;i<7;i++)addL(i,vals[i],0);
+    if(vals25)for(var i=0;i<7;i++)addL(i,vals25[i],1);
+
+    // Resolve collisions: iterative push-apart
+    for(var it=0;it<30;it++){
+      var hit=false;
+      for(var i=0;i<L.length;i++)for(var j=i+1;j<L.length;j++){
+        var a=L[i],b=L[j];
+        if(Math.abs(a.x-b.x)>=(a.w+b.w)/2+6)continue;
+        if(Math.abs(a.adjY-b.adjY)>=14)continue;
+        if(a.adjY<=b.adjY){a.adjY-=2;b.adjY+=2;}
+        else{b.adjY-=2;a.adjY+=2;}
+        hit=true;
+      }
+      for(var i=0;i<L.length;i++){
+        if(L[i].adjY<18)L[i].adjY=18;
+        if(L[i].adjY>H-10)L[i].adjY=H-10;
+      }
+      if(!hit)break;
+    }
+
     var s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto"><rect width="'+W+'" height="'+H+'" fill="none"/>';
+    // Grid
     for(var g=0;g<=4;g++){
       var gy=PT+(g/4)*ch;
       var gv=Math.round(max-(g/4)*range);
       s+='<line x1="'+PL+'" y1="'+gy+'" x2="'+(W-PR)+'" y2="'+gy+'" stroke="#1e1b4b" stroke-width="1"/>'+
-        (!vals25?'<text x="'+(PL-5)+'" y="'+(gy+4)+'" fill="#6b7280" font-size="11" text-anchor="end">'+(color==='#f59e0b'?fmt(gv):gv)+'</text>':'');
+        (!vals25?'<text x="'+(PL-5)+'" y="'+(gy+4)+'" fill="#6b7280" font-size="11" text-anchor="end">'+fVal(gv)+'</text>':'');
     }
+    // 2025 line + dots
     if(vals25){
-      var p25=pts(vals25);
+      var p25=[];for(var i=0;i<7;i++)p25.push(xPos(i)+','+yPos(vals25[i]));
       s+='<polyline points="'+p25.join(' ')+'" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" stroke-linejoin="round" stroke-linecap="round"/>';
-      for(var i=0;i<7;i++){
-        var x=PL+i/(6)*cw,y=PT+ch-((vals25[i]-min)/range)*ch;
-        s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="#6b7280" stroke="#111" stroke-width="1.5"/>'+
-          '<text x="'+x+'" y="'+(y+18)+'" fill="#9ca3af" font-size="11" text-anchor="middle">'+(color==='#f59e0b'?fmt(vals25[i]):vals25[i])+'</text>';
-      }
+      for(var i=0;i<7;i++)s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals25[i])+'" r="3" fill="#6b7280" stroke="#111" stroke-width="1.5"/>';
     }
-    var p=pts(vals);
+    // 2026 line + dots
+    var p=[];for(var i=0;i<7;i++)p.push(xPos(i)+','+yPos(vals[i]));
     s+='<polyline points="'+p.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
     s+='<polyline points="'+p.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.15"/>';
-    for(var i=0;i<7;i++){
-      var x=PL+i/(6)*cw,y=PT+ch-((vals[i]-min)/range)*ch;
-      s+='<circle cx="'+x+'" cy="'+y+'" r="4.5" fill="'+color+'" stroke="#111" stroke-width="2"/>'+
-        '<text x="'+x+'" y="'+(y-16)+'" fill="#f3f4f6" font-size="11" text-anchor="middle" font-weight="600">'+(color==='#f59e0b'?fmt(vals[i]):vals[i])+'</text>'+
-        '<text x="'+x+'" y="'+(H-8)+'" fill="#9ca3af" font-size="11" text-anchor="middle">'+months[i]+'</text>';
+    for(var i=0;i<7;i++)s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals[i])+'" r="4.5" fill="'+color+'" stroke="#111" stroke-width="2"/>';
+    // Leader lines for labels pushed >20px
+    for(var i=0;i<L.length;i++){
+      var d=Math.abs(L[i].adjY-L[i].ay);
+      if(d>20){
+        var ly=L[i].adjY+(L[i].adjY>L[i].ay?-4:4);
+        s+='<line x1="'+L[i].x+'" y1="'+L[i].ay+'" x2="'+L[i].x+'" y2="'+ly+'" stroke="#6b7280" stroke-width="0.8" stroke-dasharray="2,2"/>';
+      }
     }
+    // Labels
+    for(var i=0;i<L.length;i++){
+      var l=L[i];
+      s+='<text x="'+l.x+'" y="'+l.adjY+'" fill="'+(l.ser===1?'#9ca3af':'#f3f4f6')+'" font-size="'+(l.ser===1?'10':'11')+'" text-anchor="middle" font-weight="'+(l.ser===1?'400':'600')+'">'+l.t+'</text>';
+    }
+    // Month labels
+    for(var i=0;i<7;i++)s+='<text x="'+xPos(i)+'" y="'+(H-8)+'" fill="#9ca3af" font-size="11" text-anchor="middle">'+months[i]+'</text>';
+    // Legend
     if(vals25){
       s+='<circle cx="'+(W-120)+'" cy="16" r="3" fill="'+color+'" stroke="none"/><text x="'+(W-112)+'" y="20" fill="#eee" font-size="10">2026</text>'+
         '<line x1="'+(W-80)+'" y1="16" x2="'+(W-62)+'" y2="16" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="3,2"/><text x="'+(W-55)+'" y="20" fill="#9ca3af" font-size="10">2025</text>';
