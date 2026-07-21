@@ -265,7 +265,7 @@ function renderRegiaoMes(){
   function svgLine(vals,color,vals25){
     var all=vals.slice();if(vals25)all=all.concat(vals25);
     var max=Math.max.apply(null,all);if(max===0)max=1;
-    var min=Math.min.apply(null,all);
+    var min=0;
     var range=max-min||1;
     var W=800,H=280,PL=60,PR=24,PT=30,PB=40;
     var cw=W-PL-PR,ch=H-PT-PB;
