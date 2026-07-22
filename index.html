@@ -403,14 +403,14 @@ function renderRegiaoMes(){
     function fVal(v){return color==='#f59e0b'?fmt(v):String(v);}
 
     var L=[];
-    function addL(i,v,ser){
+    function addL(i,v,ser,ox){
       if(v==null)return;
-      var x=xPos(i), y=yPos(v), t=fVal(v);
+      var x=xPos(i)+(ox||0), y=yPos(v), t=fVal(v);
       L.push({x:x, ay:y, t:t, w:t.length*6.5, h:14,
         adjY: ser===0? y-20 : y+22, ser:ser, m:i});
     }
     for(var i=0;i<7;i++)addL(i,vals[i],0);
-    if(isProj&&realLast!=null)addL(6,realLast,2);
+    if(isProj&&realLast!=null)addL(6,realLast,2,18);
     if(vals25)for(var i=0;i<7;i++)addL(i,vals25[i],1);
 
     // Resolve collisions: push harder, more iterations
@@ -466,8 +466,8 @@ function renderRegiaoMes(){
     s+='<polyline points="'+pSolid.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.15"/>';
     for(var i=0;i<7;i++){
       if(i===6&&isProj&&realLast!=null){
-        s+='<circle cx="'+xPos(6)+'" cy="'+yPos(realLast)+'" r="5" fill="'+color+'" stroke="'+color+'" stroke-width="2"/>';
         s+='<circle cx="'+xPos(6)+'" cy="'+yPos(vals[6])+'" r="5" fill="none" stroke="'+color+'" stroke-width="2.5"/>';
+        s+='<circle cx="'+(xPos(6)+18)+'" cy="'+yPos(realLast)+'" r="5" fill="#22c55e" stroke="#22c55e" stroke-width="2"/>';
       }else{
         s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals[i])+'" r="4.5" fill="'+color+'" stroke="'+color+'" stroke-width="2"/>';
       }
@@ -483,7 +483,7 @@ function renderRegiaoMes(){
     // Labels
     for(var i=0;i<L.length;i++){
       var l=L[i];
-      var lCol=l.ser===1?'#9ca3af':l.ser===2?'#d4a017':'#f3f4f6';
+      var lCol=l.ser===1?'#9ca3af':l.ser===2?'#22c55e':'#f3f4f6';
       var lSz=l.ser===0?'13':'12';
       var lW=l.ser===0?'600':'400';
       s+='<text x="'+l.x+'" y="'+l.adjY+'" fill="'+lCol+'" font-size="'+lSz+'" text-anchor="middle" font-weight="'+lW+'">'+l.t+'</text>';
