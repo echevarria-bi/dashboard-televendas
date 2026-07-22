@@ -405,8 +405,11 @@ function renderRegiaoMes(){
     function addL(i,v,ser,ox){
       if(v==null)return;
       var x=xPos(i)+(ox||0), y=yPos(v), t=fVal(v);
+      var above=true;
+      if(vals25&&ser===0&&vals25[i]!=null)above=vals[i]>=vals25[i];
+      if(vals25&&ser===1&&vals[i]!=null)above=vals25[i]>vals[i];
       L.push({x:x, ay:y, t:t, w:t.length*6.5, h:14,
-        adjY: ser===0? y-26 : y+26, ser:ser, m:i});
+        adjY: above? y-26 : y+26, ser:ser, m:i});
     }
     for(var i=0;i<7;i++)addL(i,vals[i],0);
     if(isProj&&realLast!=null)addL(6,realLast,2,18);
