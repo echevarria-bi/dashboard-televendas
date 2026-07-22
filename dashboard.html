@@ -394,7 +394,7 @@ function renderRegiaoMes(){
     var max=Math.max.apply(null,all);if(max===0)max=1;
     var min=0;
     var range=max-min||1;
-    var W=900,H=300,PL=60,PR=40,PT=30,PB=40;
+    var W=960,H=300,PL=60,PR=40,PT=30,PB=40;
     var cw=W-PL-PR,ch=H-PT-PB;
     function yPos(v){return PT+ch-((v-min)/range)*ch;}
     function xPos(i){return PL+i/(6)*cw;}
@@ -405,7 +405,7 @@ function renderRegiaoMes(){
       if(v==null)return;
       var x=xPos(i)+(ox||0), y=yPos(v), t=fVal(v);
       L.push({x:x, ay:y, t:t, w:t.length*6.5, h:14,
-        adjY: ser===0? y-20 : y+22, ser:ser, m:i});
+        adjY: ser===0? y-26 : y+26, ser:ser, m:i});
     }
     for(var i=0;i<7;i++)addL(i,vals[i],0);
     if(isProj&&realLast!=null)addL(6,realLast,2,18);
@@ -416,10 +416,10 @@ function renderRegiaoMes(){
       var hit=false;
       for(var i=0;i<L.length;i++)for(var j=i+1;j<L.length;j++){
         var a=L[i],b=L[j];
-        if(Math.abs(a.x-b.x)>=(a.w+b.w)/2+8)continue;
-        if(Math.abs(a.adjY-b.adjY)>=22)continue;
-        var push=4;
-        if(Math.abs(a.x-b.x)<20)push=6;
+        if(Math.abs(a.x-b.x)>=(a.w+b.w)/2+10)continue;
+        if(Math.abs(a.adjY-b.adjY)>=26)continue;
+        var push=5;
+        if(Math.abs(a.x-b.x)<20)push=7;
         if(a.adjY<=b.adjY){a.adjY-=push;b.adjY+=push;}
         else{b.adjY-=push;a.adjY+=push;}
         hit=true;
@@ -517,17 +517,14 @@ function renderRegiaoMes(){
   var html='<div class="cards">';
   var fatJanJun=gFat-mFat[6];
   html+='<div class="card"><div class="lbl">Faturamento Jan-Jun (real)</div><div class="val" style="color:#fbbf24">'+fmt(fatJanJun)+'</div></div>';
-  html+='<div class="card" style="border:1px solid #f59e0b;background:rgba(245,158,11,0.08)"><div class="lbl" style="color:#f59e0b;font-weight:700">JULHO 2026 (m\u00eas vigente)</div><div style="display:flex;gap:20px;margin-top:6px"><div><div style="font-size:11px;color:#888;margin-bottom:2px">PROJE\u00c7\u00c3O 31/07</div><div class="val" style="color:#fbbf24">'+fmt(mFat[6])+'</div></div><div><div style="font-size:11px;color:#888;margin-bottom:2px">REAL</div><div class="val" style="color:#fbbf24">'+fmt(fatJulReal)+'</div></div></div></div>';
+  html+='<div class="card" style="border:1px solid #f59e0b;background:rgba(245,158,11,0.08)"><div class="lbl" style="color:#f59e0b;font-weight:700">JULHO 2026 (m\u00eas vigente)</div><div style="display:flex;gap:20px;margin-top:6px"><div><div style="font-size:11px;color:#888;margin-bottom:2px">PROJE\u00c7\u00c3O 31/07</div><div class="val" style="color:#fbbf24">'+fmt(mFat[6])+'</div></div><div style="text-align:center"><div style="font-size:11px;color:#22c55e;font-weight:700">FATURAMENTO REAL</div><div class="val" style="color:#22c55e">'+fmt(fatJulReal)+'</div></div></div></div>';
   html+='<div class="card" style="border:1px solid #34d399;background:rgba(52,211,153,0.08)"><div class="lbl" style="color:#34d399;font-weight:700">JULHO 2026 (positiva\u00e7\u00e3o)</div><div class="val" style="color:#34d399">'+mPos[6]+'</div></div>';
   html+='</div>';
 
 
-  html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px">'+
-    '<div><span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span>'+
+  html+='<div class="chart-box" style="margin-bottom:14px"><div style="margin-bottom:4px">'+
+    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span>'+
     '<div style="font-size:12px;color:#f59e0b;margin-top:2px">* Jul = projeção ('+diasCorridos+' dias corridos / '+diasUteis+' dias úteis)</div></div>'+
-    '<div style="text-align:right;background:rgba(34,197,94,0.1);border:1px solid #22c55e;border-radius:8px;padding:8px 14px;min-width:160px">'+
-    '<div style="font-size:11px;color:#22c55e;font-weight:600">REAL</div>'+
-    '<div style="font-size:20px;color:#22c55e;font-weight:700">R$ '+fmt(fatJulReal)+'</div></div></div>'+
     '<div style="max-width:1200px;margin:0 auto">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat,true)+'</div></div>';
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
@@ -553,21 +550,20 @@ function renderRegiaoMes(){
   html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-bottom:10px">';
   order.forEach(function(reg,ri){
     var rd=regData[reg];
-    var bf=-1,bi=0;
-    for(var i=0;i<7;i++){
-      if(rd.months[i].fat>bf){bf=rd.months[i].fat;bi=i;}
-    }
-    var jun26=rd.months[5].fat;
+    var jul26=rd.months[6].fat;
+    var julProj=rd.fatJulProj;
     var jun25=oldJun[reg];
-    var cmp=jun25?((jun26>=jun25?'▲':'▼')+' R$ '+fmt(Math.abs(jun26-jun25))):'N/A';
+    var cmpProj=jun25?(((julProj>=jun25)?'▲':'▼')+' R$ '+fmt(Math.abs(julProj-jun25))):'N/A';
+    var cmpPct=jun25?(((julProj-jun25)/jun25*100)>=0?'+':'')+(julProj-jun25)/jun25*100*1/1:'';
     html+='<div class="chart-box" style="margin-bottom:0;border-left:3px solid '+rd.cor+';padding:12px 16px">'+
-      '<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">'+
+      '<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">'+
       '<span style="width:10px;height:10px;border-radius:50%;background:'+rd.cor+';display:inline-block"></span>'+
       '<span style="font-weight:600;color:#fcd34d;font-size:16px">'+reg+'</span></div>'+
-      '<div style="font-size:15px"><span style="color:#fbbf24;font-weight:700">'+fmt(rd.totalFat)+'</span>'+
-      (rd.fatJulProj!=rd.months[6].fat?' <span style="font-size:12px;color:#f59e0b">→ proj: '+fmt(rd.fatJulProj)+'</span>':'')+'</div>'+
-      '<div style="font-size:13px;color:#6b7280;margin-top:2px">Pico: '+fullMonths[bi]+' ('+fmt(bf)+')'+
-      ' &middot; Jun/25: <span style="color:'+(jun25?(jun26>=jun25?'#34d399':'#f87171'):'#6b7280')+'">'+cmp+'</span></div></div>';
+      '<div style="display:flex;gap:16px;margin-bottom:4px">'+
+      '<div><div style="font-size:11px;color:#888">FAT Julho (real)</div><div style="font-size:18px;color:#fbbf24;font-weight:700">'+fmt(jul26)+'</div></div>'+
+      '<div><div style="font-size:11px;color:#f59e0b">Projeção Jul</div><div style="font-size:18px;color:#f59e0b;font-weight:700">'+fmt(julProj)+'</div></div></div>'+
+      '<div style="font-size:12px;color:#6b7280">vs Jun/25: <span style="color:'+(jun25?(julProj>=jun25?'#34d399':'#f87171'):'#6b7280')+';font-weight:600">'+cmpProj+'</span>'+
+      (jun25?' <span style="color:#888">('+(((julProj-jun25)/jun25*100)>=0?'+':'')+((julProj-jun25)/jun25*100).toFixed(1)+'%)</span>':'')+'</div></div>';
   });
   html+='</div>';
 
