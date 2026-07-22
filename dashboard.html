@@ -382,12 +382,11 @@ function renderRegiaoMes(){
 
   // Salvar valores reais de Julho
   var fatJulReal=mFat[6], posJulReal=mPos[6];
-  // Projetar Julho
+  // Projetar Julho APENAS Faturamento
   mFat[6]=Math.round(mFat[6]*projMult);
-  mPos[6]=Math.round(mPos[6]*projMult);
 
-  // Valores por região para projeção
-  order.forEach(function(reg){regData[reg].fatJulProj=Math.round(regData[reg].months[6].fat*projMult);regData[reg].cliJulProj=Math.round(regData[reg].months[6].cli*projMult);});
+  // Valores por região para projeção (só FAT)
+  order.forEach(function(reg){regData[reg].fatJulProj=Math.round(regData[reg].months[6].fat*projMult);});
 
   function svgLine(vals,color,vals25,isProj){
     var all=vals.slice();if(vals25)all=all.concat(vals25);
@@ -444,21 +443,23 @@ function renderRegiaoMes(){
       s+='<polyline points="'+p25.join(' ')+'" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" stroke-linejoin="round" stroke-linecap="round"/>';
       for(var i=0;i<7;i++)s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals25[i])+'" r="3" fill="#6b7280" stroke="#111" stroke-width="1.5"/>';
     }
-    // 2026 line: Jan-Jun solid, Jun-Jul dashed (projection)
-    var pSolid=[],pProj=[];
+    // 2026 line: all solid if no projection, or dashed Jun-Jul if projection
+    var pSolid=[];
     for(var i=0;i<6;i++)pSolid.push(xPos(i)+','+yPos(vals[i]));
     pSolid.push(xPos(6)+','+yPos(vals[6]));
-    pProj.push(xPos(5)+','+yPos(vals[5]));
-    pProj.push(xPos(6)+','+yPos(vals[6]));
     s+='<polyline points="'+pSolid.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
-    s+='<polyline points="'+pProj.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-dasharray="6,4" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>';
+    if(isProj){
+      var pProj=[];
+      pProj.push(xPos(5)+','+yPos(vals[5]));
+      pProj.push(xPos(6)+','+yPos(vals[6]));
+      s+='<polyline points="'+pProj.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="2" stroke-dasharray="6,4" stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>';
+      s+='<rect x="'+(xPos(5)+4)+'" y="'+(PT-2)+'" width="'+(xPos(6)-xPos(5)-8)+'" height="'+(ch+4)+'" fill="rgba(245,158,11,0.04)" rx="4"/>';
+    }
     s+='<polyline points="'+pSolid.join(' ')+'" fill="none" stroke="'+color+'" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.15"/>';
     for(var i=0;i<7;i++){
-      var dotR=i===6?5.5:4.5;
-      s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals[i])+'" r="'+dotR+'" fill="'+(i===6?'rgba(0,0,0,0.3)':color)+'" stroke="'+color+'" stroke-width="2"/>';
+      var dotR=i===6?(isProj?5.5:4.5):4.5;
+      s+='<circle cx="'+xPos(i)+'" cy="'+yPos(vals[i])+'" r="'+dotR+'" fill="'+(i===6&&isProj?'rgba(0,0,0,0.3)':color)+'" stroke="'+color+'" stroke-width="2"/>';
     }
-    // Projection zone indicator
-    s+='<rect x="'+(xPos(5)+4)+'" y="'+(PT-2)+'" width="'+(xPos(6)-xPos(5)-8)+'" height="'+(ch+4)+'" fill="rgba(245,158,11,0.04)" rx="4"/>';
     // Leader lines for labels pushed >20px
     for(var i=0;i<L.length;i++){
       var d=Math.abs(L[i].adjY-L[i].ay);
@@ -496,10 +497,10 @@ function renderRegiaoMes(){
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
 
-    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></div><div style="font-size:12px;color:#f59e0b;margin-bottom:6px">* Jul = projeção ('+diasCorridos+' dias corridos / '+diasUteis+' dias úteis) &middot; Real até 21/07: R$ '+fmt(fatJulReal)+'</div><div style="max-width:1200px;margin:0 auto">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat)+'</div></div>';
+    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></div><div style="font-size:12px;color:#f59e0b;margin-bottom:6px">* Jul = projeção ('+diasCorridos+' dias corridos / '+diasUteis+' dias úteis) &middot; Real até 21/07: R$ '+fmt(fatJulReal)+'</div><div style="max-width:1200px;margin:0 auto">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat,true)+'</div></div>';
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
-    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Positivações <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></div><div style="font-size:12px;color:#34d399;margin-bottom:6px">* Jul = projeção ('+diasCorridos+' dias corridos / '+diasUteis+' dias úteis) &middot; Real até 21/07: '+posJulReal+'</div><div style="max-width:1200px;margin:0 auto">'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div></div>';
+    '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Positivações <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></div><div style="max-width:1200px;margin:0 auto">'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div></div>';
 
   // Variação mensal (tabela compacta)
   html+='<div class="chart-box" style="margin-bottom:14px">';
