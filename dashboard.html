@@ -207,13 +207,12 @@ function render(){
   filtered.forEach(function(r){
     if(!vends[r.codusur])vends[r.codusur]={codusur:r.codusur,rca:r.rca,regiao:(metas[r.codusur]||{}).regiao||'',pedidos:0,fat:0,clientes:{}};
     vends[r.codusur].fat+=r.fat;
-    if(!vends[r.codusur].clientes[r.codcli])vends[r.codusur].clientes[r.codcli]={fat:0,pos:0};
+    if(!vends[r.codusur].clientes[r.codcli])vends[r.codusur].clientes[r.codcli]={fat:0,cli:0};
     vends[r.codusur].clientes[r.codcli].fat+=r.fat;
   });
   // Positivação = só registros positivos
   pos.forEach(function(r){
-    vends[r.codusur].pedidos++;
-    vends[r.codusur].clientes[r.codcli].pos++;
+    vends[r.codusur].clientes[r.codcli].cli++;
   });
 
   var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return a.rca.localeCompare(b.rca);});
@@ -265,15 +264,14 @@ function render(){
   var dept={};
   filtered.forEach(function(r){
     var d=r.depto||'SEM DEPARTAMENTO';
-    if(!dept[d])dept[d]={fat:0,pos:0,cli:{}};
+    if(!dept[d])dept[d]={fat:0,cli:{}};
     dept[d].fat+=r.fat;
   });
   pos.forEach(function(r){
     var d=r.depto||'SEM DEPARTAMENTO';
-    dept[d].pos++;
     dept[d].cli[r.codcli]=1;
   });
-  var dArr=Object.keys(dept).map(function(k){return{k:k,fat:dept[k].fat,pos:dept[k].pos,cli:Object.keys(dept[k].cli).length};}).sort(function(a,b){return b.fat-a.fat;});
+  var dArr=Object.keys(dept).map(function(k){return{k:k,fat:dept[k].fat,cli:Object.keys(dept[k].cli).length};}).sort(function(a,b){return b.fat-a.fat;});
   var dTotFat=dArr.reduce(function(s,d){return s+d.fat;},0);
   var dep='<div class="chart-box"><h2>Faturamento por Departamento <span class="sub">'+viewName+' &mdash; Julho/2026</span></h2><table><thead><tr><th>Departamento</th><th class="text-right">Faturamento</th><th class="text-right">%</th></tr></thead><tbody>';
   dArr.forEach(function(d,i){
@@ -296,7 +294,7 @@ function render(){
       for(var ri=0;ri<pos.length;ri++){
         if(String(pos[ri].codcli)===cod&&String(pos[ri].codusur)===v.codusur){nome=pos[ri].cliente;break;}
       }
-      return{cod:cod,nome:nome,fat:v.clientes[cod].fat,pos:v.clientes[cod].pos};
+      return{cod:cod,nome:nome,fat:v.clientes[cod].fat};
     }).sort(function(a,b){return b.fat-a.fat;});
 
     var totCliFat=clis.reduce(function(s,c){return s+c.fat;},0);
@@ -345,15 +343,15 @@ function renderRegiaoMes(){
   function calcReg(reg){
     var rd=REGIAO_MES[reg];
     if(!rd)return null;
-    var out={months:[],totalFat:0,totalPos:0,totalCli:0};
+    var out={months:[],totalFat:0,totalCli:0};
     for(var m=1;m<=7;m++){
-      var fat=0,pos=0,cli=0;
+      var fat=0,cli=0;
       (rd[m]||[]).forEach(function(c){
         var d=DADOS_MES[m][c];
-        if(d){fat+=d.fat;pos+=d.pos;cli+=d.cli;}
+        if(d){fat+=d.fat;cli+=d.cli;}
       });
-      out.months.push({fat:fat,pos:pos,cli:cli});
-      out.totalFat+=fat;out.totalPos+=pos;out.totalCli+=cli;
+      out.months.push({fat:fat,cli:cli});
+      out.totalFat+=fat;out.totalCli+=cli;
     }
     return out;
   }
@@ -365,7 +363,7 @@ function renderRegiaoMes(){
   oldJun['Serra']=100150.32; oldJun['Litoral']=44283.31;
 
   var gFat=0,gPed=0;
-  order.forEach(function(reg){gFat+=regData[reg].totalFat;gPed+=regData[reg].totalPos;});
+  order.forEach(function(reg){gFat+=regData[reg].totalFat;gPed+=regData[reg].totalCli;});
   var gTick=gPed>0?gFat/gPed:0;
 
   var mFat=[0,0,0,0,0,0,0];
@@ -375,7 +373,7 @@ function renderRegiaoMes(){
     for(var i=0;i<7;i++){
       mFat[i]+=regData[reg].months[i].fat;
       mPos[i]+=regData[reg].months[i].cli;
-      mPed[i]+=regData[reg].months[i].pos;
+      mPed[i]+=regData[reg].months[i].cli;
     }
   });
 
@@ -389,7 +387,7 @@ function renderRegiaoMes(){
   mPos[6]=Math.round(mPos[6]*projMult);
 
   // Valores por região para projeção
-  order.forEach(function(reg){regData[reg].fatJulProj=Math.round(regData[reg].months[6].fat*projMult);regData[reg].posJulProj=Math.round(regData[reg].months[6].pos*projMult);});
+  order.forEach(function(reg){regData[reg].fatJulProj=Math.round(regData[reg].months[6].fat*projMult);regData[reg].cliJulProj=Math.round(regData[reg].months[6].cli*projMult);});
 
   function svgLine(vals,color,vals25,isProj){
     var all=vals.slice();if(vals25)all=all.concat(vals25);
