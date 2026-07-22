@@ -562,9 +562,9 @@ function renderRegiaoMes(){
       '<span style="width:12px;height:12px;border-radius:50%;background:'+rd.cor+';display:inline-block"></span>'+
       '<span style="font-weight:600;color:#fcd34d;font-size:18px">'+reg+'</span></div>'+
       '<div style="display:flex;gap:20px;margin-bottom:6px;align-items:flex-end">'+
-      '<div><div style="font-size:13px;color:#888;margin-bottom:2px">FAT Jul/26</div><div style="font-size:24px;color:#fbbf24;font-weight:700">'+fmt(jul26)+'</div></div>'+
-      '<div><div style="font-size:13px;color:#888;margin-bottom:2px">Proj. Jul/26</div><div style="font-size:24px;color:#f59e0b;font-weight:700">'+fmt(julProj)+'</div></div>'+
-      (jul25?'<div><div style="font-size:13px;color:#888;margin-bottom:2px">Jul/25</div><div style="font-size:24px;color:#9ca3af;font-weight:700">'+fmt(jul25)+'</div></div>':'')+
+      '<div><div style="font-size:13px;color:#888;margin-bottom:2px">FAT Jul/26</div><div style="font-size:20px;color:#fbbf24;font-weight:700">'+fmt(jul26)+'</div></div>'+
+      '<div><div style="font-size:13px;color:#888;margin-bottom:2px">Proj. Jul/26</div><div style="font-size:20px;color:#f59e0b;font-weight:700">'+fmt(julProj)+'</div></div>'+
+      (jul25?'<div><div style="font-size:13px;color:#888;margin-bottom:2px">Jul/25</div><div style="font-size:20px;color:#9ca3af;font-weight:700">'+fmt(jul25)+'</div></div>':'')+
       '</div>'+
       '<div style="font-size:14px;color:#6b7280;margin-top:2px">vs Jul/25: <span style="color:'+(jul25?(julProj>=jul25?'#34d399':'#f87171'):'#6b7280')+';font-weight:600">'+cmpDir+' '+cmpAbs+'</span>'+
       (cmpPct?' <span style="color:#888">('+cmpPct+')</span>':'')+'</div></div>';
