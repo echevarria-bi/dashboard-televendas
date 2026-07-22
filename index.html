@@ -523,9 +523,9 @@ function renderRegiaoMes(){
   html+='</div>';
 
 
-  html+='<div class="chart-box" style="margin-bottom:14px"><div style="margin-bottom:4px">'+
+  html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:baseline;gap:16px;margin-bottom:4px">'+
     '<span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span>'+
-    '<div style="font-size:12px;color:#f59e0b;margin-top:2px">* Jul = projeção ('+diasCorridos+' dias corridos / '+diasUteis+' dias úteis)</div></div>'+
+    '<span style="font-size:14px;color:#888">Real: <span style="color:#22c55e;font-weight:700">'+fmt(fatJulReal)+'</span></span></div>'+
     '<div style="max-width:1200px;margin:0 auto">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat,true)+'</div></div>';
 
   html+='<div class="chart-box" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'+
