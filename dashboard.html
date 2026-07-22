@@ -491,9 +491,14 @@ function renderRegiaoMes(){
 
   var html='<div class="cards">';
   var fatJanJun=gFat-mFat[6];
-  html+='<div class="card"><div class="lbl">Faturamento Jan-Jul (com projeção Jul)</div><div class="val" style="color:#fbbf24">'+fmt(gFat)+'</div><div style="font-size:12px;color:#888;margin-top:4px">Real: '+fmt(fatJanJun+fatJulReal)+' &middot; Até 21/07: R$ '+fmt(fatJulReal)+'</div></div>';
-  html+='<div class="card"><div class="lbl">Total Clientes</div><div class="val" style="color:#34d399">'+(DADOS_MES.activeCli||'-')+'</div></div>';
-  html+='<div class="card"><div class="lbl">Total Pedidos</div><div class="val" style="color:#60a5fa">'+gPed.toLocaleString('pt-BR')+'</div></div>';
+  var fatRealTotal=fatJanJun+fatJulReal;
+  var posRealTotal=gPed-mPed[6]+posJulReal;
+  html+='<div class="card"><div class="lbl">Faturamento Jan-Jun (real)</div><div class="val" style="color:#fbbf24">'+fmt(fatJanJun)+'</div></div>';
+  html+='<div class="card" style="border:1px solid #f59e0b;background:rgba(245,158,11,0.08)"><div class="lbl" style="color:#f59e0b;font-weight:700">JULHO 2026 (m\u00eas vigente)</div><div class="val" style="color:#fbbf24">'+fmt(mFat[6])+'</div><div style="font-size:12px;margin-top:4px"><span style="color:#888">Real at\u00e9 21/07:</span> <span style="color:#fbbf24;font-weight:600">R$ '+fmt(fatJulReal)+'</span> <span style="color:#555">&middot;</span> <span style="color:#888">Proje\u00e7\u00e3o 31/07:</span> <span style="color:#fbbf24;font-weight:600">R$ '+fmt(mFat[6])+'</span></div></div>';
+  html+='<div class="card"><div class="lbl">Total Acumulado (Jan-Jul)</div><div class="val" style="color:#fbbf24">'+fmt(fatRealTotal)+'</div><div style="font-size:12px;color:#888;margin-top:4px">Com proje\u00e7\u00e3o Jul: R$ '+fmt(gFat)+'</div></div>';
+  html+='<div class="card"><div class="lbl">Positiva\u00e7\u00e3o Jan-Jun (real)</div><div class="val" style="color:#34d399">'+(gPed-mPed[6]).toLocaleString('pt-BR')+'</div></div>';
+  html+='<div class="card" style="border:1px solid #34d399;background:rgba(52,211,153,0.08)"><div class="lbl" style="color:#34d399;font-weight:700">JULHO 2026 (positiva\u00e7\u00e3o)</div><div class="val" style="color:#34d399">'+mPed[6].toLocaleString('pt-BR')+'</div><div style="font-size:12px;margin-top:4px"><span style="color:#888">Real at\u00e9 21/07:</span> <span style="color:#34d399;font-weight:600">'+posJulReal+'</span> <span style="color:#555">&middot;</span> <span style="color:#888">Proje\u00e7\u00e3o 31/07:</span> <span style="color:#34d399;font-weight:600">'+mPed[6]+'</span></div></div>';
+  html+='<div class="card"><div class="lbl">Positiva\u00e7\u00e3o Total (Jan-Jul)</div><div class="val" style="color:#34d399">'+posRealTotal.toLocaleString('pt-BR')+'</div><div style="font-size:12px;color:#888;margin-top:4px">Com proje\u00e7\u00e3o Jul: '+gPed.toLocaleString('pt-BR')+'</div></div>';
   html+='</div>';
 
 
