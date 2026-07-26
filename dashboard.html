@@ -581,6 +581,43 @@ function renderRegiaoMes(){
   });
   html+='</div>';
 
+  // Matriz Faturamento por Televendedora
+  var sellers=[
+    {cod:'1596',nome:'Ariane'},
+    {cod:'1464',nome:'Camila'},
+    {cod:'1211',nome:'Cristielen'},
+    {cod:'1429',nome:'Natália'},
+    {cod:'9886',nome:'Tatiana'},
+    {cod:'1624',nome:'Tatiana Litoral'},
+    {cod:'1571',nome:'Anna'}
+  ];
+  html+='<div class="chart-box">';
+  html+='<h2>Faturamento por Televendedora <span class="sub">Jan-Jul 2026</span></h2>';
+  html+='<div style="overflow-x:auto"><table><thead><tr><th>Televendedora</th>';
+  for(var mi=0;mi<7;mi++) html+='<th class="text-right">'+fullMonths[mi]+'</th>';
+  html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
+  var colTotals=[0,0,0,0,0,0,0];
+  var grandTotalFat=0;
+  sellers.forEach(function(s){
+    var total=0;
+    html+='<tr><td style="font-weight:600;color:#fcd34d">'+s.nome+'</td>';
+    for(var mi=1;mi<=7;mi++){
+      var md=DADOS_MES[mi]&&DADOS_MES[mi][s.cod];
+      var fat=md?md.fat:0;
+      fat=Math.round(fat*100)/100;
+      total+=fat;
+      colTotals[mi-1]+=fat;
+      var bg=fat>0?'':'color:#4a4d6e';
+      html+='<td class="text-right" style="white-space:nowrap;'+bg+'">'+fmt(fat)+'</td>';
+    }
+    grandTotalFat+=total;
+    html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(total)+'</td></tr>';
+  });
+  html+='<tfoot><tr style="border-top:2px solid #f59e0b"><td style="font-weight:700;color:#fcd34d">Total</td>';
+  for(var mi=0;mi<7;mi++) html+='<td class="text-right" style="font-weight:700;color:#fbbf24">'+fmt(colTotals[mi])+'</td>';
+  html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(grandTotalFat)+'</td></tr></tfoot>';
+  html+='</tbody></table></div></div>';
+
   document.getElementById('app').innerHTML=html;
 }
 </script>
