@@ -143,7 +143,7 @@ function gaugeSVG(pct, color){
   var ny=cy-needleLen*Math.sin(rad);
 
   var zones='';
-  [[180,120,'#ef4444'],[120,60,'#fbbf24'],[60,0,'#34d399']].forEach(function(z){
+  [[180,36,'#ef4444'],[36,0,'#fbbf24']].forEach(function(z){
     var a1=z[0]*Math.PI/180,a2=z[1]*Math.PI/180;
     var ir=60,or=72;
     var x1=cx+or*Math.cos(a1),y1=cy-or*Math.sin(a1);
@@ -198,25 +198,36 @@ function render(){
   var qtdCliPos=Object.keys(cliPos).length;
   var tick=totPos>0?fatBru/totPos:0;
 
+  var diasCorridos=Math.min(21,31);
+  var diasUteis=23;
+  var projMult=diasUteis/diasCorridos;
+
+  var fatProj=Math.round(fatBru*projMult);
+  var posProj=Math.round(qtdCliPos*projMult);
+  var pfProjPct=metaFatTotal>0?fatProj/metaFatTotal*100:0;
+  var ppProjPct=metaPosTotal>0?posProj/metaPosTotal*100:0;
+
   var metaFatTotal=0,metaPosTotal=0;
   Object.keys(metas).forEach(function(k){metaFatTotal+=metas[k].fat||0;metaPosTotal+=metas[k].pos||0;});
   var pfPct=metaFatTotal>0?fatBru/metaFatTotal*100:0;
   var ppPct=metaPosTotal>0?qtdCliPos/metaPosTotal*100:0;
-  var pfC=pfPct>=100?'#34d399':pfPct>=70?'#fbbf24':'#f87171';
-  var ppC=ppPct>=100?'#34d399':ppPct>=70?'#fbbf24':'#f87171';
+  var pfC=pfPct>=100?'#34d399':pfPct>=80?'#fbbf24':'#f87171';
+  var ppC=ppPct>=100?'#34d399':ppPct>=80?'#fbbf24':'#f87171';
 
   var c='<div class="gauge-wrap">'+
     '<div class="gauge-card"><div class="gauge-title">Faturamento vs Meta</div>'+
     gaugeSVG(pfPct,pfC)+
     '<div class="gauge-actual" style="color:'+pfC+'">'+fmt(fatBru)+'</div>'+
+    '<div style="font-size:13px;color:#f59e0b;margin-top:2px">Proj. 31/07: '+fmt(fatProj)+' ('+pfProjPct.toFixed(1)+'%)</div>'+
     '<div class="gauge-meta">Meta: '+fmt(metaFatTotal)+'</div></div>'+
     '<div class="gauge-card"><div class="gauge-title">Positiva\u00e7\u00e3o vs Meta</div>'+
     gaugeSVG(ppPct,ppC)+
     '<div class="gauge-actual" style="color:'+ppC+'">'+qtdCliPos+'</div>'+
+    '<div style="font-size:13px;color:#f59e0b;margin-top:2px">Proj. 31/07: '+posProj+' ('+ppProjPct.toFixed(1)+'%)</div>'+
     '<div class="gauge-meta">Meta: '+metaPosTotal+'</div></div></div>'+
     '<div style="display:flex;gap:24px;justify-content:center;margin-top:-20px;margin-bottom:20px;font-size:13px;color:#888">'+
-    '<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#ef4444;margin-right:4px;vertical-align:middle"></span> Abaixo 70%</span>'+
-    '<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#fbbf24;margin-right:4px;vertical-align:middle"></span> 70% a 99%</span>'+
+    '<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#ef4444;margin-right:4px;vertical-align:middle"></span> Abaixo 80%</span>'+
+    '<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#fbbf24;margin-right:4px;vertical-align:middle"></span> 80% a 99%</span>'+
     '<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#34d399;margin-right:4px;vertical-align:middle"></span> Meta batida (100%+)</span></div>';
 
   var vends={};
@@ -235,7 +246,7 @@ function render(){
 
   var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return a.rca.localeCompare(b.rca);});
 
-  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
+  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right" style="color:#f59e0b">Proj. Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
   var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
     var qc=Object.keys(v.clientes).length;
@@ -243,8 +254,12 @@ function render(){
     var mt=metas[v.codusur]||{};
     var pf=mt.fat>0?pct(v.fat,mt.fat):0;
     var pp=mt.pos>0?pct(qc,mt.pos):0;
-    var fC=pf>=100?'#34d399':pf>=70?'#fbbf24':'#f87171';
-    var pC=pp>=100?'#34d399':pp>=70?'#fbbf24':'#f87171';
+    var fC=pf>=100?'#34d399':pf>=80?'#fbbf24':'#f87171';
+    var pC=pp>=100?'#34d399':pp>=80?'#fbbf24':'#f87171';
+    var vProj=Math.round(v.fat*projMult);
+    var vProjPct=mt.fat>0?vProj/mt.fat*100:0;
+    var vProjPos=Math.round(qc*projMult);
+    var vProjPosPct=mt.pos>0?vProjPos/mt.pos*100:0;
     totFat+=v.fat;tMetaFat+=mt.fat||0;totPos+=qc;tMetaPos+=mt.pos||0;
     var faltaFat=(mt.fat||0)>v.fat?mt.fat-v.fat:((mt.fat||0)>0?0:null);
     var faltaPos=(mt.pos||0)>qc?mt.pos-qc:((mt.pos||0)>0?0:null);
@@ -254,27 +269,35 @@ function render(){
       '<td class="text-right" style="color:#888;white-space:nowrap">'+fmt(mt.fat||0)+'</td>'+
       '<td class="text-right" style="color:#fbbf24;font-weight:700;white-space:nowrap">'+fmt(v.fat)+'</td>'+
       '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pf,100).toFixed(0)+'%;background:'+fC+'"></div></div><span style="font-size:13px;color:'+fC+';font-weight:600">'+pf.toFixed(1)+'%</span>'+(faltaFat===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':faltaFat>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+fmt(faltaFat)+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
+      '<td class="text-right" style="color:#f59e0b;font-weight:600;white-space:nowrap">'+fmt(vProj)+' <span style="font-size:11px;color:'+(vProjPct>=100?'#34d399':vProjPct>=80?'#fbbf24':'#f87171')+'">'+vProjPct.toFixed(0)+'%</span></td>'+
       '<td class="text-right" style="color:#888">'+(mt.pos||'&mdash;')+'</td>'+
       '<td class="text-right" style="color:#34d399;font-weight:600">'+qc+'</td>'+
       '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pp,100).toFixed(0)+'%;background:'+pC+'"></div></div><span style="font-size:13px;color:'+pC+';font-weight:600">'+pp.toFixed(1)+'%</span>'+(faltaPos===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':faltaPos>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+faltaPos+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
+      '<td class="text-right" style="color:#f59e0b;font-weight:600">'+vProjPos+' <span style="font-size:11px;color:'+(vProjPosPct>=100?'#34d399':vProjPosPct>=80?'#fbbf24':'#f87171')+'">'+vProjPosPct.toFixed(0)+'%</span></td>'+
       '<td class="text-right" style="color:#a78bfa;white-space:nowrap">'+fmt(tickV)+'</td></tr>';
   });
   var tPf=tMetaFat>0?pct(totFat,tMetaFat):0;
   var tPp=tMetaPos>0?pct(totPos,tMetaPos):0;
-  var tFc=tPf>=100?'#34d399':tPf>=70?'#fbbf24':'#f87171';
-  var tPc=tPp>=100?'#34d399':tPp>=70?'#fbbf24':'#f87171';
+  var tFc=tPf>=100?'#34d399':tPf>=80?'#fbbf24':'#f87171';
+  var tPc=tPp>=100?'#34d399':tPp>=80?'#fbbf24':'#f87171';
   var tickTotal=totPos>0?totFat/totPos:0;
   var tFaltaFat=tMetaFat>totFat?tMetaFat-totFat:(tMetaFat>0?0:null);
   var tFaltaPos=tMetaPos>totPos?tMetaPos-totPos:(tMetaPos>0?0:null);
+  var tProjFat=Math.round(totFat*projMult);
+  var tProjFatPct=tMetaFat>0?tProjFat/tMetaFat*100:0;
+  var tProjPos=Math.round(totPos*projMult);
+  var tProjPosPct=tMetaPos>0?tProjPos/tMetaPos*100:0;
   m+='<tr style="background:#151830;border-top:2px solid #f59e0b">'+
     '<td style="font-weight:800;color:#fcd34d;font-size:16px">TOTAL</td>'+
     '<td style="color:#888"></td>'+
     '<td class="text-right" style="color:#fbbf24;font-weight:600;white-space:nowrap">'+fmt(tMetaFat)+'</td>'+
     '<td class="text-right" style="color:#fbbf24;font-weight:800;font-size:16px;white-space:nowrap">'+fmt(totFat)+'</td>'+
     '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPf,100).toFixed(0)+'%;background:'+tFc+'"></div></div><span style="font-size:13px;color:'+tFc+';font-weight:700">'+tPf.toFixed(1)+'%</span>'+(tFaltaFat===null?'<div style="font-size:13px;color:#888;margin-top:2px">Sem meta</div>':tFaltaFat>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+fmt(tFaltaFat)+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
+    '<td class="text-right" style="color:#f59e0b;font-weight:700;white-space:nowrap">'+fmt(tProjFat)+' <span style="font-size:11px;color:'+(tProjFatPct>=100?'#34d399':tProjFatPct>=80?'#fbbf24':'#f87171')+'">'+tProjFatPct.toFixed(0)+'%</span></td>'+
     '<td class="text-right" style="color:#34d399;font-weight:600">'+tMetaPos+'</td>'+
     '<td class="text-right" style="color:#34d399;font-weight:800;font-size:16px">'+totPos+'</td>'+
-    '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:13px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span>'+(tFaltaPos===null?'<div style="font-size:13px;color:#888;margin-top:2px">Sem meta</div>':tFaltaPos>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+tFaltaPos+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
+    '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:13px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span>'+(tFaltaPos===null?'<div style="font-size:13px;color:#888;margin-top:2px">Sem meta</div>':tFaltaPos>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+fmt(tFaltaPos)+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
+    '<td class="text-right" style="color:#f59e0b;font-weight:700">'+tProjPos+' <span style="font-size:11px;color:'+(tProjPosPct>=100?'#34d399':tProjPosPct>=80?'#fbbf24':'#f87171')+'">'+tProjPosPct.toFixed(0)+'%</span></td>'+
     '<td class="text-right" style="color:#a78bfa;font-weight:700;white-space:nowrap">'+fmt(tickTotal)+'</td></tr>';
   m+='</tbody></table></div>';
 
@@ -336,7 +359,50 @@ function render(){
       '<span style="color:#fbbf24;font-weight:800;font-size:16px">'+fmt(totCliFat)+'</span></div></div></div>';
   });
 
-  document.getElementById('app').innerHTML=c+m+(viewName==='Geral'?dep:'')+d;
+  var polpaMat='';
+  if(activeView==='polpanorte'){
+    var polpaMonths=['Jan','Fev','Mar','Abr','Mai','Jun','Jul'];
+    var polpaSellers=[
+      {cod:'1596',nome:'Ariane'},{cod:'1464',nome:'Camila'},{cod:'1211',nome:'Cristielen'},
+      {cod:'1429',nome:'Nat\u00e1lia'},{cod:'9886',nome:'Tatiana'},{cod:'1624',nome:'Tatiana Litoral'},
+      {cod:'1571',nome:'Anna'},{cod:'1527',nome:'Lauren'},{cod:'1573',nome:'Eduarda'}
+    ];
+    polpaMat+='<div class="chart-box">';
+    polpaMat+='<h2>Polpanorte por Televendedora <span class="sub">Jan-Jul 2026</span></h2>';
+    polpaMat+='<div style="overflow-x:auto"><table><thead><tr><th>CODUSUR</th><th>Televendedora</th>';
+    for(var pmi=0;pmi<7;pmi++) polpaMat+='<th class="text-right">'+polpaMonths[pmi]+'</th>';
+    polpaMat+='<th class="text-right" style="color:#a855f7">Total</th></tr></thead><tbody>';
+    var pColTotals=[0,0,0,0,0,0,0];
+    var pGrandTotal=0;
+    polpaSellers.forEach(function(ps){
+      var pTotal=0;
+      polpaMat+='<tr><td style="color:#9ca3af">'+ps.cod+'</td><td style="font-weight:600;color:#d8b4fe">'+ps.nome+'</td>';
+      for(var pmi=1;pmi<=7;pmi++){
+        var pFat=0;
+        if(DADOS_MES[pmi]&&DADOS_MES[pmi][ps.cod]){
+          filtered.forEach(function(r){
+            if(String(r.codusur)===ps.cod){
+              var rd=new Date((parseFloat(r.dthr)-25569)*86400000);
+              if(rd.getUTCMonth()+1===pmi) pFat+=r.fat;
+            }
+          });
+        }
+        pFat=Math.round(pFat*100)/100;
+        pTotal+=pFat;
+        pColTotals[pmi-1]+=pFat;
+        var pBg=pFat>0?'':'color:#4a4d6e';
+        polpaMat+='<td class="text-right" style="white-space:nowrap;'+pBg+'">'+fmt(pFat)+'</td>';
+      }
+      pGrandTotal+=pTotal;
+      polpaMat+='<td class="text-right" style="font-weight:700;color:#a855f7">'+fmt(pTotal)+'</td></tr>';
+    });
+    polpaMat+='<tfoot><tr style="border-top:2px solid #a855f7"><td></td><td style="font-weight:700;color:#d8b4fe">Total</td>';
+    for(var pmi=0;pmi<7;pmi++) polpaMat+='<td class="text-right" style="font-weight:700;color:#c084fc">'+fmt(pColTotals[pmi])+'</td>';
+    polpaMat+='<td class="text-right" style="font-weight:700;color:#a855f7">'+fmt(pGrandTotal)+'</td></tr></tfoot>';
+    polpaMat+='</tbody></table></div></div>';
+  }
+
+  document.getElementById('app').innerHTML=c+m+(viewName==='Geral'?dep:'')+d+polpaMat;
 }
 
 function fmtMes(m){
@@ -537,7 +603,7 @@ function renderRegiaoMes(){
 
   var html='<div class="cards">';
   html+='<div class="card"><div class="lbl">Faturamento Jan-Jul (real)</div><div class="val" style="color:#fbbf24">'+fmt(gFat)+'</div></div>';
-  html+='<div class="card" style="border:1px solid #f59e0b;background:rgba(245,158,11,0.08)"><div class="lbl" style="color:#f59e0b;font-weight:700">JULHO 2026 (m\u00eas vigente)</div><div style="display:flex;gap:20px;margin-top:6px"><div><div style="font-size:11px;color:#888;margin-bottom:2px">PROJE\u00c7\u00c3O 31/07</div><div class="val" style="color:#fbbf24">'+fmt(mFat[6])+'</div></div><div style="text-align:center"><div style="font-size:11px;color:#22c55e;font-weight:700">FATURAMENTO REAL</div><div class="val" style="color:#22c55e">'+fmt(fatJulReal)+'</div></div><div style="text-align:center"><div style="font-size:11px;color:#34d399;font-weight:700">POSI\u00c7\u00c3O</div><div class="val" style="color:#34d399">'+mPos[6]+'</div></div></div></div>';
+  html+='<div class="card" style="border:1px solid #f59e0b;background:rgba(245,158,11,0.08)"><div class="lbl" style="color:#f59e0b;font-weight:700">JULHO 2026 (m\u00eas vigente)</div><div style="display:flex;gap:20px;margin-top:6px"><div><div style="font-size:11px;color:#888;margin-bottom:2px">PROJE\u00c7\u00c3O 31/07</div><div class="val" style="color:#fbbf24">'+fmt(mFat[6])+'</div></div><div style="text-align:center"><div style="font-size:11px;color:#22c55e;font-weight:700">FATURAMENTO REAL</div><div class="val" style="color:#22c55e">'+fmt(fatJulReal)+'</div></div><div style="text-align:center"><div style="font-size:11px;color:#34d399;font-weight:700">POSITIVA\u00c7\u00c3O</div><div class="val" style="color:#34d399">'+mPos[6]+'</div></div></div></div>';
   html+='</div>';
 
 
