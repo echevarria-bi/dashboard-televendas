@@ -245,6 +245,20 @@ function render(){
 
   var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return a.rca.localeCompare(b.rca);});
 
+  if(activeView==='polpanorte'){
+    var tatA=vends['9886'],tatB=vends['1624'];
+    if(tatA&&tatB){
+      var mtA=METAS_POLPA['9886']||{},mtB=METAS_POLPA['1624']||{};
+      var merged={codusur:'9886',rca:'TATIANA LACERDA BACELLAR',regiao:'SERRA + LITORAL',fat:tatA.fat+tatB.fat,clientes:{}};
+      Object.keys(tatA.clientes).forEach(function(k){merged.clientes[k]=tatA.clientes[k];});
+      Object.keys(tatB.clientes).forEach(function(k){merged.clientes[k]=tatB.clientes[k];});
+      vArr=vArr.filter(function(v){return v.codusur!=='9886'&&v.codusur!=='1624';});
+      vArr.push(merged);
+      vArr.sort(function(a,b){return a.rca.localeCompare(b.rca);});
+      metas=Object.assign({},metas,{'9886':{nome:'Tatiana',regiao:'SERRA + LITORAL',fat:(mtA.fat||0)+(mtB.fat||0),pos:(mtA.pos||0)+(mtB.pos||0)}});
+    }
+  }
+
   var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
   var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
@@ -360,7 +374,7 @@ function render(){
     var polpaMonths=['Jan','Fev','Mar','Abr','Mai','Jun','Jul'];
     var polpaSellers=[
       {cod:'1596',nome:'Ariane'},{cod:'1464',nome:'Camila'},{cod:'1211',nome:'Cristielen'},
-      {cod:'1429',nome:'Nat\u00e1lia'},{cod:'9886',nome:'Tatiana'},{cod:'1624',nome:'Tatiana Litoral'},
+      {cod:'1429',nome:'Nat\u00e1lia'},{cod:'9886',nome:'Tatiana Lacerda Bacellar'},
       {cod:'1571',nome:'Anna'},{cod:'1527',nome:'Lauren'},{cod:'1573',nome:'Eduarda'}
     ];
     polpaMat+='<div class="chart-box">';
@@ -375,8 +389,9 @@ function render(){
       polpaMat+='<tr><td style="color:#9ca3af">'+ps.cod+'</td><td style="font-weight:600;color:#d8b4fe">'+ps.nome+'</td>';
       for(var pmi=1;pmi<=7;pmi++){
         var pFat=0;
-        if(DADOS_POLPA_MES&&DADOS_POLPA_MES[pmi]&&DADOS_POLPA_MES[pmi][ps.cod]){
-          pFat=DADOS_POLPA_MES[pmi][ps.cod].fat;
+        if(DADOS_POLPA_MES&&DADOS_POLPA_MES[pmi]){
+          if(DADOS_POLPA_MES[pmi][ps.cod]) pFat+=DADOS_POLPA_MES[pmi][ps.cod].fat;
+          if(ps.cod==='9886'&&DADOS_POLPA_MES[pmi]['1624']) pFat+=DADOS_POLPA_MES[pmi]['1624'].fat;
         }
         pFat=Math.round(pFat*100)/100;
         pTotal+=pFat;
