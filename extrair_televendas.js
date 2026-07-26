@@ -133,3 +133,50 @@ console.log('Total pedidos mês atual: ' + rows.length);
 var totalFat = rows.reduce(function (s, r) { return s + r.fat; }, 0);
 console.log('Faturamento total: R$ ' + totalFat.toFixed(2));
 console.log('Clientes únicos: ' + Object.keys(rows.reduce(function (s, r) { s[r.codcli] = 1; return s; }, {})).length);
+
+// ============================================================
+// 3. Dados Polpanorte mensais → dados_polpa_mensal.js
+// ============================================================
+console.log('\n[3/3] Extraindo dados Polpanorte mensais...');
+var POLPA_COD = '10828';
+var polpaMeses = {};
+for (var m = 1; m <= 12; m++) {
+  polpaMeses[m] = {};
+  ALL_RCAS.forEach(function (c) { polpaMeses[m][c] = { fat: 0, clis: {} }; });
+}
+for (var ri = 1; ri < raw.length; ri++) {
+  var r = raw[ri];
+  if (!r || !r[27]) continue;
+  var c = String(r[27]).trim();
+  if (ALL_RCAS.indexOf(c) < 0) continue;
+  var codFornec = String(r[24]).trim();
+  if (codFornec !== POLPA_COD) continue;
+  var dt = serialToDate(parseFloat(r[2]));
+  if (!dt || dt.getUTCFullYear() !== currentYear) continue;
+  var mes = dt.getUTCMonth() + 1;
+  if (mes < 1 || mes > currentMonth) continue;
+  var fat = parseFloat(r[34]) || (parseFloat(r[9]) || 0) + (parseFloat(r[10]) || 0);
+  var rec = polpaMeses[mes][c];
+  if (!rec) continue;
+  rec.fat += fat;
+  if (fat >= 1) {
+    rec.clis[String(r[11])] = 1;
+  }
+}
+var polpaDadosMes = {};
+for (var m = 1; m <= currentMonth; m++) {
+  polpaDadosMes[m] = {};
+  ALL_RCAS.forEach(function (c) {
+    var rec = polpaMeses[m][c];
+    polpaDadosMes[m][c] = { fat: Math.round(rec.fat * 100) / 100, cli: Object.keys(rec.clis).length };
+  });
+}
+var jsPolpa = 'var DADOS_POLPA_MES=' + JSON.stringify(polpaDadosMes) + ';';
+fs.writeFileSync(OUT_DIR + 'dados_polpa_mensal.js', jsPolpa, 'utf8');
+console.log('dados_polpa_mensal.js salvo (' + jsPolpa.length + ' bytes)');
+for (var m = 1; m <= currentMonth; m++) {
+  var nome = ['', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'][m];
+  var totalFatP = 0;
+  ALL_RCAS.forEach(function (c) { totalFatP += polpaDadosMes[m][c].fat; });
+  console.log('  Polpanorte ' + nome + ': R$ ' + totalFatP.toFixed(2));
+}

@@ -202,13 +202,14 @@ function render(){
   var diasUteis=23;
   var projMult=diasUteis/diasCorridos;
 
+  var metaFatTotal=0,metaPosTotal=0;
+  Object.keys(metas).forEach(function(k){metaFatTotal+=metas[k].fat||0;metaPosTotal+=metas[k].pos||0;});
+
   var fatProj=Math.round(fatBru*projMult);
   var posProj=Math.round(qtdCliPos*projMult);
   var pfProjPct=metaFatTotal>0?fatProj/metaFatTotal*100:0;
   var ppProjPct=metaPosTotal>0?posProj/metaPosTotal*100:0;
 
-  var metaFatTotal=0,metaPosTotal=0;
-  Object.keys(metas).forEach(function(k){metaFatTotal+=metas[k].fat||0;metaPosTotal+=metas[k].pos||0;});
   var pfPct=metaFatTotal>0?fatBru/metaFatTotal*100:0;
   var ppPct=metaPosTotal>0?qtdCliPos/metaPosTotal*100:0;
   var pfC=pfPct>=100?'#34d399':pfPct>=80?'#fbbf24':'#f87171';
@@ -246,7 +247,7 @@ function render(){
 
   var vArr=Object.keys(vends).map(function(k){return vends[k];}).sort(function(a,b){return a.rca.localeCompare(b.rca);});
 
-  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right" style="color:#f59e0b">Proj. Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
+  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
   var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
     var qc=Object.keys(v.clientes).length;
@@ -273,7 +274,6 @@ function render(){
       '<td class="text-right" style="color:#888">'+(mt.pos||'&mdash;')+'</td>'+
       '<td class="text-right" style="color:#34d399;font-weight:600">'+qc+'</td>'+
       '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(pp,100).toFixed(0)+'%;background:'+pC+'"></div></div><span style="font-size:13px;color:'+pC+';font-weight:600">'+pp.toFixed(1)+'%</span>'+(faltaPos===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':faltaPos>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+faltaPos+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
-      '<td class="text-right" style="color:#f59e0b;font-weight:600">'+vProjPos+' <span style="font-size:11px;color:'+(vProjPosPct>=100?'#34d399':vProjPosPct>=80?'#fbbf24':'#f87171')+'">'+vProjPosPct.toFixed(0)+'%</span></td>'+
       '<td class="text-right" style="color:#a78bfa;white-space:nowrap">'+fmt(tickV)+'</td></tr>';
   });
   var tPf=tMetaFat>0?pct(totFat,tMetaFat):0;
@@ -297,7 +297,6 @@ function render(){
     '<td class="text-right" style="color:#34d399;font-weight:600">'+tMetaPos+'</td>'+
     '<td class="text-right" style="color:#34d399;font-weight:800;font-size:16px">'+totPos+'</td>'+
     '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:13px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span>'+(tFaltaPos===null?'<div style="font-size:13px;color:#888;margin-top:2px">Sem meta</div>':tFaltaPos>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+fmt(tFaltaPos)+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
-    '<td class="text-right" style="color:#f59e0b;font-weight:700">'+tProjPos+' <span style="font-size:11px;color:'+(tProjPosPct>=100?'#34d399':tProjPosPct>=80?'#fbbf24':'#f87171')+'">'+tProjPosPct.toFixed(0)+'%</span></td>'+
     '<td class="text-right" style="color:#a78bfa;font-weight:700;white-space:nowrap">'+fmt(tickTotal)+'</td></tr>';
   m+='</tbody></table></div>';
 
@@ -379,13 +378,8 @@ function render(){
       polpaMat+='<tr><td style="color:#9ca3af">'+ps.cod+'</td><td style="font-weight:600;color:#d8b4fe">'+ps.nome+'</td>';
       for(var pmi=1;pmi<=7;pmi++){
         var pFat=0;
-        if(DADOS_MES[pmi]&&DADOS_MES[pmi][ps.cod]){
-          filtered.forEach(function(r){
-            if(String(r.codusur)===ps.cod){
-              var rd=new Date((parseFloat(r.dthr)-25569)*86400000);
-              if(rd.getUTCMonth()+1===pmi) pFat+=r.fat;
-            }
-          });
+        if(DADOS_POLPA_MES&&DADOS_POLPA_MES[pmi]&&DADOS_POLPA_MES[pmi][ps.cod]){
+          pFat=DADOS_POLPA_MES[pmi][ps.cod].fat;
         }
         pFat=Math.round(pFat*100)/100;
         pTotal+=pFat;
@@ -705,6 +699,7 @@ function renderRegiaoMes(){
 </script>
 <script src="dados_julho.js"></script>
 <script src="dados_mensal.js"></script>
+<script src="dados_polpa_mensal.js"></script>
 <script src="regiao_mes.js"></script>
 <script>render();</script>
 </body>
