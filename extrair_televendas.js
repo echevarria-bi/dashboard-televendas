@@ -180,3 +180,28 @@ for (var m = 1; m <= currentMonth; m++) {
   ALL_RCAS.forEach(function (c) { totalFatP += polpaDadosMes[m][c].fat; });
   console.log('  Polpanorte ' + nome + ': R$ ' + totalFatP.toFixed(2));
 }
+
+// ============================================================
+// 4. Dados "A Faturar" → afaturar.js
+// ============================================================
+console.log('\n[4/4] Extraindo dados "A Faturar"...');
+var wsAF = wb.Sheets['a faturar'];
+if (wsAF) {
+  var rawAF = XLSX.utils.sheet_to_json(wsAF, { header: 1, defval: '' });
+  var afaturar = {};
+  for (var ri = 1; ri < rawAF.length; ri++) {
+    var r = rawAF[ri];
+    if (!r || !r[0]) continue;
+    var cod = String(r[0]).trim();
+    afaturar[cod] = Math.round((parseFloat(r[2]) || 0) * 100) / 100;
+  }
+  var jsAF = 'var AFATURAR=' + JSON.stringify(afaturar) + ';';
+  fs.writeFileSync(OUT_DIR + 'afaturar.js', jsAF, 'utf8');
+  console.log('afaturar.js salvo (' + jsAF.length + ' bytes)');
+  Object.keys(afaturar).forEach(function (c) {
+    console.log('  ' + c + ': R$ ' + afaturar[c].toFixed(2));
+  });
+} else {
+  console.log('Aba "a faturar" não encontrada!');
+  fs.writeFileSync(OUT_DIR + 'afaturar.js', 'var AFATURAR={};', 'utf8');
+}
