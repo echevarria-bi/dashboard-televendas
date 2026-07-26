@@ -594,14 +594,14 @@ function renderRegiaoMes(){
   ];
   html+='<div class="chart-box">';
   html+='<h2>Faturamento por Televendedora <span class="sub">Jan-Jul 2026</span></h2>';
-  html+='<div style="overflow-x:auto"><table><thead><tr><th>Televendedora</th>';
+  html+='<div style="overflow-x:auto"><table><thead><tr><th>Televendedora</th><th>CODUSUR</th>';
   for(var mi=0;mi<7;mi++) html+='<th class="text-right">'+fullMonths[mi]+'</th>';
   html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
   var colTotals=[0,0,0,0,0,0,0];
   var grandTotalFat=0;
   sellers.forEach(function(s){
     var total=0;
-    html+='<tr><td style="font-weight:600;color:#fcd34d">'+s.nome+'</td>';
+    html+='<tr><td style="font-weight:600;color:#fcd34d">'+s.nome+'</td><td style="color:#9ca3af">'+s.cod+'</td>';
     for(var mi=1;mi<=7;mi++){
       var md=DADOS_MES[mi]&&DADOS_MES[mi][s.cod];
       var fat=md?md.fat:0;
@@ -614,7 +614,7 @@ function renderRegiaoMes(){
     grandTotalFat+=total;
     html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(total)+'</td></tr>';
   });
-  html+='<tfoot><tr style="border-top:2px solid #f59e0b"><td style="font-weight:700;color:#fcd34d">Total</td>';
+  html+='<tfoot><tr style="border-top:2px solid #f59e0b"><td style="font-weight:700;color:#fcd34d">Total</td><td></td>';
   for(var mi=0;mi<7;mi++) html+='<td class="text-right" style="font-weight:700;color:#fbbf24">'+fmt(colTotals[mi])+'</td>';
   html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(grandTotalFat)+'</td></tr></tfoot>';
   html+='</tbody></table></div></div>';
