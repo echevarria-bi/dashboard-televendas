@@ -6943,6 +6943,19 @@
     {
       "data": 46227,
       "dataStr": "24/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 3885
+    },
+    {
+      "data": 46227,
+      "dataStr": "24/07/2026",
       "codcli": 45986,
       "cliente": "POINT AGUAS CLARAS LTDA",
       "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
@@ -6978,6 +6991,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "10828",
       "fat": -346.41
+    },
+    {
+      "data": 46227,
+      "dataStr": "24/07/2026",
+      "codcli": 43285,
+      "cliente": "47.447.476 MATHEUS JARDIM MESQUITA",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": -177.95
     },
     {
       "data": 46204,
@@ -7632,6 +7658,19 @@
     {
       "data": 46227,
       "dataStr": "24/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 2664.9
+    },
+    {
+      "data": 46227,
+      "dataStr": "24/07/2026",
       "codcli": 42772,
       "cliente": "DERCI TEREZINHA OLIVEIRA",
       "ramo": "CONSUMIDOR",
@@ -8204,6 +8243,19 @@
     {
       "data": 46227,
       "dataStr": "24/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 172.04
+    },
+    {
+      "data": 46227,
+      "dataStr": "24/07/2026",
       "codcli": 36832,
       "cliente": "PORTO VERDE DISTRIBUIDORA DE ACAI LTDA",
       "ramo": "DISTRIBUIDORA",
@@ -8668,6 +8720,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "10831",
       "fat": 0
+    },
+    {
+      "data": 46227,
+      "dataStr": "24/07/2026",
+      "codcli": 40676,
+      "cliente": "52.307.800 ROBERT COSTA BONINI",
+      "ramo": "AÇAITERIA",
+      "depto": "FRANGOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10831",
+      "fat": -287.02
     },
     {
       "data": 46204,
@@ -12960,6 +13025,19 @@
       "fat": 28.5
     },
     {
+      "data": 46227,
+      "dataStr": "24/07/2026",
+      "codcli": 43285,
+      "cliente": "47.447.476 MATHEUS JARDIM MESQUITA",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11173",
+      "fat": -20
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 41434,
@@ -14856,6 +14934,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "10828",
       "fat": -188.7
+    },
+    {
+      "data": 46227,
+      "dataStr": "24/07/2026",
+      "codcli": 25725,
+      "cliente": "34.339.039 YASMIM PAIVA DA ROSA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": -198.650001
     },
     {
       "data": 46204,
@@ -21865,6 +21956,19 @@
       "fat": 468
     },
     {
+      "data": 46227,
+      "dataStr": "24/07/2026",
+      "codcli": 40676,
+      "cliente": "52.307.800 ROBERT COSTA BONINI",
+      "ramo": "AÇAITERIA",
+      "depto": "EMBUTIDOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12343",
+      "fat": -98.229999
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 42047,
@@ -24619,6 +24723,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "10828",
       "fat": 97.77
+    },
+    {
+      "data": 46227,
+      "dataStr": "24/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 1075.95
     },
     {
       "data": 46211,
