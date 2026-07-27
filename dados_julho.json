@@ -142,6 +142,19 @@
       "fat": 112.43
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 2127,
+      "cliente": "ASILO PADRE CACIQUE",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "3958",
+      "fat": 122.5
+    },
+    {
       "data": 46219,
       "dataStr": "16/07/2026",
       "codcli": 38330,
@@ -935,6 +948,19 @@
       "fat": 568.5
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 36036,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCACAO INFANTIL LTDA",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "BOVINOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "4126",
+      "fat": 303.2
+    },
+    {
       "data": 46219,
       "dataStr": "16/07/2026",
       "codcli": 29841,
@@ -1544,6 +1570,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "6276",
       "fat": 222.35
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 2127,
+      "cliente": "ASILO PADRE CACIQUE",
+      "ramo": "CONSUMIDOR",
+      "depto": "VEGETAIS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "6276",
+      "fat": 248.4
     },
     {
       "data": 46213,
@@ -3184,6 +3223,32 @@
       "fat": 84.99
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 2127,
+      "cliente": "ASILO PADRE CACIQUE",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10217",
+      "fat": 478.14
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 41356,
+      "cliente": "FERNANDO HENRIQUE DE LIMA",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10217",
+      "fat": 178.07000000000002
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 32124,
@@ -3600,6 +3665,32 @@
       "fat": 126.64
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 8368,
+      "cliente": "CONFEITARIA DELICIAS SOB ENCOMENDA LTDA",
+      "ramo": "PADARIA E CAFETERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10425",
+      "fat": 158.05
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 14712,
+      "cliente": "GR SERVICOS E ALIMENTACAO LTDA",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "LATICINIOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10425",
+      "fat": 473.96
+    },
+    {
       "data": 46220,
       "dataStr": "17/07/2026",
       "codcli": 40700,
@@ -3754,6 +3845,19 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "10217",
       "fat": 700
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 8368,
+      "cliente": "CONFEITARIA DELICIAS SOB ENCOMENDA LTDA",
+      "ramo": "PADARIA E CAFETERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10217",
+      "fat": 73.14
     },
     {
       "data": 46206,
@@ -6980,6 +7084,19 @@
       "fat": 177.94
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 28800,
+      "cliente": "CAMILY BOFF DE OLIVEIRA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1624",
+      "rca": "TATIANA LACERDA BACELLAR - LITORAL",
+      "supervisor": "MURIEL DE OLIVEIRA FARIAS",
+      "codfornec": "10828",
+      "fat": 849
+    },
+    {
       "data": 46211,
       "dataStr": "08/07/2026",
       "codcli": 42916,
@@ -7680,6 +7797,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "10828",
       "fat": 173.59
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 37802,
+      "cliente": "ORY LAUX & CIA LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 306.58
     },
     {
       "data": 46205,
@@ -9864,6 +9994,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "10831",
       "fat": 153.78
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 19353,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCAÇÃO INFANTIL EIRELI",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "FRANGOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10831",
+      "fat": 77.91
     },
     {
       "data": 46213,
@@ -17289,6 +17432,19 @@
       "fat": 448
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 19353,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCAÇÃO INFANTIL EIRELI",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "BOVINOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "4126",
+      "fat": 448
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 33755,
@@ -17404,6 +17560,32 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "4126",
       "fat": 280.28
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 36036,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCACAO INFANTIL LTDA",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "BOVINOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "4126",
+      "fat": 819.28
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 19353,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCAÇÃO INFANTIL EIRELI",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "BOVINOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "4126",
+      "fat": 819.28
     },
     {
       "data": 46205,
@@ -18420,6 +18602,32 @@
       "fat": 57.54
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 36036,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCACAO INFANTIL LTDA",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "FRANGOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "3902",
+      "fat": 42.25
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 19353,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCAÇÃO INFANTIL EIRELI",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "FRANGOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "3902",
+      "fat": 81.12
+    },
+    {
       "data": 46206,
       "dataStr": "03/07/2026",
       "codcli": 44931,
@@ -19146,6 +19354,32 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "3902",
       "fat": 231.53
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 36036,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCACAO INFANTIL LTDA",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "FRANGOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "3902",
+      "fat": 166.47
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 19353,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCAÇÃO INFANTIL EIRELI",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "FRANGOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "3902",
+      "fat": 199.42
     },
     {
       "data": 46219,
@@ -21852,6 +22086,19 @@
       "fat": 27.779999999999998
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 44483,
+      "cliente": "ZM RESTAURANTE E CAFETERIA LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "EMBUTIDOS",
+      "codusur": "1624",
+      "rca": "TATIANA LACERDA BACELLAR - LITORAL",
+      "supervisor": "MURIEL DE OLIVEIRA FARIAS",
+      "codfornec": "12343",
+      "fat": 83.24000000000001
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 21238,
@@ -22762,6 +23009,32 @@
       "fat": 229
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 2127,
+      "cliente": "ASILO PADRE CACIQUE",
+      "ramo": "CONSUMIDOR",
+      "depto": "PESCADOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "6509",
+      "fat": 956
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 44483,
+      "cliente": "ZM RESTAURANTE E CAFETERIA LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "PESCADOS",
+      "codusur": "1624",
+      "rca": "TATIANA LACERDA BACELLAR - LITORAL",
+      "supervisor": "MURIEL DE OLIVEIRA FARIAS",
+      "codfornec": "6509",
+      "fat": 242.41
+    },
+    {
       "data": 46209,
       "dataStr": "06/07/2026",
       "codcli": 38689,
@@ -22981,6 +23254,32 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "12343",
       "fat": 33.9
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 2127,
+      "cliente": "ASILO PADRE CACIQUE",
+      "ramo": "CONSUMIDOR",
+      "depto": "EMBUTIDOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "12343",
+      "fat": 159.5
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 41356,
+      "cliente": "FERNANDO HENRIQUE DE LIMA",
+      "ramo": "AÇAITERIA",
+      "depto": "EMBUTIDOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "12343",
+      "fat": 64.65
     },
     {
       "data": 46204,
@@ -24233,6 +24532,19 @@
     {
       "data": 46225,
       "dataStr": "22/07/2026",
+      "codcli": 19353,
+      "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCAÇÃO INFANTIL EIRELI",
+      "ramo": "CRECHE E ESCOLA",
+      "depto": "PESCADOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "3902",
+      "fat": 489
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
       "codcli": 19353,
       "cliente": "UNIVERSO MAGICO ESCOLA DE EDUCAÇÃO INFANTIL EIRELI",
       "ramo": "CRECHE E ESCOLA",
@@ -29379,6 +29691,19 @@
       "fat": 460.68
     },
     {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 37802,
+      "cliente": "ORY LAUX & CIA LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "BOVINOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "12069",
+      "fat": 3820.82
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 45585,
@@ -30911,6 +31236,19 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "12936",
       "fat": 278
+    },
+    {
+      "data": 46229,
+      "dataStr": "26/07/2026",
+      "codcli": 2127,
+      "cliente": "ASILO PADRE CACIQUE",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "12936",
+      "fat": 208.5
     },
     {
       "data": 46219,
