@@ -713,43 +713,31 @@ function renderRegiaoMes(){
   });
   html+='</div>';
 
-  // Matriz Faturamento por Televendedora
-  var sellers=[
-    {cod:'1596',nome:'Ariane'},
-    {cod:'1464',nome:'Camila'},
-    {cod:'1211',nome:'Cristielen'},
-    {cod:'1429',nome:'Natália'},
-    {cod:'9886',nome:'Tatiana'},
-    {cod:'1624',nome:'Tatiana Litoral'},
-    {cod:'1571',nome:'Anna'},
-    {cod:'1527',nome:'Lauren'},
-    {cod:'1573',nome:'Eduarda'}
-  ];
+  // Matriz Faturamento por Região
   html+='<div class="chart-box">';
-  html+='<h2>Faturamento por Televendedora <span class="sub">Jan-Jul 2026</span></h2>';
-  html+='<div style="overflow-x:auto"><table><thead><tr><th>CODUSUR</th><th>Televendedora</th>';
-  for(var mi=0;mi<7;mi++) html+='<th class="text-right">'+fullMonths[mi]+'</th>';
+  html+='<h2>Faturamento por Região <span class="sub">Jan-Jul 2026</span></h2>';
+  html+='<div style="overflow-x:auto"><table><thead><tr><th>Região</th>';
+  for(var mi=0;mi<7;mi++) html+='<th class="text-right">'+months[mi]+'</th>';
   html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
-  var colTotals=[0,0,0,0,0,0,0];
-  var grandTotalFat=0;
-  sellers.forEach(function(s){
+  var rColTotals=[0,0,0,0,0,0,0];
+  var rGrandTotal=0;
+  order.forEach(function(reg,ri){
+    var rd=regData[reg];
+    if(!rd)return;
     var total=0;
-    html+='<tr><td style="color:#9ca3af">'+s.cod+'</td><td style="font-weight:600;color:#fcd34d">'+s.nome+'</td>';
-    for(var mi=1;mi<=7;mi++){
-      var md=DADOS_MES[mi]&&DADOS_MES[mi][s.cod];
-      var fat=md?md.fat:0;
-      fat=Math.round(fat*100)/100;
+    html+='<tr><td style="font-weight:600;color:#fcd34d;border-left:3px solid '+cores[ri]+'">'+reg+'</td>';
+    for(var mi=0;mi<7;mi++){
+      var fat=Math.round(rd.months[mi].fat*100)/100;
       total+=fat;
-      colTotals[mi-1]+=fat;
-      var bg=fat>0?'':'color:#4a4d6e';
-      html+='<td class="text-right" style="white-space:nowrap;'+bg+'">'+fmt(fat)+'</td>';
+      rColTotals[mi]+=fat;
+      html+='<td class="text-right" style="white-space:nowrap;color:#fbbf24">'+fmt(fat)+'</td>';
     }
-    grandTotalFat+=total;
+    rGrandTotal+=total;
     html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(total)+'</td></tr>';
   });
-  html+='<tfoot><tr style="border-top:2px solid #f59e0b"><td></td><td style="font-weight:700;color:#fcd34d">Total</td>';
-  for(var mi=0;mi<7;mi++) html+='<td class="text-right" style="font-weight:700;color:#fbbf24">'+fmt(colTotals[mi])+'</td>';
-  html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(grandTotalFat)+'</td></tr></tfoot>';
+  html+='<tfoot><tr style="border-top:2px solid #f59e0b"><td style="font-weight:700;color:#fcd34d">Total</td>';
+  for(var mi=0;mi<7;mi++) html+='<td class="text-right" style="font-weight:700;color:#fbbf24">'+fmt(rColTotals[mi])+'</td>';
+  html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(rGrandTotal)+'</td></tr></tfoot>';
   html+='</tbody></table></div></div>';
 
   document.getElementById('app').innerHTML=html;
