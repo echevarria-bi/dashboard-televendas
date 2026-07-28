@@ -20,9 +20,13 @@ echo OK!
 echo.
 
 echo [2/3] Enviando para GitHub...
-git add dados_julho.js dados_mensal.js dados_polpa_mensal.js afaturar.js dados_julho.json
+git add -A
 git commit -m "feat: atualizacao televendas %date% %time%" 2>nul
-git push
+if %ERRORLEVEL% neq 0 (
+    echo Nada novo para commitar.
+) else (
+    git push
+)
 echo.
 
 echo [3/3] Resumo:

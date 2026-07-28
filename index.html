@@ -348,6 +348,43 @@ function render(){
     '<td class="text-right" style="color:#fbbf24;font-weight:600;font-size:14px">100%</td></tr>';
   dep+='</tbody></table></div>';
 
+  // Seller Monthly Matrix (Geral only)
+  var sellerMat = '';
+  if (viewName === 'Geral' && typeof DADOS_MES !== 'undefined') {
+    var fullMonths = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho'];
+    var sellers = [
+      {cod:'1596',nome:'Ariane'},{cod:'1464',nome:'Camila'},{cod:'1211',nome:'Cristielen'},
+      {cod:'1429',nome:'Natália'},{cod:'9886',nome:'Tatiana'},{cod:'1624',nome:'Tatiana Litoral'},
+      {cod:'1571',nome:'Anna'},{cod:'1527',nome:'Lauren'},{cod:'1573',nome:'Eduarda'}
+    ];
+    sellerMat += '<div class="chart-box">';
+    sellerMat += '<h2>Faturamento por Televendedora <span class="sub">Jan-Jul 2026</span></h2>';
+    sellerMat += '<div style="overflow-x:auto"><table><thead><tr><th>CODUSUR</th><th>Televendedora</th>';
+    for (var mi = 0; mi < 7; mi++) sellerMat += '<th class="text-right">' + fullMonths[mi] + '</th>';
+    sellerMat += '<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
+    var colTotals = [0,0,0,0,0,0,0];
+    var grandTotalFat = 0;
+    sellers.forEach(function(s){
+      var total = 0;
+      sellerMat += '<tr><td style="color:#9ca3af">'+s.cod+'</td><td style="font-weight:600;color:#fcd34d">'+s.nome+'</td>';
+      for (var mm = 1; mm <= 7; mm++) {
+        var md = DADOS_MES[mm] && DADOS_MES[mm][s.cod];
+        var fat = md ? md.fat : 0;
+        fat = Math.round(fat * 100) / 100;
+        total += fat;
+        colTotals[mm-1] += fat;
+        var bg = fat > 0 ? '' : 'color:#4a4d6e';
+        sellerMat += '<td class="text-right" style="white-space:nowrap;' + bg + '">' + fmt(fat) + '</td>';
+      }
+      grandTotalFat += total;
+      sellerMat += '<td class="text-right" style="font-weight:700;color:#34d399">' + fmt(total) + '</td></tr>';
+    });
+    sellerMat += '<tfoot><tr style="border-top:2px solid #f59e0b"><td></td><td style="font-weight:700;color:#fcd34d">Total</td>';
+    for (var mi = 0; mi < 7; mi++) sellerMat += '<td class="text-right" style="font-weight:700;color:#fbbf24">' + fmt(colTotals[mi]) + '</td>';
+    sellerMat += '<td class="text-right" style="font-weight:700;color:#34d399">' + fmt(grandTotalFat) + '</td></tr></tfoot>';
+    sellerMat += '</tbody></table></div></div>';
+  }
+
   var d='<h2 style="font-size:18px;font-weight:700;color:#fcd34d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Detalhamento por Vendedor</h2>';
   vArr.forEach(function(v){
     var clis=Object.keys(v.clientes).map(function(cod){
@@ -417,7 +454,7 @@ function render(){
     polpaMat+='</tbody></table></div></div>';
   }
 
-  document.getElementById('app').innerHTML=c+m+(viewName==='Geral'?dep:'')+d+polpaMat;
+  document.getElementById('app').innerHTML=c+m+(viewName==='Geral'?dep+sellerMat:'')+d+polpaMat;
 }
 
 function fmtMes(m){
