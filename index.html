@@ -454,7 +454,7 @@ function render(){
     polpaMat+='</tbody></table></div></div>';
   }
 
-  document.getElementById('app').innerHTML=c+m+(viewName==='Geral'?dep:'')+d+polpaMat+(viewName==='Geral'?sellerMat:'');
+  document.getElementById('app').innerHTML=c+m+d+polpaMat+(viewName==='Geral'?dep+sellerMat:'');
 }
 
 function fmtMes(m){
