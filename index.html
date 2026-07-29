@@ -671,18 +671,18 @@ function renderRegiaoMes(){
   html+='</div>';
 
   // Ticker logo abaixo dos big numbers
-  html+='<style>@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.ticker-wrap{overflow:hidden;margin-bottom:14px;padding:4px 0;border-top:1px solid rgba(245,158,11,0.1);border-bottom:1px solid rgba(245,158,11,0.1)}.ticker-inner{display:flex;gap:20px;width:fit-content;animation:ticker 45s linear infinite}.ticker-wrap:hover .ticker-inner{animation-play-state:paused}.ticker-card{flex-shrink:0;width:500px;position:relative;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 14px}.ticker-card .t-bar{position:absolute;top:0;left:0;bottom:0;width:3px}.ticker-card .t-row{display:flex;align-items:center;gap:12px}.ticker-card .t-title{font-size:16px;font-weight:700;letter-spacing:.5px;min-width:160px}.ticker-card .t-vals{display:flex;gap:6px;flex:1;justify-content:space-evenly}.ticker-card .t-v{font-size:18px;font-weight:700;white-space:nowrap;text-align:center}.ticker-card .t-lbl{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:.6px;text-align:center;margin-bottom:1px}</style><div class="ticker-wrap"><div class="ticker-inner">';
+  html+='<style>@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}.ticker-wrap{overflow:hidden;margin-bottom:14px;padding:4px 0;border-top:1px solid rgba(245,158,11,0.1);border-bottom:1px solid rgba(245,158,11,0.1)}.ticker-inner{display:flex;gap:20px;width:fit-content;animation:ticker 45s linear infinite}.ticker-wrap:hover .ticker-inner{animation-play-state:paused}.ticker-card{flex-shrink:0;width:500px;position:relative;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 16px}.ticker-card .t-bar{position:absolute;top:0;left:0;bottom:0;width:3px}.ticker-card .t-title{font-size:16px;font-weight:700;letter-spacing:.5px;margin-bottom:5px}.ticker-card .t-vals{display:flex;gap:8px;justify-content:space-evenly}.ticker-card .t-v{font-size:18px;font-weight:700;white-space:nowrap;text-align:center}.ticker-card .t-lbl{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:.6px;text-align:center}</style><div class="ticker-wrap"><div class="ticker-inner">';
   function tCard(reg,ri){
     var rd=regData[reg];var j26=rd.months[6].fat;var jP=rd.fatJulProj;var j25=oldJul[reg];
     var d=j25?((jP>=j25)?'▲':'▼'):'';var a=j25?fmt(Math.abs(jP-j25)):'N/A';
     var p=j25?(((jP-j25)/j25*100)>=0?'+':'')+((jP-j25)/j25*100).toFixed(1)+'%':'';
-    return '<div class="ticker-card"><div class="t-bar" style="background:'+rd.cor+'"></div><div class="t-row">'+
+    return '<div class="ticker-card"><div class="t-bar" style="background:'+rd.cor+'"></div>'+
       '<div class="t-title" style="color:'+rd.cor+'">'+reg+'</div>'+
       '<div class="t-vals"><div><div class="t-lbl">FAT</div><div class="t-v" style="color:#fbbf24">'+fmt(j26)+'</div></div>'+
       '<div><div class="t-lbl">PROJ</div><div class="t-v" style="color:#f59e0b">'+fmt(jP)+'</div></div>'+
       (j25?'<div><div class="t-lbl">JUL/25</div><div class="t-v" style="color:#9ca3af">'+fmt(j25)+'</div></div>':'')+
       (j25?'<div><div class="t-lbl">VS 25</div><div class="t-v" style="color:'+(jP>=j25?'#34d399':'#f87171')+'">'+d+' '+p+'</div></div>':'')+
-      '</div></div></div>';
+      '</div></div>';
   }
   for(var ti=0;ti<2;ti++){
     order.forEach(function(reg,ri){html+=tCard(reg,ri);});
