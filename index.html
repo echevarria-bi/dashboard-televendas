@@ -260,7 +260,7 @@ function render(){
     }
   }
 
-  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right" style="color:#60a5fa">A Faturar</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
+  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div style="overflow-x:auto"><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right" style="color:#60a5fa">A Faturar</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right">Ticket</th></tr></thead><tbody>';
   var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
     var qc=Object.keys(v.clientes).length;
@@ -318,7 +318,7 @@ function render(){
     '<td class="text-right" style="color:#34d399;font-weight:800;font-size:16px">'+totPos+'</td>'+
     '<td><div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(tPp,100).toFixed(0)+'%;background:'+tPc+'"></div></div><span style="font-size:13px;color:'+tPc+';font-weight:700">'+tPp.toFixed(1)+'%</span>'+(tFaltaPos===null?'<div style="font-size:11px;color:#888;margin-top:2px">Sem meta</div>':tFaltaPos>0?'<div style="font-size:13px;color:#f87171;margin-top:2px">Falta '+fmt(tFaltaPos)+'</div>':'<div style="font-size:13px;color:#34d399;margin-top:2px">OK</div>')+'</td>'+
     '<td class="text-right" style="color:#a78bfa;font-weight:700;white-space:nowrap">'+fmt(tickTotal)+'</td></tr>';
-  m+='</tbody></table></div>';
+  m+='</tbody></table></div></div>';
 
   // Departamento section
   var dept={};
