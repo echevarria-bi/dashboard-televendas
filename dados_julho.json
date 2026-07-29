@@ -1078,6 +1078,19 @@
       "fat": 568.5
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 41091,
+      "cliente": "ADRIANA ALBUQUERQUE PERINI",
+      "ramo": "CONSUMIDOR",
+      "depto": "BOVINOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "4126",
+      "fat": 73.8
+    },
+    {
       "data": 46219,
       "dataStr": "16/07/2026",
       "codcli": 29841,
@@ -3585,6 +3598,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "10217",
       "fat": 72.13
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 41091,
+      "cliente": "ADRIANA ALBUQUERQUE PERINI",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10217",
+      "fat": 86.15
     },
     {
       "data": 46232,
@@ -8867,6 +8893,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 41451,
+      "cliente": "TITOS LANCHES LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 338
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 44791,
       "cliente": "CASA DO ACAI WV LTDA",
       "ramo": "AÇAITERIA",
@@ -12076,6 +12115,19 @@
       "fat": -46.4
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44251,
+      "cliente": "DÓRIS HELENA AZAMBUJA ALVES",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": -85.08
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 38330,
@@ -13987,6 +14039,19 @@
       "fat": 61.27
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": -17.18
+    },
+    {
       "data": 46211,
       "dataStr": "08/07/2026",
       "codcli": 41253,
@@ -14024,6 +14089,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "11314",
       "fat": 17.18
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": -18.99
     },
     {
       "data": 46219,
@@ -15794,6 +15872,19 @@
       "fat": 37.5
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": -41.97
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 29658,
@@ -15844,6 +15935,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "11314",
       "fat": 41.97
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": -14.28
     },
     {
       "data": 46218,
@@ -16275,6 +16379,19 @@
       "fat": 15.75
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 41451,
+      "cliente": "TITOS LANCHES LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 50.7
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 40728,
@@ -16325,6 +16442,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "10828",
       "fat": 209.88
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": -13.98
     },
     {
       "data": 46205,
@@ -16457,6 +16587,19 @@
       "fat": 15.8
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": -44.97
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 42047,
@@ -16587,6 +16730,19 @@
       "fat": 105.36
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 41091,
+      "cliente": "ADRIANA ALBUQUERQUE PERINI",
+      "ramo": "CONSUMIDOR",
+      "depto": "BOVINOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "4320",
+      "fat": 119.34
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 39205,
@@ -16689,6 +16845,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "10828",
       "fat": -198.650001
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": -314.5
     },
     {
       "data": 46204,
@@ -18444,6 +18613,32 @@
       "supervisor": "VENDAS INTERNO",
       "codfornec": "10828",
       "fat": 1743.6
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 314.5
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 21436,
+      "cliente": "SUSANA COSTA DA ROSA",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 1298
     },
     {
       "data": 46232,
@@ -20953,6 +21148,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "11051",
       "fat": -42.5799
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44251,
+      "cliente": "DÓRIS HELENA AZAMBUJA ALVES",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": -41.47
     },
     {
       "data": 46204,
@@ -27754,6 +27962,19 @@
       "fat": 163.4
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11664",
+      "fat": -39.98
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 45414,
@@ -28599,6 +28820,19 @@
       "fat": 24.04
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44858,
+      "cliente": "COMPANHIA DOS ASSADOS LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11664",
+      "fat": 39.98
+    },
+    {
       "data": 46210,
       "dataStr": "07/07/2026",
       "codcli": 41265,
@@ -28688,6 +28922,19 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "11051",
       "fat": 19.669999999999998
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44251,
+      "cliente": "DÓRIS HELENA AZAMBUJA ALVES",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": -34
     },
     {
       "data": 46205,
@@ -30601,6 +30848,19 @@
       "fat": 37.16
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 41091,
+      "cliente": "ADRIANA ALBUQUERQUE PERINI",
+      "ramo": "CONSUMIDOR",
+      "depto": "SUINOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "4329",
+      "fat": 29.97
+    },
+    {
       "data": 46220,
       "dataStr": "17/07/2026",
       "codcli": 38114,
@@ -30703,6 +30963,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "4691",
       "fat": 23.29
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 41091,
+      "cliente": "ADRIANA ALBUQUERQUE PERINI",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "12650",
+      "fat": 42.71
     },
     {
       "data": 46226,
