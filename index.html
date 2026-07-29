@@ -26,7 +26,7 @@ body.polpanorte .chart-box{background:linear-gradient(135deg,#1a0a2e,#2d1052);bo
 body.polpanorte .card.c-amber::before{background:linear-gradient(90deg,#a855f7,#c084fc)}
 body.polpanorte table th{border-bottom-color:rgba(168,85,247,0.3)!important}
 body.polpanorte table tr{border-bottom-color:rgba(168,85,247,0.08)}
-.container{max-width:1400px;margin:0 auto;padding:24px 28px}
+.container{max-width:100%;margin:0 auto;padding:24px 40px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:28px}
 .card{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:22px 24px 18px;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s}
 .card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
@@ -43,7 +43,7 @@ body.polpanorte table tr{border-bottom-color:rgba(168,85,247,0.08)}
 .gauge-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .gauge-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
 .gauge-card .gauge-title{font-size:17px;color:#9ca3af;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:4px}
-.gauge-card .gauge-svg{display:block;margin:0 auto;width:100%;max-width:360px;height:auto}
+.gauge-card .gauge-svg{display:block;margin:0 auto;width:100%;max-width:460px;height:auto}
 .gauge-card .gauge-actual{font-size:36px;font-weight:800;margin-top:-4px}
 .gauge-card .gauge-meta{font-size:17px;color:#888;margin-top:4px}
 .chart-box{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px;margin-bottom:24px}
@@ -686,31 +686,56 @@ function renderRegiaoMes(){
     order.forEach(function(reg,ri){html+=tCard(reg,ri);});
   }
   html+='</div></div>';
+  html+='<div style="text-align:right;font-size:12px;color:#6b7280;margin-top:-8px;margin-bottom:14px">* Key Account (Natália) incluso nos valores de cada região</div>';
 
   html+='<div class="chart-box" style="margin-bottom:14px">'+
     '<table width="100%" style="margin-bottom:4px"><tr>'+
     '<td style="text-align:left;vertical-align:middle"><span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Faturamento <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></td>'+
     '<td style="text-align:right;vertical-align:middle"><span style="display:inline-block;background:rgba(34,197,94,0.15);border:1px solid #22c55e;border-radius:8px;padding:6px 18px;font-size:16px;color:#22c55e;font-weight:700">REAL '+fmt(fatJulReal)+'</span></td>'+
     '</tr></table>'+
-    '<div style="max-width:1200px;margin:0 auto">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat,true)+'</div></div>';
+    '<div style="max-width:100%">'+svgLine(mFat,'#f59e0b',DADOS_2025.fat,true)+'</div></div>';
 
   html+='<div class="chart-box" style="margin-bottom:14px">'+
     '<table width="100%" style="margin-bottom:4px"><tr>'+
     '<td style="text-align:left;vertical-align:middle"><span style="font-weight:700;color:#fcd34d;font-size:18px">Evolução Positivações <span style="font-size:14px;color:#6b7280;font-weight:400">2026 vs 2025</span></span></td>'+
     '<td style="text-align:right;vertical-align:middle"><span style="display:inline-block;background:rgba(34,197,94,0.15);border:1px solid #22c55e;border-radius:8px;padding:6px 18px;font-size:16px;color:#22c55e;font-weight:700">REAL '+posJulReal+'</span></td>'+
     '</tr></table>'+
-    '<div style="max-width:1200px;margin:0 auto">'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div></div>';
+    '<div style="max-width:100%">'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div></div>';
 
-  // Matriz Faturamento por Região
+  // Matriz Faturamento por Região (sem Key Account nas regiões)
+  var regExclude = JSON.parse(JSON.stringify(REGIAO_MES));
+  for(var rk in regExclude){
+    if(regExclude[rk][7]) regExclude[rk][7] = regExclude[rk][7].filter(function(c){return c!=='1429';});
+  }
+  function calcRegTable(reg){
+    var rd=regExclude[reg]; if(!rd)return null;
+    var out={months:[],totalFat:0};
+    for(var m=1;m<=7;m++){
+      var fat=0;
+      (rd[m]||[]).forEach(function(c){
+        var ov=CLIENT_REGIAO[m]&&CLIENT_REGIAO[m][c];
+        if(ov){
+          for(var di=0;di<DADOS.length;di++){
+            var row=DADOS[di];
+            if(String(row.codusur)===c&&ov[row.codcli]===reg&&row.fat>=1) fat+=row.fat;
+          }
+        }else{
+          var d=DADOS_MES[m]&&DADOS_MES[m][c]; if(d) fat+=d.fat;
+        }
+      });
+      out.months.push({fat:fat}); out.totalFat+=fat;
+    }
+    return out;
+  }
   html+='<div class="chart-box">';
-  html+='<h2>Faturamento por Região <span class="sub">Jan-Jul 2026</span></h2>';
+  html+='<h2>Faturamento por Região <span class="sub">Jan–Jul/2026: nesta tabela, Key Account é exibido separadamente para uma leitura exclusiva desse segmento. Nos cards rotativos, ele é considerado dentro da região de cada cliente.</span></h2>';
   html+='<div style="overflow-x:auto"><table><thead><tr><th>Região</th>';
   for(var mi=0;mi<7;mi++) html+='<th class="text-right">'+months[mi]+'</th>';
   html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
   var rColTotals=[0,0,0,0,0,0,0];
   var rGrandTotal=0;
   order.forEach(function(reg,ri){
-    var rd=regData[reg];
+    var rd=calcRegTable(reg);
     if(!rd)return;
     var total=0;
     html+='<tr><td style="font-weight:600;color:#fcd34d;border-left:3px solid '+cores[ri]+'">'+reg+'</td>';
@@ -723,6 +748,21 @@ function renderRegiaoMes(){
     rGrandTotal+=total;
     html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(total)+'</td></tr>';
   });
+  // Key Account row (só Julho)
+  var kaTotal=0;
+  html+='<tr><td style="font-weight:600;color:#f59e0b;border-left:3px solid #f59e0b">Key Account</td>';
+  for(var mi=0;mi<7;mi++){
+    if(mi===6){
+      var kd=DADOS_MES[mi+1]&&DADOS_MES[mi+1]['1429']?DADOS_MES[mi+1]['1429'].fat:0;
+      kaTotal+=kd;
+      rColTotals[mi]+=kd;
+      html+='<td class="text-right" style="white-space:nowrap;color:#f59e0b">'+fmt(kd)+'</td>';
+    }else{
+      html+='<td class="text-right" style="white-space:nowrap;color:#4a4d6e">&mdash;</td>';
+    }
+  }
+  rGrandTotal+=kaTotal;
+  html+='<td class="text-right" style="font-weight:700;color:#f59e0b">'+fmt(kaTotal)+'</td></tr>';
   html+='<tfoot><tr style="border-top:2px solid #f59e0b"><td style="font-weight:700;color:#fcd34d">Total</td>';
   for(var mi=0;mi<7;mi++) html+='<td class="text-right" style="font-weight:700;color:#fbbf24">'+fmt(rColTotals[mi])+'</td>';
   html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(rGrandTotal)+'</td></tr></tfoot>';
