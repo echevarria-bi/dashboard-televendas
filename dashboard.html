@@ -410,8 +410,8 @@ function render(){
       polpaMat+='<td class="text-right" style="font-weight:700;color:#a855f7">'+fmt(pTotal)+'</td></tr>';
     });
     polpaMat+='<tfoot><tr style="border-top:2px solid #a855f7"><td></td><td style="font-weight:700;color:#d8b4fe">Total</td>';
-    for(var pmi=0;pmi<7;pmi++) polpaMat+='<td class="text-right" style="font-weight:700;color:#c084fc">'+fmt(pColTotals[pmi])+'</td>';
-    polpaMat+='<td class="text-right" style="font-weight:700;color:#a855f7">'+fmt(pGrandTotal)+'</td></tr></tfoot>';
+    for(var pmi=0;pmi<7;pmi++) polpaMat+='<td class="text-right" style="font-weight:700;color:#c084fc;white-space:nowrap">'+fmt(pColTotals[pmi])+'</td>';
+    polpaMat+='<td class="text-right" style="font-weight:700;color:#a855f7;white-space:nowrap">'+fmt(pGrandTotal)+'</td></tr></tfoot>';
     polpaMat+='</tbody></table></div></div>';
   }
 
