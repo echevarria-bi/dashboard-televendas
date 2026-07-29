@@ -107,7 +107,7 @@ var METAS = {
   '1596':{nome:'Ariane',regiao:'POA',fat:145000,pos:95},
   '1464':{nome:'Camila',regiao:'SUL',fat:127328,pos:116},
   '1211':{nome:'Cristielen',regiao:'VALE DOS SINOS',fat:117386,pos:116},
-  '1429':{nome:'Natália',regiao:'KEY ACCOUNT',fat:350000,pos:10},
+  '1429':{nome:'Natália',regiao:'VALE DOS SINOS',fat:350000,pos:10},
   '9886':{nome:'Tatiana',regiao:'SERRA',fat:145000,pos:100},
   '1624':{nome:'Tatiana',regiao:'LITORAL',fat:95000,pos:90}
 };
@@ -116,7 +116,7 @@ var METAS_POLPA = {
   '1596':{nome:'Ariane',regiao:'POA',fat:36500,pos:62},
   '1464':{nome:'Camila',regiao:'SUL',fat:40000,pos:98},
   '1211':{nome:'Cristielen',regiao:'VALE DOS SINOS',fat:75000,pos:103},
-  '1429':{nome:'Natália',regiao:'KEY ACCOUNT',fat:175000,pos:0},
+  '1429':{nome:'Natália',regiao:'VALE DOS SINOS',fat:175000,pos:0},
   '9886':{nome:'Tatiana',regiao:'SERRA',fat:87500,pos:143},
   '1624':{nome:'Tatiana',regiao:'LITORAL',fat:0,pos:0}
 };
@@ -469,8 +469,8 @@ function renderRegiaoMes(){
 
   var months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul'];
   var fullMonths=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho'];
-  var order=['Região Metropolitana','Região Sul','Serra','Litoral','Vale dos Sinos','Key Account'];
-  var cores=['#f59e0b','#34d399','#60a5fa','#a78bfa','#f87171','#06b6d4'];
+  var order=['Região Metropolitana','Região Sul','Serra','Litoral','Vale dos Sinos'];
+  var cores=['#f59e0b','#34d399','#60a5fa','#a78bfa','#f87171'];
 
   // Projeção Julho: (faturamento atual / dias corridos) * dias úteis
   var diasCorridos=Math.min(21,31); // até 21/07
@@ -484,8 +484,20 @@ function renderRegiaoMes(){
     for(var m=1;m<=7;m++){
       var fat=0,cli=0;
       (rd[m]||[]).forEach(function(c){
-        var d=DADOS_MES[m][c];
-        if(d){fat+=d.fat;cli+=d.cli;}
+        var ov=CLIENT_REGIAO[m]&&CLIENT_REGIAO[m][c];
+        if(ov){
+          var cliSet={},sum=0;
+          for(var di=0;di<DADOS.length;di++){
+            var row=DADOS[di];
+            if(String(row.codusur)===c&&ov[row.codcli]===reg&&row.fat>=1){
+              sum+=row.fat;cliSet[row.codcli]=1;
+            }
+          }
+          fat+=sum;cli+=Object.keys(cliSet).length;
+        }else{
+          var d=DADOS_MES[m][c];
+          if(d){fat+=d.fat;cli+=d.cli;}
+        }
       });
       out.months.push({fat:fat,cli:cli});
       out.totalFat+=fat;out.totalCli+=cli;
