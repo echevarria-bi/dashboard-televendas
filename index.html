@@ -700,117 +700,61 @@ function renderRegiaoMes(){
     '</td>'+
     '</tr></table>'+
     '<div style="max-width:100%">'+svgLine(mPos,'#34d399',DADOS_2025.pos)+'</div></div>';
+<<<<<<< HEAD
 
-  // Matriz Faturamento por Região (sem Key Account nas regiões)
-  var regExclude = JSON.parse(JSON.stringify(REGIAO_MES));
-  for(var rk in regExclude){
-    if(regExclude[rk][7]) regExclude[rk][7] = regExclude[rk][7].filter(function(c){return c!=='1429';});
+  // Matriz Faturamento por Região com detalhe por vendedor (accordion)
+  var sellerNomes={'1596':'Ariane','1464':'Camila','1211':'Cristielen','1429':'Natália','9886':'Tatiana','1624':'Tatiana L','1527':'Lauren','1571':'Anna','1573':'Eduarda'};
+  function sellerFatInReg(cod,m,reg){
+    var rd=REGIAO_MES[reg][m];
+    if(!rd||rd.indexOf(cod)===-1)return -1;
+    var ov=CLIENT_REGIAO[m]&&CLIENT_REGIAO[m][cod];
+    if(ov){var sum=0;for(var di=0;di<DADOS.length;di++){var r=DADOS[di];if(String(r.codusur)===cod&&ov[r.codcli]===reg&&r.fat>=1)sum+=r.fat;}return sum;}
+    var d=DADOS_MES[m]&&DADOS_MES[m][cod];return d?d.fat:0;
   }
-  function calcRegTable(reg){
-    var rd=regExclude[reg]; if(!rd)return null;
-    var out={months:[],totalFat:0};
-    for(var m=1;m<=7;m++){
-      var fat=0;
-      (rd[m]||[]).forEach(function(c){
-        var ov=CLIENT_REGIAO[m]&&CLIENT_REGIAO[m][c];
-        if(ov){
-          for(var di=0;di<DADOS.length;di++){
-            var row=DADOS[di];
-            if(String(row.codusur)===c&&ov[row.codcli]===reg&&row.fat>=1) fat+=row.fat;
-          }
-        }else{
-          var d=DADOS_MES[m]&&DADOS_MES[m][c]; if(d) fat+=d.fat;
-        }
-      });
-      out.months.push({fat:fat}); out.totalFat+=fat;
-    }
-    return out;
+  function regTotal(reg){var t=0;for(var m=4;m<=7;m++){(REGIAO_MES[reg][m]||[]).forEach(function(c){var f=sellerFatInReg(c,m,reg);if(f>0)t+=f;});}return t;}
+  function sellersInReg(reg){var s={};for(var m=4;m<=7;m++){(REGIAO_MES[reg][m]||[]).forEach(function(c){s[c]=1;});}return Object.keys(s);}
+
+  if(!window.toggleReg){
+    window.toggleReg=function(el){
+      var sib=el.nextElementSibling;
+      while(sib&&!sib.classList.contains('reg-head')){sib.style.display=sib.style.display==='none'?'':'none';sib=sib.nextElementSibling;}
+      var arr=el.querySelector('.reg-arrow');if(arr)arr.textContent=arr.textContent==='▶'?'▼':'▶';};
   }
+
   html+='<div class="chart-box">';
-  html+='<h2>Faturamento por Região <span class="sub">Jan–Jul/2026: nesta tabela, Key Account é exibido separadamente para uma leitura exclusiva desse segmento. Nos cards rotativos, ele é considerado dentro da região de cada cliente.</span></h2>';
-  html+='<div style="overflow-x:auto"><table><thead><tr><th>Região</th>';
-  for(var mi=0;mi<7;mi++) html+='<th class="text-right">'+months[mi]+'</th>';
-  html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
+  html+='<h2>Faturamento por Região <span class="sub">Abr–Jul/2026 &mdash; clique na região para ver o detalhe por televendedora</span></h2>';
+  html+='<div style="overflow-x:auto"><table><thead><tr><th>Região</th><th class="text-right">Abr</th><th class="text-right">Mai</th><th class="text-right">Jun</th><th class="text-right">Jul</th><th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
   var rColTotals=[0,0,0,0,0,0,0];
   var rGrandTotal=0;
   order.forEach(function(reg,ri){
-    var rd=calcRegTable(reg);
-    if(!rd)return;
-    var total=0;
-    html+='<tr><td style="font-weight:600;color:#fcd34d;border-left:3px solid '+cores[ri]+'">'+reg+'</td>';
-    for(var mi=0;mi<7;mi++){
-      var fat=Math.round(rd.months[mi].fat*100)/100;
-      total+=fat;
-      rColTotals[mi]+=fat;
-      html+='<td class="text-right" style="white-space:nowrap;color:#fbbf24">'+fmt(fat)+'</td>';
-    }
-    rGrandTotal+=total;
-    html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(total)+'</td></tr>';
-  });
-  // Key Account row (só Julho)
-  var kaTotal=0;
-  html+='<tr><td style="font-weight:600;color:#f59e0b;border-left:3px solid #f59e0b">Key Account</td>';
-  for(var mi=0;mi<7;mi++){
-    if(mi===6){
-      var kd=DADOS_MES[mi+1]&&DADOS_MES[mi+1]['1429']?DADOS_MES[mi+1]['1429'].fat:0;
-      kaTotal+=kd;
-      rColTotals[mi]+=kd;
-      html+='<td class="text-right" style="white-space:nowrap;color:#f59e0b">'+fmt(kd)+'</td>';
-    }else{
-      html+='<td class="text-right" style="white-space:nowrap;color:#4a4d6e">&mdash;</td>';
-    }
-  }
-  rGrandTotal+=kaTotal;
-  html+='<td class="text-right" style="font-weight:700;color:#f59e0b">'+fmt(kaTotal)+'</td></tr>';
-  html+='<tfoot><tr style="border-top:2px solid #f59e0b"><td style="font-weight:700;color:#fcd34d">Total</td>';
-  for(var mi=0;mi<7;mi++) html+='<td class="text-right" style="font-weight:700;color:#fbbf24">'+fmt(rColTotals[mi])+'</td>';
-  html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(rGrandTotal)+'</td></tr></tfoot>';
-  html+='</tbody></table></div></div>';
-
-  // Repartição por Região x Televendedora
-  var sellerNames={'1596':'Ariane','1464':'Camila','1211':'Cristielen','1429':'Natália','9886':'Tatiana','1624':'Tatiana L','1527':'Lauren','1571':'Anna','1573':'Eduarda'};
-  var allMonths=[1,2,3,4,5,6,7];
-  function sellersInReg(reg){
-    var set={};
-    allMonths.forEach(function(m){(REGIAO_MES[reg][m]||[]).forEach(function(c){set[c]=1;});});
-    return Object.keys(set);
-  }
-  html+='<div class="chart-box">';
-  html+='<h2>Repartição por Região x Televendedora <span class="sub">Jan-Jul 2026</span></h2>';
-  html+='<div style="overflow-x:auto"><table><thead><tr><th>Região / Vendedor</th>';
-  for(var mi=0;mi<7;mi++) html+='<th class="text-right">'+months[mi]+'</th>';
-  html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
-  order.forEach(function(reg,ri){
     var ss=sellersInReg(reg);
     if(!ss.length)return;
-    function sellerFat(cod,m){
-      var rdm=REGIAO_MES[reg][m];
-      if(!rdm||rdm.indexOf(cod)===-1)return -1;
-      var ov=CLIENT_REGIAO[m]&&CLIENT_REGIAO[m][cod];
-      if(ov){
-        var sum=0;
-        for(var di=0;di<DADOS.length;di++){
-          var row=DADOS[di];
-          if(String(row.codusur)===cod&&ov[row.codcli]===reg&&row.fat>=1) sum+=row.fat;
-        }
-        return sum;
-      }
-      var d=DADOS_MES[m]&&DADOS_MES[m][cod];
-      return d?d.fat:0;
+    var rt=regTotal(reg);
+    html+='<tr class="reg-head" onclick="toggleReg(this)" style="cursor:pointer">'+
+      '<td style="font-weight:600;color:#fcd34d;border-left:3px solid '+cores[ri]+'"><span class="reg-arrow" style="display:inline-block;width:16px;font-size:12px;color:#888;margin-right:4px">▶</span>'+reg+'</td>';
+    for(var m=4;m<=7;m++){
+      var fat=0;(REGIAO_MES[reg][m]||[]).forEach(function(c){var f=sellerFatInReg(c,m,reg);if(f>0)fat+=f;});
+      rColTotals[m-1]+=fat;
+      html+='<td class="text-right" style="white-space:nowrap;color:#fbbf24">'+fmt(fat)+'</td>';
     }
-    ss.forEach(function(cod,si){
-      var total=0;
-      html+='<tr>'+(si===0?'<td rowspan="'+ss.length+'" style="font-weight:600;color:#fcd34d;border-left:3px solid '+cores[ri]+';vertical-align:middle;font-size:15px">'+reg+'</td>':'');
-      html+='<td style="padding-left:28px;color:#aaa;font-size:14px">'+(sellerNames[cod]||cod)+'</td>';
-      for(var mi=0;mi<7;mi++){
-        var m=mi+1;
-        var fat=sellerFat(cod,m);
-        if(fat<0){html+='<td class="text-right" style="white-space:nowrap;color:#4a4d6e;font-size:14px">&mdash;</td>';}
-        else{total+=fat;html+='<td class="text-right" style="white-space:nowrap;color:#9ca3af;font-size:14px">'+fmt(fat)+'</td>';}
+    rGrandTotal+=rt;
+    html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(rt)+'</td></tr>';
+    // Detail rows per seller
+    ss.forEach(function(cod){
+      var sellerTotal=0;
+      html+='<tr class="reg-detail" style="display:none">'+
+        '<td style="padding-left:36px;color:#aaa;font-size:14px;border-left:3px solid '+cores[ri]+'">'+(sellerNomes[cod]||cod)+'</td>';
+      for(var m=4;m<=7;m++){
+        var f=sellerFatInReg(cod,m,reg);
+        if(f<0) html+='<td class="text-right" style="white-space:nowrap;color:#4a4d6e;font-size:14px">&mdash;</td>';
+        else {sellerTotal+=f;html+='<td class="text-right" style="white-space:nowrap;color:#9ca3af;font-size:14px">'+fmt(f)+'</td>';}
       }
-      html+='<td class="text-right" style="font-weight:600;color:#34d399;font-size:14px">'+fmt(total)+'</td></tr>';
+      html+='<td class="text-right" style="font-weight:600;color:#34d399;font-size:14px">'+fmt(sellerTotal)+'</td></tr>';
     });
   });
+  html+='<tfoot><tr style="border-top:2px solid #f59e0b"><td style="font-weight:700;color:#fcd34d">Total</td>';
+  for(var m=4;m<=7;m++) html+='<td class="text-right" style="font-weight:700;color:#fbbf24">'+fmt(rColTotals[m-1])+'</td>';
+  html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(rGrandTotal)+'</td></tr></tfoot>';
   html+='</tbody></table></div></div>';
 
   document.getElementById('app').innerHTML=html;
