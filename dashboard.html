@@ -265,6 +265,11 @@ function render(){
     }
   }
 
+  vArr.forEach(function(v){
+    v.nome=v.rca.split(' ')[0];
+    if(v.codusur==='1624') v.nome+=' - Litoral';
+  });
+
   var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div class="matriz-wrap"><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right" style="color:#60a5fa">A Faturar</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right">Ticket M\u00e9dio</th></tr></thead><tbody>';
   var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
@@ -287,7 +292,7 @@ function render(){
       if(activeView==='polpanorte'&&v.codusur==='9886') afat=(AFATURAR['9886']||0)+(AFATURAR['1624']||0);
     }
     m+='<tr'+(i%2===0?' style="background:rgba(255,255,255,0.02)"':'')+'>'+
-      '<td style="font-weight:600;color:#fcd34d">'+v.rca+'</td>'+
+      '<td style="font-weight:600;color:#fcd34d">'+v.nome+'</td>'+
       '<td style="color:#888">'+v.regiao+'</td>'+
       '<td class="text-right" style="color:#888;white-space:nowrap">'+fmt(mt.fat||0)+'</td>'+
       '<td class="text-right" style="color:#fbbf24;font-weight:700;white-space:nowrap">'+fmt(v.fat)+'</td>'+
