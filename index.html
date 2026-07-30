@@ -457,35 +457,59 @@ function render(){
   var polpaMat='';
   if(activeView==='polpanorte'){
     var polpaMonths=['Jan','Fev','Mar','Abr','Mai','Jun','Jul'];
-    var polpaSellers=[
-      {cod:'1596',nome:'Ariane'},{cod:'1464',nome:'Camila'},{cod:'1211',nome:'Cristielen'},
-      {cod:'1429',nome:'Nat\u00e1lia'},{cod:'9886',nome:'Tatiana Lacerda Bacellar'},
-      {cod:'1571',nome:'Anna'},{cod:'1527',nome:'Lauren'},{cod:'1573',nome:'Eduarda'}
+    var polpaReg=[
+      {reg:'Regi\u00e3o Metropolitana',cor:'#f59e0b',sellers:[
+        {cod:'1596',nome:'Ariane'},{cod:'1527',nome:'Lauren'}
+      ]},
+      {reg:'Regi\u00e3o Sul',cor:'#34d399',sellers:[
+        {cod:'1464',nome:'Camila'},{cod:'1571',nome:'Anna'}
+      ]},
+      {reg:'Serra',cor:'#60a5fa',sellers:[
+        {cod:'9886',nome:'Tatiana Lacerda Bacellar'}
+      ]},
+      {reg:'Litoral',cor:'#a78bfa',sellers:[
+        {cod:'1573',nome:'Eduarda'}
+      ]},
+      {reg:'Vale dos Sinos',cor:'#f87171',sellers:[
+        {cod:'1211',nome:'Cristielen'},{cod:'1429',nome:'Nat\u00e1lia'}
+      ]}
     ];
     polpaMat+='<div class="chart-box">';
-    polpaMat+='<h2>Polpanorte por Televendedora <span class="sub">Jan-Jul 2026</span></h2>';
+    polpaMat+='<h2>Polpanorte por Regi\u00e3o <span class="sub">Jan-Jul 2026</span></h2>';
     polpaMat+='<div style="overflow-x:auto"><table><thead><tr><th>CODUSUR</th><th>Televendedora</th>';
     for(var pmi=0;pmi<7;pmi++) polpaMat+='<th class="text-right">'+polpaMonths[pmi]+'</th>';
     polpaMat+='<th class="text-right" style="color:#a855f7">Total</th></tr></thead><tbody>';
     var pColTotals=[0,0,0,0,0,0,0];
     var pGrandTotal=0;
-    polpaSellers.forEach(function(ps){
-      var pTotal=0;
-      polpaMat+='<tr><td style="color:#9ca3af">'+ps.cod+'</td><td style="font-weight:600;color:#d8b4fe">'+ps.nome+'</td>';
-      for(var pmi=1;pmi<=7;pmi++){
-        var pFat=0;
-        if(DADOS_POLPA_MES&&DADOS_POLPA_MES[pmi]){
-          if(DADOS_POLPA_MES[pmi][ps.cod]) pFat+=DADOS_POLPA_MES[pmi][ps.cod].fat;
-          if(ps.cod==='9886'&&DADOS_POLPA_MES[pmi]['1624']) pFat+=DADOS_POLPA_MES[pmi]['1624'].fat;
+    polpaReg.forEach(function(pr,pri){
+      var rTotals=[0,0,0,0,0,0,0];
+      var rGrand=0;
+      polpaMat+='<tr style="background:'+pr.cor+'22;border-left:3px solid '+pr.cor+'"><td colspan="10" style="font-weight:700;color:'+pr.cor+';font-size:16px;padding:8px 12px">'+pr.reg+'</td></tr>';
+      pr.sellers.forEach(function(ps){
+        var pTotal=0;
+        polpaMat+='<tr><td style="color:#9ca3af">'+ps.cod+'</td><td style="font-weight:600;color:#d8b4fe">'+ps.nome+'</td>';
+        for(var pmi=1;pmi<=7;pmi++){
+          var pFat=0;
+          if(DADOS_POLPA_MES&&DADOS_POLPA_MES[pmi]){
+            if(DADOS_POLPA_MES[pmi][ps.cod]) pFat+=DADOS_POLPA_MES[pmi][ps.cod].fat;
+            if(ps.cod==='9886'&&DADOS_POLPA_MES[pmi]['1624']) pFat+=DADOS_POLPA_MES[pmi]['1624'].fat;
+          }
+          pFat=Math.round(pFat*100)/100;
+          pTotal+=pFat;
+          rTotals[pmi-1]+=pFat;
+          pColTotals[pmi-1]+=pFat;
+          var pBg=pFat>0?'':'color:#4a4d6e';
+          polpaMat+='<td class="text-right" style="white-space:nowrap;'+pBg+'">'+fmt(pFat)+'</td>';
         }
-        pFat=Math.round(pFat*100)/100;
-        pTotal+=pFat;
-        pColTotals[pmi-1]+=pFat;
-        var pBg=pFat>0?'':'color:#4a4d6e';
-        polpaMat+='<td class="text-right" style="white-space:nowrap;'+pBg+'">'+fmt(pFat)+'</td>';
+        pGrandTotal+=pTotal;
+        rGrand+=pTotal;
+        polpaMat+='<td class="text-right" style="font-weight:700;color:#a855f7">'+fmt(pTotal)+'</td></tr>';
+      });
+      if(pr.sellers.length>1){
+        polpaMat+='<tr style="background:#151830;border-top:1px solid '+pr.cor+'88"><td></td><td style="font-weight:600;color:'+pr.cor+'">Subtotal '+pr.reg+'</td>';
+        for(var pmi=0;pmi<7;pmi++) polpaMat+='<td class="text-right" style="font-weight:600;color:'+pr.cor+'">'+fmt(rTotals[pmi])+'</td>';
+        polpaMat+='<td class="text-right" style="font-weight:700;color:'+pr.cor+'">'+fmt(rGrand)+'</td></tr>';
       }
-      pGrandTotal+=pTotal;
-      polpaMat+='<td class="text-right" style="font-weight:700;color:#a855f7">'+fmt(pTotal)+'</td></tr>';
     });
     polpaMat+='<tfoot><tr style="border-top:2px solid #a855f7"><td></td><td style="font-weight:700;color:#d8b4fe">Total</td>';
     for(var pmi=0;pmi<7;pmi++) polpaMat+='<td class="text-right" style="font-weight:700;color:#c084fc;white-space:nowrap">'+fmt(pColTotals[pmi])+'</td>';
