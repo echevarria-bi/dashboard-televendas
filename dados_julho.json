@@ -285,6 +285,45 @@
       "fat": 29.9
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38330,
+      "cliente": "SUELEN FORTES MACIEL",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "3958",
+      "fat": 29.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45260,
+      "cliente": "RESTAURANTE AHP LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "3958",
+      "fat": 29.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44421,
+      "cliente": "DINDAS GOURMET LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "3958",
+      "fat": 57.71
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 44643,
@@ -428,6 +467,32 @@
       "fat": 76.88
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "EMBUTIDOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "4321",
+      "fat": 73.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38856,
+      "cliente": "EXAL - ADMINISTRACAO DE RESTAURANTES EMPRESARIAIS E FACILITI",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "EMBUTIDOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "4321",
+      "fat": 167.3
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 44387,
@@ -452,6 +517,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "3958",
       "fat": 28.76
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "3958",
+      "fat": 28.9
     },
     {
       "data": 46212,
@@ -818,6 +896,19 @@
       "fat": 288.95
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40374,
+      "cliente": "59.357.118 JOAO GABRIEL PEREIRA ESNARRIA",
+      "ramo": "RESTAURANTE",
+      "depto": "BOVINOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "4126",
+      "fat": 32.84
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 36036,
@@ -1089,6 +1180,19 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "4126",
       "fat": 73.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40374,
+      "cliente": "59.357.118 JOAO GABRIEL PEREIRA ESNARRIA",
+      "ramo": "RESTAURANTE",
+      "depto": "BOVINOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "4126",
+      "fat": 39.09
     },
     {
       "data": 46219,
@@ -1520,6 +1624,45 @@
       "fat": 268
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40265,
+      "cliente": "JEFERSON DE VARGAS GASTRING",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRANGOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11026",
+      "fat": 139.96
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44959,
+      "cliente": "MERCADO FARIAS LTDA",
+      "ramo": "MERCADO",
+      "depto": "FRANGOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11026",
+      "fat": 4980.41
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44421,
+      "cliente": "DINDAS GOURMET LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRANGOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "11026",
+      "fat": 72.14
+    },
+    {
       "data": 46210,
       "dataStr": "07/07/2026",
       "codcli": 41265,
@@ -1921,6 +2064,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "3958",
       "fat": 106.76
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44656,
+      "cliente": "56.224.054 BIBIANA BACKES OHLAND",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "3958",
+      "fat": 514.96
     },
     {
       "data": 46219,
@@ -2350,6 +2506,84 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "10217",
       "fat": 174.26
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 45974,
+      "cliente": "27.992.671 CRISTIANE ALVES",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "LATICINIOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10217",
+      "fat": 367.08
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37821,
+      "cliente": "56.085.546 DHIENIFER BRANDAO DA SILVA",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10217",
+      "fat": 84.93
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 39757,
+      "cliente": "58.851.911 LISANDRA MARIA LUDWIG",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10217",
+      "fat": 90.3
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45260,
+      "cliente": "RESTAURANTE AHP LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10217",
+      "fat": 84.75
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38856,
+      "cliente": "EXAL - ADMINISTRACAO DE RESTAURANTES EMPRESARIAIS E FACILITI",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "LATICINIOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10217",
+      "fat": 151.11
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 18150,
+      "cliente": "FS REFEICOES LTDA",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "LATICINIOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10217",
+      "fat": 3843.36
     },
     {
       "data": 46205,
@@ -3626,6 +3860,45 @@
       "fat": 171.91
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40265,
+      "cliente": "JEFERSON DE VARGAS GASTRING",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10217",
+      "fat": 255.6
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10217",
+      "fat": 255.07
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44421,
+      "cliente": "DINDAS GOURMET LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10217",
+      "fat": 83.78999999999999
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 32124,
@@ -3689,6 +3962,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "6276",
       "fat": 67.56
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 32124,
+      "cliente": "50.271.874 RITIELE MARTINS BAUER",
+      "ramo": "RESTAURANTE",
+      "depto": "VEGETAIS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "6276",
+      "fat": 70.8
     },
     {
       "data": 46212,
@@ -3821,6 +4107,32 @@
       "fat": 68.71000000000001
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45260,
+      "cliente": "RESTAURANTE AHP LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10217",
+      "fat": 68.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 18150,
+      "cliente": "FS REFEICOES LTDA",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "LATICINIOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10217",
+      "fat": 239.6
+    },
+    {
       "data": 46222,
       "dataStr": "19/07/2026",
       "codcli": 40569,
@@ -3936,6 +4248,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "4232",
       "fat": 35.97
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41252,
+      "cliente": "LA FAVORITA BISTRO LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRANGOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "4232",
+      "fat": 71.4
     },
     {
       "data": 46206,
@@ -4144,6 +4469,19 @@
       "supervisor": "VENDAS INTERNO",
       "codfornec": "10425",
       "fat": 456.08
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38856,
+      "cliente": "EXAL - ADMINISTRACAO DE RESTAURANTES EMPRESARIAIS E FACILITI",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "LATICINIOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10425",
+      "fat": 82.95
     },
     {
       "data": 46220,
@@ -4510,6 +4848,19 @@
       "fat": 191.4
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "MERCEARIA",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12715",
+      "fat": 101.7
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 44916,
@@ -4547,6 +4898,19 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "12715",
       "fat": 26
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "MERCEARIA",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12715",
+      "fat": 83.7
     },
     {
       "data": 46217,
@@ -4612,6 +4976,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "4117",
       "fat": 92.84
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42047,
+      "cliente": "MAIKEL RONALDO DE SOUZA",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "4117",
+      "fat": 95.11
     },
     {
       "data": 46205,
@@ -5006,6 +5383,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 31401,
+      "cliente": "MARIA REGINA CARDOSO MENDES 69278199087",
+      "ramo": "MERCADO",
+      "depto": "FRANGOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11515",
+      "fat": 73.44000000000001
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 44483,
       "cliente": "ZM RESTAURANTE E CAFETERIA LTDA",
       "ramo": "RESTAURANTE",
@@ -5015,6 +5405,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "11515",
       "fat": 193.06
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 43751,
+      "cliente": "ACAI CHOCO GOMES LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRANGOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "11515",
+      "fat": 98.6
     },
     {
       "data": 46230,
@@ -5095,6 +5498,45 @@
       "fat": 251.64
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40265,
+      "cliente": "JEFERSON DE VARGAS GASTRING",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRANGOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10717",
+      "fat": 78.29
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 39757,
+      "cliente": "58.851.911 LISANDRA MARIA LUDWIG",
+      "ramo": "AÇAITERIA",
+      "depto": "FRANGOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10717",
+      "fat": 104.72
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42325,
+      "cliente": "60.146.536 MARIA DEL CARMEN DURAN BEDOYA",
+      "ramo": "RESTAURANTE",
+      "depto": "FRANGOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10717",
+      "fat": 251.64
+    },
+    {
       "data": 46226,
       "dataStr": "23/07/2026",
       "codcli": 38856,
@@ -5158,6 +5600,19 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "10828",
       "fat": 23.25
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45782,
+      "cliente": "ACAI & SORVETES DO PARA LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 19
     },
     {
       "data": 46205,
@@ -5251,6 +5706,32 @@
       "fat": 21.029999999999998
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45782,
+      "cliente": "ACAI & SORVETES DO PARA LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 19.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45782,
+      "cliente": "ACAI & SORVETES DO PARA LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 11
+    },
+    {
       "data": 46213,
       "dataStr": "10/07/2026",
       "codcli": 40702,
@@ -5301,6 +5782,19 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "10828",
       "fat": 47.56
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45782,
+      "cliente": "ACAI & SORVETES DO PARA LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 35
     },
     {
       "data": 46205,
@@ -7970,6 +8464,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 45731,
+      "cliente": "WILLIAM CALIXTO MACHADO",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 262.84
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 25562,
       "cliente": "ELTON MACHADO RAUPP 71068538015",
       "ramo": "AÇAITERIA",
@@ -8009,6 +8516,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 43751,
+      "cliente": "ACAI CHOCO GOMES LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 829
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 41289,
       "cliente": "JOÃO PAULO FERREIRA JÚNIOR",
       "ramo": "AÇAITERIA",
@@ -8044,6 +8564,175 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "10828",
       "fat": 829
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 4662
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37267,
+      "cliente": "RAFAEL DE AVILA",
+      "ramo": "RESTAURANTE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 424.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 169.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42134,
+      "cliente": "TATIANE SAVEDRA DOS SANTOS",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 179.75
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 39757,
+      "cliente": "58.851.911 LISANDRA MARIA LUDWIG",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 849
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45782,
+      "cliente": "ACAI & SORVETES DO PARA LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 82.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40557,
+      "cliente": "59.874.031 MARLON JOSUE MACHADO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 424.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 46186,
+      "cliente": "20.790.996 LISANDRA DA ROSA",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 89.60000000000001
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44916,
+      "cliente": "ALVIM DELIVERY LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 1273.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38439,
+      "cliente": "54.261.470 THAINAN BARBOSA HERMES",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 1698
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41203,
+      "cliente": "59.925.025 MORGANA LAMPERT DILL",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 339.6
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 32124,
+      "cliente": "50.271.874 RITIELE MARTINS BAUER",
+      "ramo": "RESTAURANTE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 84.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40374,
+      "cliente": "59.357.118 JOAO GABRIEL PEREIRA ESNARRIA",
+      "ramo": "RESTAURANTE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 88.57000000000001
     },
     {
       "data": 46211,
@@ -8854,6 +9543,32 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 41434,
+      "cliente": "61.750.255 MARIA DEL PILAR MOLINA GONZALEZ",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 1690
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 34081,
+      "cliente": "PILAR MOLINA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 338
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 43094,
       "cliente": "NAIR DOS SANTOS",
       "ramo": "CONSUMIDOR",
@@ -8915,6 +9630,45 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "10828",
       "fat": 1183
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 2961
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42685,
+      "cliente": "KELLI CRISTINA ARAUJO",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 1226.32
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42977,
+      "cliente": "GABRIELE BOHN",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 348.71000000000004
     },
     {
       "data": 46205,
@@ -9110,6 +9864,32 @@
       "supervisor": "VENDAS INTERNO",
       "codfornec": "10828",
       "fat": 900.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 360.36
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29043,
+      "cliente": "GENI ANDRADE SEVERO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 228.69
     },
     {
       "data": 46204,
@@ -9606,6 +10386,32 @@
       "fat": 177.95
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29553,
+      "cliente": "ANDIELI ROSA SCHMIESKI",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 53.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41203,
+      "cliente": "59.925.025 MORGANA LAMPERT DILL",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 55
+    },
+    {
       "data": 46220,
       "dataStr": "17/07/2026",
       "codcli": 41617,
@@ -10033,6 +10839,32 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "10828",
       "fat": 1494
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 33257,
+      "cliente": "LUCAS DA SILVA CARDOSO",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 464.04
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 143.22
     },
     {
       "data": 46220,
@@ -11465,6 +12297,19 @@
       "fat": 36.5
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38330,
+      "cliente": "SUELEN FORTES MACIEL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11048",
+      "fat": 107.7
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 40875,
@@ -11619,6 +12464,32 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "11048",
       "fat": 483.2
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38330,
+      "cliente": "SUELEN FORTES MACIEL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11048",
+      "fat": 98.7
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40800,
+      "cliente": "34.750.136 SUZANA SILVA HENRIQUE LEAL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11048",
+      "fat": 31.9
     },
     {
       "data": 46204,
@@ -11801,6 +12672,19 @@
       "supervisor": "JULIANO CARLOS LAUSE",
       "codfornec": "11048",
       "fat": 37
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40800,
+      "cliente": "34.750.136 SUZANA SILVA HENRIQUE LEAL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11048",
+      "fat": 36.99
     },
     {
       "data": 46205,
@@ -12100,6 +12984,32 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "11051",
       "fat": 82.75999999999999
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 77.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 46186,
+      "cliente": "20.790.996 LISANDRA DA ROSA",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11051",
+      "fat": 40.62
     },
     {
       "data": 46213,
@@ -13025,6 +13935,71 @@
       "fat": 39.9
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42047,
+      "cliente": "MAIKEL RONALDO DE SOUZA",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11051",
+      "fat": 81.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38330,
+      "cliente": "SUELEN FORTES MACIEL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11051",
+      "fat": 39.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 885.6
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 46186,
+      "cliente": "20.790.996 LISANDRA DA ROSA",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11051",
+      "fat": 42.1
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42977,
+      "cliente": "GABRIELE BOHN",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11051",
+      "fat": 40.94
+    },
+    {
       "data": 46213,
       "dataStr": "10/07/2026",
       "codcli": 44251,
@@ -13257,6 +14232,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "11051",
       "fat": 35.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 79.8
     },
     {
       "data": 46204,
@@ -13584,6 +14572,45 @@
       "fat": 19.95
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 37727,
+      "cliente": "55.737.632 ANDREI MAGNO RODRIGUES ALVES",
+      "ramo": "RESTAURANTE",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 107.4
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 30601,
+      "cliente": "SILVANA QUEIROZ VENTURA",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 22.27
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 100.16
+    },
+    {
       "data": 46211,
       "dataStr": "08/07/2026",
       "codcli": 42916,
@@ -13701,6 +14728,19 @@
       "fat": 43.8
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 34081,
+      "cliente": "PILAR MOLINA",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 23.9
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 41434,
@@ -13738,6 +14778,32 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "11051",
       "fat": 25.02
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 34081,
+      "cliente": "PILAR MOLINA",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 22.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42047,
+      "cliente": "MAIKEL RONALDO DE SOUZA",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11051",
+      "fat": 25.99
     },
     {
       "data": 46204,
@@ -13922,6 +14988,32 @@
       "fat": 33.78
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 42884,
+      "cliente": "SAYMON VITORIA DA SILVA",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11048",
+      "fat": 32.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29043,
+      "cliente": "GENI ANDRADE SEVERO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11048",
+      "fat": 33.16
+    },
+    {
       "data": 46213,
       "dataStr": "10/07/2026",
       "codcli": 44251,
@@ -14024,6 +15116,19 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "11051",
       "fat": 25.17
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 39757,
+      "cliente": "58.851.911 LISANDRA MARIA LUDWIG",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "11051",
+      "fat": 91.6
     },
     {
       "data": 46206,
@@ -14154,6 +15259,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "11314",
       "fat": 11.48
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40374,
+      "cliente": "59.357.118 JOAO GABRIEL PEREIRA ESNARRIA",
+      "ramo": "RESTAURANTE",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": 11.41
     },
     {
       "data": 46220,
@@ -14507,6 +15625,19 @@
       "fat": 129.9
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40374,
+      "cliente": "59.357.118 JOAO GABRIEL PEREIRA ESNARRIA",
+      "ramo": "RESTAURANTE",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11325",
+      "fat": 15.620000000000001
+    },
+    {
       "data": 46231,
       "dataStr": "28/07/2026",
       "codcli": 46114,
@@ -14635,6 +15766,32 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "11173",
       "fat": 27
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37821,
+      "cliente": "56.085.546 DHIENIFER BRANDAO DA SILVA",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11173",
+      "fat": 28.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42325,
+      "cliente": "60.146.536 MARIA DEL CARMEN DURAN BEDOYA",
+      "ramo": "RESTAURANTE",
+      "depto": "DOCES",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "11173",
+      "fat": 25.9
     },
     {
       "data": 46227,
@@ -15367,6 +16524,32 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 37727,
+      "cliente": "55.737.632 ANDREI MAGNO RODRIGUES ALVES",
+      "ramo": "RESTAURANTE",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11173",
+      "fat": 119
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 34081,
+      "cliente": "PILAR MOLINA",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11173",
+      "fat": 95
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 30082,
       "cliente": "MARTA FONSECA DA SILVA",
       "ramo": "AÇAITERIA",
@@ -15415,6 +16598,58 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "11173",
       "fat": 64.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40800,
+      "cliente": "34.750.136 SUZANA SILVA HENRIQUE LEAL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11173",
+      "fat": 39.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 36248,
+      "cliente": "TANIA LIMA DA COSTA 47171812049",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "DOCES",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "11173",
+      "fat": 18
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42685,
+      "cliente": "KELLI CRISTINA ARAUJO",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11173",
+      "fat": 66.45
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11173",
+      "fat": 95
     },
     {
       "data": 46205,
@@ -15874,6 +17109,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 45731,
+      "cliente": "WILLIAM CALIXTO MACHADO",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12379",
+      "fat": 34.98
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 44858,
       "cliente": "COMPANHIA DOS ASSADOS LTDA",
       "ramo": "AÇAITERIA",
@@ -16117,6 +17365,45 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "11173",
       "fat": 35.91
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 36248,
+      "cliente": "TANIA LIMA DA COSTA 47171812049",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "DOCES",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "11173",
+      "fat": 16.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11173",
+      "fat": 84.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 46186,
+      "cliente": "20.790.996 LISANDRA DA ROSA",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11173",
+      "fat": 17.83
     },
     {
       "data": 46227,
@@ -16587,6 +17874,19 @@
       "fat": 15.8
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40374,
+      "cliente": "59.357.118 JOAO GABRIEL PEREIRA ESNARRIA",
+      "ramo": "RESTAURANTE",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": 8.959999999999999
+    },
+    {
       "data": 46232,
       "dataStr": "29/07/2026",
       "codcli": 44858,
@@ -16702,6 +18002,19 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "11314",
       "fat": 30.24
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40374,
+      "cliente": "59.357.118 JOAO GABRIEL PEREIRA ESNARRIA",
+      "ramo": "RESTAURANTE",
+      "depto": "DESCARTAVEIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11314",
+      "fat": 18.75
     },
     {
       "data": 46205,
@@ -18630,6 +19943,32 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 34081,
+      "cliente": "PILAR MOLINA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 66.9
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44950,
+      "cliente": "ADRIANA NUNES RIBEIRO",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 129.8
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 21436,
       "cliente": "SUSANA COSTA DA ROSA",
       "ramo": "CONSUMIDOR",
@@ -18643,6 +19982,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 42884,
+      "cliente": "SAYMON VITORIA DA SILVA",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 454.3
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 29016,
       "cliente": "MARIANNA DE AGUIAR TESCH",
       "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
@@ -18652,6 +20004,188 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "10828",
       "fat": 943.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42047,
+      "cliente": "MAIKEL RONALDO DE SOUZA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 259.6
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29553,
+      "cliente": "ANDIELI ROSA SCHMIESKI",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 324.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40800,
+      "cliente": "34.750.136 SUZANA SILVA HENRIQUE LEAL",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 649
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37821,
+      "cliente": "56.085.546 DHIENIFER BRANDAO DA SILVA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 778.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37342,
+      "cliente": "KELVIN WALBER DOS SANTOS",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 1298
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 30601,
+      "cliente": "SILVANA QUEIROZ VENTURA",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 138.38000000000002
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 36248,
+      "cliente": "TANIA LIMA DA COSTA 47171812049",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 129.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29408,
+      "cliente": "NICOLE FRANCINE CASSAL",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 2271.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 1045.3600000000001
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 908.6
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 43440,
+      "cliente": "TATIANE DOS SANTOS DA SILVA RESTAURANTE",
+      "ramo": "RESTAURANTE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 387.34999999999997
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44916,
+      "cliente": "ALVIM DELIVERY LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 1298
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41203,
+      "cliente": "59.925.025 MORGANA LAMPERT DILL",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10828",
+      "fat": 584.1
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37282,
+      "cliente": "51.435.843 EDMILSON DA LUZ SOARES",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 334.45
     },
     {
       "data": 46212,
@@ -19148,6 +20682,58 @@
       "fat": 176.9
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 45974,
+      "cliente": "27.992.671 CRISTIANE ALVES",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "MERCEARIA",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12502",
+      "fat": 176.9
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44775,
+      "cliente": "59.280.095 GABRIEL PASSOS MORALES",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "MERCEARIA",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12502",
+      "fat": 186.85
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42325,
+      "cliente": "60.146.536 MARIA DEL CARMEN DURAN BEDOYA",
+      "ramo": "RESTAURANTE",
+      "depto": "MERCEARIA",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "12502",
+      "fat": 176.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 7214,
+      "cliente": "CASTELLI & CASTELLI RESTAURANTE LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "MERCEARIA",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12502",
+      "fat": 530.7
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 42884,
@@ -19393,6 +20979,19 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "11048",
       "fat": 32.99
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40800,
+      "cliente": "34.750.136 SUZANA SILVA HENRIQUE LEAL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11048",
+      "fat": 32.9
     },
     {
       "data": 46212,
@@ -19889,6 +21488,19 @@
       "fat": 349.5
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 31549,
+      "cliente": "LUIS DOUGLAS DE SOUZA AMARAL 01995647012",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "VEGETAIS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "8586",
+      "fat": 1053
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 32118,
@@ -20173,6 +21785,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "8586",
       "fat": 211.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44959,
+      "cliente": "MERCADO FARIAS LTDA",
+      "ramo": "MERCADO",
+      "depto": "VEGETAIS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "8586",
+      "fat": 2673
     },
     {
       "data": 46204,
@@ -20773,6 +22398,32 @@
       "fat": 94.64
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44656,
+      "cliente": "56.224.054 BIBIANA BACKES OHLAND",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRANGOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "3902",
+      "fat": 277.32
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38856,
+      "cliente": "EXAL - ADMINISTRACAO DE RESTAURANTES EMPRESARIAIS E FACILITI",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "FRANGOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "3902",
+      "fat": 244.1
+    },
+    {
       "data": 46206,
       "dataStr": "03/07/2026",
       "codcli": 44931,
@@ -21330,6 +22981,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "11051",
       "fat": 41.47
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 42884,
+      "cliente": "SAYMON VITORIA DA SILVA",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 39.9
     },
     {
       "data": 46205,
@@ -21891,6 +23555,32 @@
       "fat": 134.62
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 41434,
+      "cliente": "61.750.255 MARIA DEL PILAR MOLINA GONZALEZ",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 134.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41623,
+      "cliente": "AM DISTRIBUIDORA DE CONGELADOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10828",
+      "fat": 550.3
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 41370,
@@ -22192,6 +23882,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 34081,
+      "cliente": "PILAR MOLINA",
+      "ramo": "AÇAITERIA",
+      "depto": "MERCEARIA",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10658",
+      "fat": 61.1
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 39726,
       "cliente": "SIDINEI VETTORAZZI",
       "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
@@ -22240,6 +23943,71 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "10658",
       "fat": 108.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 43804,
+      "cliente": "34.933.492 LUIS FERNANDO SILVA HENRIQUE",
+      "ramo": "RESTAURANTE",
+      "depto": "MERCEARIA",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10658",
+      "fat": 68.63000000000001
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44916,
+      "cliente": "ALVIM DELIVERY LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "MERCEARIA",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "10658",
+      "fat": 544
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 27213,
+      "cliente": "ARMAZEM 840 DISTRIBUIDORA DE ALIMENTOS LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "MERCEARIA",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "10658",
+      "fat": 870.4
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41601,
+      "cliente": "ZE DO GELO LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "MERCEARIA",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10658",
+      "fat": 2176
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 21715,
+      "cliente": "JOSE JARBAS SILVA LANCHES",
+      "ramo": "AÇAITERIA",
+      "depto": "MERCEARIA",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10658",
+      "fat": 761.6
     },
     {
       "data": 46205,
@@ -22619,6 +24387,71 @@
       "fat": 68.85
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45572,
+      "cliente": "30.462.169 LAUTILDES DUARTE GONCALVES JUNIOR",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRANGOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11917",
+      "fat": 526.4
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "FRANGOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11917",
+      "fat": 164.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41828,
+      "cliente": "26.740.692 HELEN SCHAIANE CUEVA LOURENCO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRANGOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11917",
+      "fat": 98.7
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42266,
+      "cliente": "DIONE DA SIVA  DOS SANTOS LTDA",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRANGOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "11917",
+      "fat": 538.72
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37802,
+      "cliente": "ORY LAUX & CIA LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "FRANGOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "11917",
+      "fat": 520
+    },
+    {
       "data": 46219,
       "dataStr": "16/07/2026",
       "codcli": 42389,
@@ -22721,6 +24554,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "11926",
       "fat": 331.7
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41252,
+      "cliente": "LA FAVORITA BISTRO LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "BOVINOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "11926",
+      "fat": 557.38
     },
     {
       "data": 46211,
@@ -22957,6 +24803,19 @@
       "fat": 11.03
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29553,
+      "cliente": "ANDIELI ROSA SCHMIESKI",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10828",
+      "fat": 51.6
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 12161,
@@ -23072,6 +24931,19 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "11884",
       "fat": 443.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 12161,
+      "cliente": "SAL & PIMENTA RESTAURANTE LTDA ME",
+      "ramo": "RESTAURANTE",
+      "depto": "PESCADOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "11884",
+      "fat": 906.24
     },
     {
       "data": 46205,
@@ -23412,6 +25284,32 @@
       "fat": 38.6
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 31401,
+      "cliente": "MARIA REGINA CARDOSO MENDES 69278199087",
+      "ramo": "MERCADO",
+      "depto": "BOVINOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "10671",
+      "fat": 49.53
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41828,
+      "cliente": "26.740.692 HELEN SCHAIANE CUEVA LOURENCO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "BOVINOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10671",
+      "fat": 238.8
+    },
+    {
       "data": 46218,
       "dataStr": "15/07/2026",
       "codcli": 34899,
@@ -23685,6 +25583,19 @@
       "fat": 303.42
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42325,
+      "cliente": "60.146.536 MARIA DEL CARMEN DURAN BEDOYA",
+      "ramo": "RESTAURANTE",
+      "depto": "BOVINOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10639",
+      "fat": 375.06
+    },
+    {
       "data": 46211,
       "dataStr": "08/07/2026",
       "codcli": 41434,
@@ -23917,6 +25828,32 @@
       "supervisor": "VENDAS INTERNO",
       "codfornec": "12343",
       "fat": 71.6
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 32124,
+      "cliente": "50.271.874 RITIELE MARTINS BAUER",
+      "ramo": "RESTAURANTE",
+      "depto": "EMBUTIDOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12343",
+      "fat": 37.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38856,
+      "cliente": "EXAL - ADMINISTRACAO DE RESTAURANTES EMPRESARIAIS E FACILITI",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "EMBUTIDOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "12343",
+      "fat": 35.8
     },
     {
       "data": 46216,
@@ -24530,6 +26467,84 @@
       "fat": 53.8
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42047,
+      "cliente": "MAIKEL RONALDO DE SOUZA",
+      "ramo": "AÇAITERIA",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 26.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37821,
+      "cliente": "56.085.546 DHIENIFER BRANDAO DA SILVA",
+      "ramo": "AÇAITERIA",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 26.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42325,
+      "cliente": "60.146.536 MARIA DEL CARMEN DURAN BEDOYA",
+      "ramo": "RESTAURANTE",
+      "depto": "EMBUTIDOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "12343",
+      "fat": 26.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41601,
+      "cliente": "ZE DO GELO LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 322.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44421,
+      "cliente": "DINDAS GOURMET LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "EMBUTIDOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "12343",
+      "fat": 27.72
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40374,
+      "cliente": "59.357.118 JOAO GABRIEL PEREIRA ESNARRIA",
+      "ramo": "RESTAURANTE",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 28.04
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 21238,
@@ -24632,6 +26647,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "12343",
       "fat": 468
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41601,
+      "cliente": "ZE DO GELO LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 274.8
     },
     {
       "data": 46227,
@@ -25167,6 +27195,71 @@
       "fat": 31.9
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42047,
+      "cliente": "MAIKEL RONALDO DE SOUZA",
+      "ramo": "AÇAITERIA",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 31.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "EMBUTIDOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12343",
+      "fat": 31.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45830,
+      "cliente": "BOLANOS BURGER S HAMBURGUERIA ARTESANAL LTDA",
+      "ramo": "PUB, BAR, BOTECO, HAMBURGUERIA",
+      "depto": "EMBUTIDOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "12343",
+      "fat": 382.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41247,
+      "cliente": "ASTROBURGER COM DE ALIMENTOS LTDA",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 401.7
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41601,
+      "cliente": "ZE DO GELO LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 382.8
+    },
+    {
       "data": 46210,
       "dataStr": "07/07/2026",
       "codcli": 44220,
@@ -25596,6 +27689,45 @@
       "fat": 916
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41828,
+      "cliente": "26.740.692 HELEN SCHAIANE CUEVA LOURENCO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "PESCADOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "6509",
+      "fat": 229
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 32124,
+      "cliente": "50.271.874 RITIELE MARTINS BAUER",
+      "ramo": "RESTAURANTE",
+      "depto": "PESCADOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "6509",
+      "fat": 259
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41252,
+      "cliente": "LA FAVORITA BISTRO LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "PESCADOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "6509",
+      "fat": 452
+    },
+    {
       "data": 46209,
       "dataStr": "06/07/2026",
       "codcli": 38689,
@@ -25635,6 +27767,19 @@
       "fat": 66.31
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 31401,
+      "cliente": "MARIA REGINA CARDOSO MENDES 69278199087",
+      "ramo": "MERCADO",
+      "depto": "BOVINOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12681",
+      "fat": 119.41
+    },
+    {
       "data": 46217,
       "dataStr": "14/07/2026",
       "codcli": 18851,
@@ -25672,6 +27817,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "12342",
       "fat": 39.8
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44387,
+      "cliente": "TAUNY EDUARDO DE OLIVEIRA",
+      "ramo": "CONSUMIDOR",
+      "depto": "MERCEARIA",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12342",
+      "fat": 69
     },
     {
       "data": 46219,
@@ -25906,6 +28064,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "12343",
       "fat": 30.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41828,
+      "cliente": "26.740.692 HELEN SCHAIANE CUEVA LOURENCO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 32.9
     },
     {
       "data": 46204,
@@ -26389,6 +28560,32 @@
       "fat": 12.84
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41828,
+      "cliente": "26.740.692 HELEN SCHAIANE CUEVA LOURENCO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 77.4
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41601,
+      "cliente": "ZE DO GELO LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "EMBUTIDOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12343",
+      "fat": 346.8
+    },
+    {
       "data": 46225,
       "dataStr": "22/07/2026",
       "codcli": 41109,
@@ -26530,6 +28727,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "3896",
       "fat": 70.08
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40557,
+      "cliente": "59.874.031 MARLON JOSUE MACHADO",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "3896",
+      "fat": 19.9
     },
     {
       "data": 46212,
@@ -27000,6 +29210,32 @@
       "fat": 208.8
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42325,
+      "cliente": "60.146.536 MARIA DEL CARMEN DURAN BEDOYA",
+      "ramo": "RESTAURANTE",
+      "depto": "VEGETAIS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "8586",
+      "fat": 276
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 7214,
+      "cliente": "CASTELLI & CASTELLI RESTAURANTE LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "VEGETAIS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "8586",
+      "fat": 262.8
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 31549,
@@ -27167,6 +29403,19 @@
       "supervisor": "MOIZES ISNARDI SILVEIRA",
       "codfornec": "8586",
       "fat": 274.18
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41601,
+      "cliente": "ZE DO GELO LTDA",
+      "ramo": "DISTRIBUIDORA",
+      "depto": "VEGETAIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "8586",
+      "fat": 6183
     },
     {
       "data": 46212,
@@ -27819,6 +30068,32 @@
       "fat": 1195.5
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 37821,
+      "cliente": "56.085.546 DHIENIFER BRANDAO DA SILVA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "10828",
+      "fat": 139.5
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44421,
+      "cliente": "DINDAS GOURMET LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "FRUTAS CONGELADAS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10828",
+      "fat": 92.59
+    },
+    {
       "data": 46211,
       "dataStr": "08/07/2026",
       "codcli": 41253,
@@ -27882,6 +30157,19 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "3902",
       "fat": 207.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 44093,
+      "cliente": "DIOVANI DA SILVA",
+      "ramo": "CHURRASCARIA",
+      "depto": "VEGETAIS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "3902",
+      "fat": 223.35
     },
     {
       "data": 46216,
@@ -28822,6 +31110,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 45731,
+      "cliente": "WILLIAM CALIXTO MACHADO",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11664",
+      "fat": 23.72
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 44858,
       "cliente": "COMPANHIA DOS ASSADOS LTDA",
       "ramo": "AÇAITERIA",
@@ -28831,6 +31132,84 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "11664",
       "fat": 39.98
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 34081,
+      "cliente": "PILAR MOLINA",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11664",
+      "fat": 137.94
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 44950,
+      "cliente": "ADRIANA NUNES RIBEIRO",
+      "ramo": "CONSUMIDOR",
+      "depto": "LATICINIOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11664",
+      "fat": 22.99
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40800,
+      "cliente": "34.750.136 SUZANA SILVA HENRIQUE LEAL",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11664",
+      "fat": 91.96
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 36248,
+      "cliente": "TANIA LIMA DA COSTA 47171812049",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "LATICINIOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "11664",
+      "fat": 22.99
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11664",
+      "fat": 231.43
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "LATICINIOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11664",
+      "fat": 459.8
     },
     {
       "data": 46210,
@@ -29028,6 +31407,32 @@
       "fat": 34
     },
     {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 37727,
+      "cliente": "55.737.632 ANDREI MAGNO RODRIGUES ALVES",
+      "ramo": "RESTAURANTE",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 239.2
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 42884,
+      "cliente": "SAYMON VITORIA DA SILVA",
+      "ramo": "CONSUMIDOR",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11051",
+      "fat": 60
+    },
+    {
       "data": 46204,
       "dataStr": "01/07/2026",
       "codcli": 38856,
@@ -29208,6 +31613,19 @@
       "supervisor": "VENDAS INTERNO",
       "codfornec": "12682",
       "fat": 71.91
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 41252,
+      "cliente": "LA FAVORITA BISTRO LTDA",
+      "ramo": "AÇAITERIA",
+      "depto": "EMBUTIDOS",
+      "codusur": "1211",
+      "rca": "CRISTIELEN SILVA GONÇALVES",
+      "supervisor": "LEONARDO LAMBRECHTT",
+      "codfornec": "12682",
+      "fat": 162.44
     },
     {
       "data": 46205,
@@ -29769,6 +32187,19 @@
       "fat": 10.17
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 42325,
+      "cliente": "60.146.536 MARIA DEL CARMEN DURAN BEDOYA",
+      "ramo": "RESTAURANTE",
+      "depto": "CONDIMENTOS",
+      "codusur": "1596",
+      "rca": "ARIANE DOS SANTOS QUEBAO",
+      "supervisor": "JULIANO CARLOS LAUSE",
+      "codfornec": "10412",
+      "fat": 8.9
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 45494,
@@ -29819,6 +32250,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "12650",
       "fat": 195.13
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45494,
+      "cliente": "PIZZA DA CASA 21 LTDA",
+      "ramo": "PIZZARIA",
+      "depto": "LATICINIOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12650",
+      "fat": 197.95
     },
     {
       "data": 46230,
@@ -30616,6 +33060,19 @@
     {
       "data": 46232,
       "dataStr": "29/07/2026",
+      "codcli": 45974,
+      "cliente": "27.992.671 CRISTIANE ALVES",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "VEGETAIS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "12789",
+      "fat": 261.6
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
       "codcli": 44928,
       "cliente": "56.356.834 SABRINA VITORIA OLIVEIRA DA SILVA",
       "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
@@ -30625,6 +33082,19 @@
       "supervisor": "MURIEL DE OLIVEIRA FARIAS",
       "codfornec": "12789",
       "fat": 62.22
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 43804,
+      "cliente": "34.933.492 LUIS FERNANDO SILVA HENRIQUE",
+      "ramo": "RESTAURANTE",
+      "depto": "VEGETAIS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "12789",
+      "fat": 114.1
     },
     {
       "data": 46226,
@@ -31589,6 +34059,32 @@
       "fat": 568.83
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38856,
+      "cliente": "EXAL - ADMINISTRACAO DE RESTAURANTES EMPRESARIAIS E FACILITI",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "EMBUTIDOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "12682",
+      "fat": 227.93
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38856,
+      "cliente": "EXAL - ADMINISTRACAO DE RESTAURANTES EMPRESARIAIS E FACILITI",
+      "ramo": "COZINHA INDUSTRIAL",
+      "depto": "EMBUTIDOS",
+      "codusur": "1429",
+      "rca": "NATALIA BOMBARDELLI VANZELLA",
+      "supervisor": "VENDAS INTERNO",
+      "codfornec": "12682",
+      "fat": 20.72
+    },
+    {
       "data": 46212,
       "dataStr": "09/07/2026",
       "codcli": 43100,
@@ -31704,6 +34200,19 @@
       "supervisor": "LEONARDO LAMBRECHTT",
       "codfornec": "11048",
       "fat": 136.48000000000002
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 34081,
+      "cliente": "PILAR MOLINA",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11048",
+      "fat": 35.9
     },
     {
       "data": 46205,
@@ -32603,6 +35112,45 @@
       "fat": 39.98
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 38330,
+      "cliente": "SUELEN FORTES MACIEL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11441",
+      "fat": 20.9
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 40800,
+      "cliente": "34.750.136 SUZANA SILVA HENRIQUE LEAL",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11441",
+      "fat": 40
+    },
+    {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 29658,
+      "cliente": "SOELI ALEXANDRA MACHADO HOFF 00023462060",
+      "ramo": "AÇAITERIA",
+      "depto": "DOCES",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11441",
+      "fat": 120.8
+    },
+    {
       "data": 46205,
       "dataStr": "02/07/2026",
       "codcli": 39757,
@@ -32928,6 +35476,19 @@
       "fat": 416.96
     },
     {
+      "data": 46233,
+      "dataStr": "30/07/2026",
+      "codcli": 45260,
+      "cliente": "RESTAURANTE AHP LTDA",
+      "ramo": "RESTAURANTE",
+      "depto": "SUINOS",
+      "codusur": "9886",
+      "rca": "TATIANA LACERDA BACELLAR",
+      "supervisor": "JACKSON MEDEIROS ADRIANO",
+      "codfornec": "11659",
+      "fat": 245.7
+    },
+    {
       "data": 46219,
       "dataStr": "16/07/2026",
       "codcli": 45974,
@@ -33087,7 +35648,7 @@
       "data": 46216,
       "dataStr": "13/07/2026",
       "codcli": 38928,
-      "cliente": "MARCIO ALEXANDRE GUERRA",
+      "cliente": "MAG DELIVERY LTDA",
       "ramo": "AÇAITERIA",
       "depto": "BOVINOS",
       "codusur": "9886",
@@ -33264,6 +35825,19 @@
       "supervisor": "JACKSON MEDEIROS ADRIANO",
       "codfornec": "11926",
       "fat": 1105.16
+    },
+    {
+      "data": 46232,
+      "dataStr": "29/07/2026",
+      "codcli": 45974,
+      "cliente": "27.992.671 CRISTIANE ALVES",
+      "ramo": "LANCHERIA, XIS, CACHORRO, QUIOSQUE",
+      "depto": "BOVINOS",
+      "codusur": "1464",
+      "rca": "CAMILA ARRUDA GOMES",
+      "supervisor": "MOIZES ISNARDI SILVEIRA",
+      "codfornec": "11926",
+      "fat": 594.11
     },
     {
       "data": 46205,
@@ -34283,7 +36857,7 @@
       "data": 46216,
       "dataStr": "13/07/2026",
       "codcli": 38928,
-      "cliente": "MARCIO ALEXANDRE GUERRA",
+      "cliente": "MAG DELIVERY LTDA",
       "ramo": "AÇAITERIA",
       "depto": "BOVINOS",
       "codusur": "9886",
