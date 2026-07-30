@@ -542,7 +542,7 @@ function renderRegiaoMes(){
     var max=Math.max.apply(null,all);if(max===0)max=1;
     var min=0;
     var range=max-min||1;
-    var W=960,H=300,PL=60,PR=40,PT=30,PB=40;
+    var W=960,H=325,PL=60,PR=40,PT=55,PB=40;
     var cw=W-PL-PR,ch=H-PT-PB;
     function yPos(v){return PT+ch-((v-min)/range)*ch;}
     function xPos(i){return PL+i/(6)*cw;}
