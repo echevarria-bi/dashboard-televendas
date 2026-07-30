@@ -270,7 +270,7 @@ function render(){
     if(v.codusur==='1624') v.nome+=' - Litoral';
   });
 
-  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div class="matriz-wrap"><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">Faturamento</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right" style="color:#60a5fa">A Faturar</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right">Ticket M\u00e9dio</th></tr></thead><tbody>';
+  var m='<div class="chart-box"><h2>Matriz de Positiva\u00e7\u00e3o <span class="sub">'+viewName+' &mdash; Julho/2026 vs Meta</span></h2><div class="matriz-wrap"><table><thead><tr><th>Vendedor</th><th>Regi\u00e3o</th><th class="text-right">Meta FAT</th><th class="text-right">FAT</th><th>% FAT</th><th class="text-right" style="color:#f59e0b">Proj. FAT</th><th class="text-right" style="color:#60a5fa">A Faturar</th><th class="text-right">Meta Pos.</th><th class="text-right">Pos.</th><th>% Pos.</th><th class="text-right">Ticket M\u00e9dio</th></tr></thead><tbody>';
   var totFat=0,tMetaFat=0,totPos=0,tMetaPos=0;
   vArr.forEach(function(v,i){
     var qc=Object.keys(v.clientes).length;
