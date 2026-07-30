@@ -767,52 +767,6 @@ function renderRegiaoMes(){
   html+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(rGrandTotal)+'</td></tr></tfoot>';
   html+='</tbody></table></div></div>';
 
-  // Repartição por Região x Televendedora
-  var sellerNames={'1596':'Ariane','1464':'Camila','1211':'Cristielen','1429':'Natália','9886':'Tatiana','1624':'Tatiana L','1527':'Lauren','1571':'Anna','1573':'Eduarda'};
-  var allMonths=[1,2,3,4,5,6,7];
-  function sellersInReg(reg){
-    var set={};
-    allMonths.forEach(function(m){(REGIAO_MES[reg][m]||[]).forEach(function(c){set[c]=1;});});
-    return Object.keys(set);
-  }
-  html+='<div class="chart-box">';
-  html+='<h2>Repartição por Região x Televendedora <span class="sub">Jan-Jul 2026</span></h2>';
-  html+='<div style="overflow-x:auto"><table><thead><tr><th>Região / Vendedor</th>';
-  for(var mi=0;mi<7;mi++) html+='<th class="text-right">'+months[mi]+'</th>';
-  html+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
-  order.forEach(function(reg,ri){
-    var ss=sellersInReg(reg);
-    if(!ss.length)return;
-    function sellerFat(cod,m){
-      var rdm=REGIAO_MES[reg][m];
-      if(!rdm||rdm.indexOf(cod)===-1)return -1;
-      var ov=CLIENT_REGIAO[m]&&CLIENT_REGIAO[m][cod];
-      if(ov){
-        var sum=0;
-        for(var di=0;di<DADOS.length;di++){
-          var row=DADOS[di];
-          if(String(row.codusur)===cod&&ov[row.codcli]===reg&&row.fat>=1) sum+=row.fat;
-        }
-        return sum;
-      }
-      var d=DADOS_MES[m]&&DADOS_MES[m][cod];
-      return d?d.fat:0;
-    }
-    ss.forEach(function(cod,si){
-      var total=0;
-      html+='<tr>'+(si===0?'<td rowspan="'+ss.length+'" style="font-weight:600;color:#fcd34d;border-left:3px solid '+cores[ri]+';vertical-align:middle;font-size:15px">'+reg+'</td>':'');
-      html+='<td style="padding-left:28px;color:#aaa;font-size:14px">'+(sellerNames[cod]||cod)+'</td>';
-      for(var mi=0;mi<7;mi++){
-        var m=mi+1;
-        var fat=sellerFat(cod,m);
-        if(fat<0){html+='<td class="text-right" style="white-space:nowrap;color:#4a4d6e;font-size:14px">&mdash;</td>';}
-        else{total+=fat;html+='<td class="text-right" style="white-space:nowrap;color:#9ca3af;font-size:14px">'+fmt(fat)+'</td>';}
-      }
-      html+='<td class="text-right" style="font-weight:600;color:#34d399;font-size:14px">'+fmt(total)+'</td></tr>';
-    });
-  });
-  html+='</tbody></table></div></div>';
-
   document.getElementById('app').innerHTML=html;
 }
 </script>
