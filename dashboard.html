@@ -139,9 +139,8 @@ function gaugeSVG(pct, color){
   var angle=180-arcPct*1.8;
   var rad=angle*Math.PI/180;
   var ex=cx+r*Math.cos(rad),ey=cy-r*Math.sin(rad);
-  var largeArc=arcPct>50?1:0;
 
-  var arcPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 '+largeArc+' 1 '+ex+' '+ey;
+  var arcPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 0 1 '+ex+' '+ey;
   var bgPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 1 1 '+(cx+r)+' '+cy;
 
   var nPct=Math.min(Math.max(pct,0),150);
