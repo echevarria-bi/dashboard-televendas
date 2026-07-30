@@ -59,11 +59,10 @@ tr:hover{background:rgba(255,255,255,0.05)}
 .tw th{position:sticky;top:0;z-index:2;background:#111}
 .bar-bg{height:8px;border-radius:4px;background:#333;overflow:hidden;margin-top:4px;width:140px}
 .matriz-wrap{overflow-x:auto}
-.matriz-wrap table{font-size:13px!important}
-.matriz-wrap table th{padding:6px 5px!important;font-size:12px!important;white-space:nowrap!important}
-.matriz-wrap table td{padding:5px 5px!important;font-size:13px!important;white-space:nowrap!important}
-.matriz-wrap .bar-bg{width:80px!important}
-.matriz-wrap .bar-bg .lbl-falta,.matriz-wrap .bar-bg+span{font-size:11px!important}
+.matriz-wrap table{font-size:18px!important}
+.matriz-wrap table th{padding:6px 6px!important;font-size:16px!important;white-space:nowrap!important}
+.matriz-wrap table td{padding:5px 6px!important;font-size:18px!important;white-space:nowrap!important}
+.matriz-wrap .bar-bg{width:100px!important}
 .bar-fill{height:100%;border-radius:4px}
 .cell-cli{max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:#fcd34d}
 footer{text-align:center;padding:16px;font-size:18px;color:#555;border-top:1px solid #1a1a2e;margin-top:10px}
@@ -364,9 +363,9 @@ function render(){
     regOrder.forEach(function(reg){
       if(regs[reg]){
         var rp=d.fat>0?regs[reg]/d.fat*100:0;
-        regHtml+='<tr><td style="padding:3px 12px 3px 28px;font-size:14px;color:#9ca3af">'+reg+'</td>'+
-          '<td class="text-right" style="padding:3px 12px;font-size:14px;color:#fbbf24">'+fmt(regs[reg])+'</td>'+
-          '<td class="text-right" style="padding:3px 12px;font-size:14px;color:#888">'+rp.toFixed(1)+'%</td></tr>';
+        regHtml+='<tr><td style="padding:3px 12px 3px 32px;font-size:18px;color:#6b7280">'+reg+'</td>'+
+          '<td class="text-right" style="padding:3px 12px;font-size:18px;color:#f59e0b">'+fmt(regs[reg])+'</td>'+
+          '<td class="text-right" style="padding:3px 12px;font-size:18px;color:#888">'+rp.toFixed(1)+'%</td></tr>';
       }
     });
     var hasReg=regHtml.length>0;
