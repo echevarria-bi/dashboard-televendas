@@ -328,25 +328,54 @@ function render(){
 
   // Departamento section
   var dept={};
+  var deptReg={};
   filtered.forEach(function(r){
     var d=r.depto||'SEM DEPARTAMENTO';
     if(!dept[d])dept[d]={fat:0,pos:0,cli:{}};
     dept[d].fat+=r.fat;
+    if(typeof REGIAO_MES!=='undefined'){
+      if(!deptReg[d])deptReg[d]={};
+      var reg=(r.codusur==='1429'&&CLIENT_REGIAO[7]&&CLIENT_REGIAO[7]['1429']&&CLIENT_REGIAO[7]['1429'][r.codcli])?CLIENT_REGIAO[7]['1429'][r.codcli]:null;
+      if(!reg){
+        var rn=Object.keys(REGIAO_MES);
+        for(var ri=0;ri<rn.length;ri++){
+          if(REGIAO_MES[rn[ri]][7]&&REGIAO_MES[rn[ri]][7].indexOf(r.codusur)>=0){reg=rn[ri];break;}
+        }
+      }
+      if(reg){
+        if(!deptReg[d][reg])deptReg[d][reg]=0;
+        deptReg[d][reg]+=r.fat;
+      }
+    }
   });
   pos.forEach(function(r){
     var d=r.depto||'SEM DEPARTAMENTO';
     dept[d].pos++;
     dept[d].cli[r.codcli]=1;
   });
+  var regOrder=['Região Metropolitana','Região Sul','Serra','Litoral','Vale dos Sinos'];
   var dArr=Object.keys(dept).map(function(k){return{k:k,fat:dept[k].fat,pos:dept[k].pos,cli:Object.keys(dept[k].cli).length};}).sort(function(a,b){return b.fat-a.fat;});
   var dTotFat=dArr.reduce(function(s,d){return s+d.fat;},0);
   var dep='<div class="chart-box"><h2>Faturamento por Departamento <span class="sub">'+viewName+' &mdash; Julho/2026</span></h2><table><thead><tr><th>Departamento</th><th class="text-right">Faturamento</th><th class="text-right">%</th></tr></thead><tbody>';
   dArr.forEach(function(d,i){
     var dp=dTotFat>0?d.fat/dTotFat*100:0;
-    dep+='<tr'+(i%2===0?' style="background:rgba(255,255,255,0.02)"':'')+'>'+
-      '<td style="font-weight:600;color:#fcd34d">'+d.k+'</td>'+
+    var regs=deptReg[d.k]||{};
+    var regHtml='';
+    regOrder.forEach(function(reg){
+      if(regs[reg]){
+        var rp=d.fat>0?regs[reg]/d.fat*100:0;
+        regHtml+='<tr><td style="padding:3px 12px 3px 28px;font-size:12px;color:#9ca3af">'+reg+'</td>'+
+          '<td class="text-right" style="padding:3px 12px;font-size:12px;color:#fbbf24">'+fmt(regs[reg])+'</td>'+
+          '<td class="text-right" style="padding:3px 12px;font-size:12px;color:#888">'+rp.toFixed(1)+'%</td></tr>';
+      }
+    });
+    var hasReg=regHtml.length>0;
+    var uid='dp_'+i;
+    dep+='<tr onclick="var e=document.getElementById(\''+uid+'\');e.style.display=e.style.display==\'none\'?\'table-row-group\':\'none\';var ic=document.getElementById(\''+uid+'_ic\');ic.textContent=e.style.display==\'none\'?\'\u25B6\':\'\u25BC\';" style="cursor:'+(hasReg?'pointer':'default')+';'+(i%2===0?'background:rgba(255,255,255,0.02)':'')+'">'+
+      '<td style="font-weight:600;color:#fcd34d">'+(hasReg?'<span id="'+uid+'_ic" style="display:inline-block;width:14px;font-size:10px;color:#f59e0b">\u25B6</span> ':'')+d.k+'</td>'+
       '<td class="text-right" style="color:#fbbf24;font-weight:700">'+fmt(d.fat)+'</td>'+
-      '<td class="text-right" style="color:#888;font-size:13px">'+dp.toFixed(1)+'%</td></tr>';
+      '<td class="text-right" style="color:#888;font-size:13px">'+dp.toFixed(1)+'%</td></tr>'+
+      (hasReg?'<tbody id="'+uid+'" style="display:none">'+regHtml+'</tbody>':'');
   });
   dep+='<tr style="background:#151830;border-top:2px solid #f59e0b">'+
     '<td style="font-weight:800;color:#fcd34d;font-size:16px">TOTAL</td>'+
