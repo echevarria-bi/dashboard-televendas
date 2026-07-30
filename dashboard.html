@@ -135,18 +135,20 @@ var META_2026 = {fat: 6642590.92, pos: 3118};
 
 function gaugeSVG(pct, color){
   var cx=100,cy=95,r=72;
-  var clampPct=Math.min(Math.max(pct,0),150);
-  var angle=180-clampPct*1.8;
+  var arcPct=Math.min(Math.max(pct,0),100);
+  var angle=180-arcPct*1.8;
   var rad=angle*Math.PI/180;
   var ex=cx+r*Math.cos(rad),ey=cy-r*Math.sin(rad);
-  var largeArc=clampPct>50?1:0;
+  var largeArc=arcPct>50?1:0;
 
-  var arcPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 0 1 '+ex+' '+ey;
+  var arcPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 '+largeArc+' 1 '+ex+' '+ey;
   var bgPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 1 1 '+(cx+r)+' '+cy;
 
+  var nPct=Math.min(Math.max(pct,0),150);
+  var nRad=(180-nPct*1.8)*Math.PI/180;
   var needleLen=58;
-  var nx=cx+needleLen*Math.cos(rad);
-  var ny=cy-needleLen*Math.sin(rad);
+  var nx=cx+needleLen*Math.cos(nRad);
+  var ny=cy-needleLen*Math.sin(nRad);
 
   var zones='';
   [[180,36,'#ef4444'],[36,0,'#fbbf24']].forEach(function(z){
