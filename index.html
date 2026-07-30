@@ -363,7 +363,7 @@ function render(){
     regOrder.forEach(function(reg){
       if(regs[reg]){
         var rp=d.fat>0?regs[reg]/d.fat*100:0;
-        regHtml+='<tr><td style="padding:3px 12px 3px 32px;font-size:18px;color:#6b7280">'+reg+'</td>'+
+        regHtml+='<tr><td style="padding:3px 12px 3px 32px;font-size:18px;color:#9ca3af">'+reg+'</td>'+
           '<td class="text-right" style="padding:3px 12px;font-size:18px;color:#f59e0b">'+fmt(regs[reg])+'</td>'+
           '<td class="text-right" style="padding:3px 12px;font-size:18px;color:#888">'+rp.toFixed(1)+'%</td></tr>';
       }
