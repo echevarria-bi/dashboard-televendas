@@ -384,6 +384,77 @@ function render(){
     '<td class="text-right" style="color:#fbbf24;font-weight:600;font-size:14px">100%</td></tr>';
   dep+='</tbody></table></div>';
 
+  // Faturamento por Região (Geral only) - mesma tabela da aba Análise Por Região
+  var regFatTable='';
+  if(viewName==='Geral'&&typeof REGIAO_MES!=='undefined'&&typeof DADOS_MES!=='undefined'){
+    var months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul'];
+    var order=['Regi\u00e3o Metropolitana','Regi\u00e3o Sul','Serra','Litoral','Vale dos Sinos'];
+    var cores=['#f59e0b','#34d399','#60a5fa','#a78bfa','#f87171'];
+    var regExclude=JSON.parse(JSON.stringify(REGIAO_MES));
+    for(var rk in regExclude){
+      if(regExclude[rk][7]) regExclude[rk][7]=regExclude[rk][7].filter(function(c){return c!=='1429';});
+    }
+    function calcRegTable(reg){
+      var rd=regExclude[reg]; if(!rd)return null;
+      var out={months:[],totalFat:0};
+      for(var m=1;m<=7;m++){
+        var fat=0;
+        (rd[m]||[]).forEach(function(c){
+          var ov=CLIENT_REGIAO[m]&&CLIENT_REGIAO[m][c];
+          if(ov){
+            for(var di=0;di<DADOS.length;di++){
+              var row=DADOS[di];
+              if(String(row.codusur)===c&&ov[row.codcli]===reg&&row.fat>=1) fat+=row.fat;
+            }
+          }else{
+            var d=DADOS_MES[m]&&DADOS_MES[m][c]; if(d) fat+=d.fat;
+          }
+        });
+        out.months.push({fat:fat}); out.totalFat+=fat;
+      }
+      return out;
+    }
+    regFatTable+='<div class="chart-box">';
+    regFatTable+='<h2>Faturamento por Regi\u00e3o <span class="sub">Jan\u2013Jul/2026: nesta tabela, Key Account \u00e9 exibido separadamente para uma leitura exclusiva desse segmento. Nos cards rotativos, ele \u00e9 considerado dentro da regi\u00e3o de cada cliente.</span></h2>';
+    regFatTable+='<div style="overflow-x:auto"><table><thead><tr><th>Regi\u00e3o</th>';
+    for(var mi=0;mi<7;mi++) regFatTable+='<th class="text-right">'+months[mi]+'</th>';
+    regFatTable+='<th class="text-right" style="color:#f59e0b">Total</th></tr></thead><tbody>';
+    var rColTotals=[0,0,0,0,0,0,0];
+    var rGrandTotal=0;
+    order.forEach(function(reg,ri){
+      var rd=calcRegTable(reg);
+      if(!rd)return;
+      var total=0;
+      regFatTable+='<tr><td style="font-weight:600;color:#fcd34d;border-left:3px solid '+cores[ri]+'">'+reg+'</td>';
+      for(var mi=0;mi<7;mi++){
+        var fat=Math.round(rd.months[mi].fat*100)/100;
+        total+=fat;
+        rColTotals[mi]+=fat;
+        regFatTable+='<td class="text-right" style="white-space:nowrap;color:#fbbf24">'+fmt(fat)+'</td>';
+      }
+      rGrandTotal+=total;
+      regFatTable+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(total)+'</td></tr>';
+    });
+    var kaTotal=0;
+    regFatTable+='<tr><td style="font-weight:600;color:#f59e0b;border-left:3px solid #f59e0b">Key Account</td>';
+    for(var mi=0;mi<7;mi++){
+      if(mi===6){
+        var kd=DADOS_MES[mi+1]&&DADOS_MES[mi+1]['1429']?DADOS_MES[mi+1]['1429'].fat:0;
+        kaTotal+=kd;
+        rColTotals[mi]+=kd;
+        regFatTable+='<td class="text-right" style="white-space:nowrap;color:#f59e0b">'+fmt(kd)+'</td>';
+      }else{
+        regFatTable+='<td class="text-right" style="white-space:nowrap;color:#4a4d6e">&mdash;</td>';
+      }
+    }
+    rGrandTotal+=kaTotal;
+    regFatTable+='<td class="text-right" style="font-weight:700;color:#f59e0b">'+fmt(kaTotal)+'</td></tr>';
+    regFatTable+='<tfoot><tr style="border-top:2px solid #f59e0b"><td style="font-weight:700;color:#fcd34d">Total</td>';
+    for(var mi=0;mi<7;mi++) regFatTable+='<td class="text-right" style="font-weight:700;color:#fbbf24">'+fmt(rColTotals[mi])+'</td>';
+    regFatTable+='<td class="text-right" style="font-weight:700;color:#34d399">'+fmt(rGrandTotal)+'</td></tr></tfoot>';
+    regFatTable+='</tbody></table></div></div>';
+  }
+
   var d='<div class="chart-box"><h2>Detalhamento por Vendedor</h2>';
   vArr.forEach(function(v){
     var clis=Object.keys(v.clientes).map(function(cod){
@@ -478,7 +549,7 @@ function render(){
     polpaMat+='</tbody></table></div></div>';
   }
 
-  document.getElementById('app').innerHTML=c+m+(viewName==='Geral'?dep:'')+d+polpaMat;
+  document.getElementById('app').innerHTML=c+m+(viewName==='Geral'?dep+regFatTable:'')+d+polpaMat;
 }
 
 function fmtMes(m){
