@@ -142,7 +142,7 @@ function gaugeSVG(pct, color){
   var arcPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 0 1 '+ex+' '+ey;
   var bgPath='M '+(cx-r)+' '+cy+' A '+r+' '+r+' 0 1 1 '+(cx+r)+' '+cy;
 
-  var nPct=Math.min(Math.max(pct,0),150);
+  var nPct=Math.min(Math.max(pct,0),100);
   var nRad=(180-nPct*1.8)*Math.PI/180;
   var needleLen=58;
   var nx=cx+needleLen*Math.cos(nRad);
