@@ -478,10 +478,10 @@ function render(){
         {cod:'1573',nome:'Eduarda'}
       ]},
       {reg:'Vale dos Sinos',cor:'#f87171',sellers:[
-        {cod:'1211',nome:'Cristielen'}
+        {cod:'1211',nome:'Cristielen'},{cod:'1429',nome:'Nat\u00e1lia',ms:[1,2,3,4,5,6]}
       ]},
       {reg:'Key Account',cor:'#22d3ee',sellers:[
-        {cod:'1429',nome:'Nat\u00e1lia'}
+        {cod:'1429',nome:'Nat\u00e1lia',ms:[7]}
       ]}
     ];
     polpaMat+='<div class="chart-box">';
@@ -500,9 +500,11 @@ function render(){
         sellerRows+='<tr><td style="color:#9ca3af">'+ps.cod+'</td><td style="font-weight:600;color:#d8b4fe">'+ps.nome+'</td>';
         for(var pmi=1;pmi<=7;pmi++){
           var pFat=0;
-          if(DADOS_POLPA_MES&&DADOS_POLPA_MES[pmi]){
-            if(DADOS_POLPA_MES[pmi][ps.cod]) pFat+=DADOS_POLPA_MES[pmi][ps.cod].fat;
-            if(ps.cod==='9886'&&DADOS_POLPA_MES[pmi]['1624']) pFat+=DADOS_POLPA_MES[pmi]['1624'].fat;
+          if(!ps.ms||ps.ms.indexOf(pmi)>=0){
+            if(DADOS_POLPA_MES&&DADOS_POLPA_MES[pmi]){
+              if(DADOS_POLPA_MES[pmi][ps.cod]) pFat+=DADOS_POLPA_MES[pmi][ps.cod].fat;
+              if(ps.cod==='9886'&&DADOS_POLPA_MES[pmi]['1624']) pFat+=DADOS_POLPA_MES[pmi]['1624'].fat;
+            }
           }
           pFat=Math.round(pFat*100)/100;
           pTotal+=pFat;
