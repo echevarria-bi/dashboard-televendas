@@ -364,13 +364,16 @@ function render(){
     var dp=dTotFat>0?d.fat/dTotFat*100:0;
     var regs=deptReg[d.k]||{};
     var regHtml='';
+    var regArr=[];
     regOrder.forEach(function(reg){
-      if(regs[reg]){
-        var rp=d.fat>0?regs[reg]/d.fat*100:0;
-        regHtml+='<tr><td style="padding:3px 12px 3px 32px;font-size:18px;color:#9ca3af">'+reg+'</td>'+
-          '<td class="text-right" style="padding:3px 12px;font-size:18px;color:#f59e0b">'+fmt(regs[reg])+'</td>'+
-          '<td class="text-right" style="padding:3px 12px;font-size:18px;color:#888">'+rp.toFixed(1)+'%</td></tr>';
-      }
+      if(regs[reg])regArr.push({reg:reg,fat:regs[reg]});
+    });
+    regArr.sort(function(a,b){return b.fat-a.fat;});
+    regArr.forEach(function(rg){
+      var rp=d.fat>0?rg.fat/d.fat*100:0;
+      regHtml+='<tr><td style="padding:3px 12px 3px 32px;font-size:18px;color:#9ca3af">'+rg.reg+'</td>'+
+        '<td class="text-right" style="padding:3px 12px;font-size:18px;color:#f59e0b">'+fmt(rg.fat)+'</td>'+
+        '<td class="text-right" style="padding:3px 12px;font-size:18px;color:#888">'+rp.toFixed(1)+'%</td></tr>';
     });
     var hasReg=regHtml.length>0;
     var uid='dp_'+i;
