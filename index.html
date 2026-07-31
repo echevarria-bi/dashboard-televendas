@@ -464,26 +464,22 @@ function render(){
   var polpaMat='';
   if(activeView==='polpanorte'){
     var polpaMonths=['Jan','Fev','Mar','Abr','Mai','Jun','Jul'];
-    var polpaReg=[
-      {reg:'Regi\u00e3o Metropolitana',cor:'#f59e0b',sellers:[
-        {cod:'1596',nome:'Ariane'},{cod:'1527',nome:'Lauren'}
-      ]},
-      {reg:'Regi\u00e3o Sul',cor:'#34d399',sellers:[
-        {cod:'1464',nome:'Camila'},{cod:'1571',nome:'Anna'}
-      ]},
-      {reg:'Serra',cor:'#60a5fa',sellers:[
-        {cod:'9886',nome:'Tatiana Lacerda Bacellar'}
-      ]},
-      {reg:'Litoral',cor:'#a78bfa',sellers:[
-        {cod:'1573',nome:'Eduarda'}
-      ]},
-      {reg:'Vale dos Sinos',cor:'#f87171',sellers:[
-        {cod:'1211',nome:'Cristielen'},{cod:'1429',nome:'Nat\u00e1lia',ms:[1,2,3,4,5,6]}
-      ]},
-      {reg:'Key Account',cor:'#22d3ee',sellers:[
-        {cod:'1429',nome:'Nat\u00e1lia',ms:[7]}
-      ]}
-    ];
+    var pRegOrder=['Regi\u00e3o Metropolitana','Regi\u00e3o Sul','Serra','Litoral','Vale dos Sinos','Key Account'];
+    var pRegCores=['#f59e0b','#34d399','#60a5fa','#a78bfa','#f87171','#22d3ee'];
+    var polpaNomes={'1527':'Lauren','1596':'Ariane','1464':'Camila','1571':'Anna','9886':'Tatiana Lacerda Bacellar','1573':'Eduarda','1211':'Cristielen','1429':'Nat\u00e1lia','1624':'Tatiana - Litoral'};
+    var polpaReg=[];
+    pRegOrder.forEach(function(reg,ri){
+      var rd=REGIAO_MES[reg]; if(!rd)return;
+      var smap={};
+      for(var pm=1;pm<=7;pm++){
+        (rd[pm]||[]).forEach(function(c){
+          if(!smap[c])smap[c]={cod:c,ms:[]};
+          smap[c].ms.push(pm);
+        });
+      }
+      var sellers=Object.keys(smap).map(function(c){return{cod:c,nome:polpaNomes[c]||c,ms:smap[c].ms};}).sort(function(a,b){return a.cod.localeCompare(b.cod);});
+      polpaReg.push({reg:reg,cor:pRegCores[ri],sellers:sellers});
+    });
     polpaMat+='<div class="chart-box">';
     polpaMat+='<h2>Polpanorte por Regi\u00e3o <span class="sub">Jan-Jul 2026</span></h2>';
     polpaMat+='<div style="overflow-x:auto"><table><thead><tr><th></th><th>Televendedora</th>';
@@ -503,7 +499,6 @@ function render(){
           if(!ps.ms||ps.ms.indexOf(pmi)>=0){
             if(DADOS_POLPA_MES&&DADOS_POLPA_MES[pmi]){
               if(DADOS_POLPA_MES[pmi][ps.cod]) pFat+=DADOS_POLPA_MES[pmi][ps.cod].fat;
-              if(ps.cod==='9886'&&DADOS_POLPA_MES[pmi]['1624']) pFat+=DADOS_POLPA_MES[pmi]['1624'].fat;
             }
           }
           pFat=Math.round(pFat*100)/100;
