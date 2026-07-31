@@ -221,16 +221,20 @@ function render(){
   var pfC=pfPct>=100?'#34d399':pfPct>=80?'#fbbf24':'#f87171';
   var ppC=ppPct>=100?'#34d399':ppPct>=80?'#fbbf24':'#f87171';
 
+  var gapFat=metaFatTotal-fatBru;
+  var gapPos=metaPosTotal-qtdCliPos;
   var c='<div class="gauge-wrap">'+
     '<div class="gauge-card"><div class="gauge-title">Faturamento vs Meta</div>'+
     gaugeSVG(pfPct,pfC)+
     '<div class="gauge-actual" style="color:'+pfC+'">'+fmt(fatBru)+'</div>'+
-    '<div style="font-size:13px;color:#f59e0b;margin-top:2px">Proj. 31/07: '+fmt(fatProj)+' ('+pfProjPct.toFixed(1)+'%)</div>'+
-    '<div class="gauge-meta">Meta: '+fmt(metaFatTotal)+'</div></div>'+
+    '<div style="font-size:18px;color:#f59e0b;margin-top:2px">Proj. 31/07: '+fmt(fatProj)+' ('+pfProjPct.toFixed(1)+'%)</div>'+
+    '<div class="gauge-meta">Meta: '+fmt(metaFatTotal)+'</div>'+
+    '<div style="font-size:18px;font-weight:600;color:'+(gapFat>0?'#f87171':'#34d399')+'">Gap: '+(gapFat>0?fmt(gapFat):'OK')+'</div></div>'+
     '<div class="gauge-card"><div class="gauge-title">Positiva\u00e7\u00e3o vs Meta</div>'+
     gaugeSVG(ppPct,ppC)+
     '<div class="gauge-actual" style="color:'+ppC+'">'+qtdCliPos+'</div>'+
-    '<div class="gauge-meta">Meta: '+metaPosTotal+'</div></div></div>'+
+    '<div class="gauge-meta">Meta: '+metaPosTotal+'</div>'+
+    '<div style="font-size:18px;font-weight:600;color:'+(gapPos>0?'#f87171':'#34d399')+'">Gap: '+(gapPos>0?gapPos:'OK')+'</div></div></div>'+
     '<div style="display:flex;gap:24px;justify-content:center;margin-top:-20px;margin-bottom:20px;font-size:13px;color:#888">'+
     '<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#ef4444;margin-right:4px;vertical-align:middle"></span> Abaixo 80%</span>'+
     '<span><span style="display:inline-block;width:12px;height:12px;border-radius:3px;background:#fbbf24;margin-right:4px;vertical-align:middle"></span> 80% a 99%</span>'+
